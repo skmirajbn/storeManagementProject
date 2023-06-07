@@ -6,6 +6,3 @@ Neutral Color: White (#FFFFFF) and Gray (#CCCCCC)
 
 Primary Text: White (#FFFFFF)
 Attention Text: Orange (#F39C12)
-
-
-Miraj
