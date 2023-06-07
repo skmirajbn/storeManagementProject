@@ -1,0 +1,8 @@
+Primary Color: Dark Blue (#222F3E)
+Secondary Color: Light Blue (#3498DB)
+Third color: grey blue (#3498DB)
+Attention Color: Orange (#F39C12)
+Neutral Color: White (#FFFFFF) and Gray (#CCCCCC)
+
+Primary Text: White (#FFFFFF)
+Attention Text: Orange (#F39C12)
