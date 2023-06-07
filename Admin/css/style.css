@@ -37,7 +37,8 @@ a:hover{
     color: #F39C12; 
 }
 .nav_profile{
-    margin-right: 70px;
+    padding-top: 10px;
+    margin-right: 32px;
 }
 .nav_profile .nav-link{
     color: white;
@@ -45,6 +46,27 @@ a:hover{
 
 
 /* Sidebar */
+.user_part{
+    color: white;
+}
+.user_part img{
+    margin: 0 auto;
+    display: block;
+    border-radius: 50%;
+    width: 50px;
+}
+.user_part h5{
+    font-size: 16px;
+    text-align: center;
+}
+.user_part p{
+    text-align: center;
+    font-size: 14px;
+}
+.user_part p i{
+    color: green;
+}
+
 .sidebar a{
     color: white;
 }
@@ -53,7 +75,7 @@ a:hover{
     padding: 10px 10px 10px 20px;
 }
 .side-body{
-    height: 80vh;
+    height: 68vh;
     background-color: #222F3E;
 }
 .bg-primary{
@@ -80,13 +102,15 @@ a:hover{
     width: 100%;
     background-color: #f7e5c8;
 }
-
+.main_content{
+    padding: 20px;
+}
 
 /* Footer */
 .footer {
     background-color: #222F3E;
     color: white;
-    padding: 5px;
+    padding: 12px;
     text-align: center;
   }
   
