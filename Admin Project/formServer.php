@@ -22,5 +22,19 @@ if(isset($_GET['categoryDelete'])){
         header("Location: pages/all_categories.php");
     }
 }
-
+//Add customar
+if(isset($_POST['addCustomer'])){
+    $name=$_POST["customer_name"];
+    $address=$_POST["customer_address"];
+    $phone=$_POST["customer_phone"];
+    $email=$_POST["customer_email"];
+    $sql="INSERT INTO customers(customer_name,customer_address,customer_phone,customer_email) VALUES('$name','$address','$phone','$email')";
+    $query=$con->query($sql);
+    if($query){
+        echo "Upload SuccessFul";
+    }else{
+        echo "Data Upload Failed";
+    }
+}
+           
 ?>

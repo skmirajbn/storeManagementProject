@@ -26,7 +26,7 @@
                       >
                     </div>
                     <div class="accordion-body">
-                      <a class="btn btn-block" href=""
+                      <a class="btn btn-block" href="pages/add_customer.php" data-form="addCustomer"
                         ><i class="fa-solid fa-user-plus"></i>&nbsp; Add Customers</a
                       >
                     </div>

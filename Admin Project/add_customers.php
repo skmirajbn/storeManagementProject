@@ -328,10 +328,29 @@
           </nav>
            <!-- Breadcrump End -->
            <!-- Content Start -->
+           <?php
+          
+            require_once("includes/db_connection.php");
+            if(isset($_POST['addCustomer'])){
+              $name=$_POST["customer_name"];
+              $address=$_POST["customer_address"];
+              $phone=$_POST["customer_phone"];
+              $email=$_POST["customer_email"];
+              $sql="INSERT INTO customers(customer_name,customer_address,customer_phone,customer_email) VALUES('$name','$address','$phone','$email')";
+              $query=$con->query($sql);
+              if($query){
+                echo "Upload SuccessFul";
+              }else{
+                echo "Data Upload Failed";
+              }
+
+            }
+           ?>
+
             <div class="main_content">
                 <div class="form-body container" style="width: 80%; margin:0 auto">
-                    <h4>Add Category</h4>
-                    <form action="">
+                    <h4>Add Customer</h4>
+                    <form action="" method="post">
                         <div class="form-group">
                           <label for="">Customer Name:</label>
                           <input class="form-control" name="customer_name" type="text" placeholder="Enter Customer Name">
@@ -344,7 +363,12 @@
                             <label for="">Customer Phone:</label>
                             <input class="form-control" name="customer_phone" type="text" placeholder="Enter Customer Phone">
                         </div>
+                        <div class="form-group">
+                            <label for="">Customer Phone:</label>
+                            <input class="form-control" name="customer_email" type="text" placeholder="Enter Customer Phone">
+                        </div>
                         <br>
+                        <input type="hidden" name="addCustomer">
                         <input type="submit" class="mybtn-hightlight btn" value="Add Category">
                     </form>
                 </div>
