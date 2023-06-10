@@ -1,5 +1,4 @@
-<?php 
-$content = <<<HTML
+
   <div class="form-body container" style="width: 80%; margin:0 auto">
                     <h4>Add Category</h4>
                     <form id="addCategory">
@@ -14,6 +13,3 @@ $content = <<<HTML
                       <div id="response"></div>
                     
                 </div>
-HTML;
-echo $content;
-?>

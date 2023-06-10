@@ -1,12 +1,24 @@
 <?php 
 require_once("../includes/db_connection.php");
 
-$sql = "SELECT * FROM categories ORDER by category_id DESC";
+//pagination
+$limit = 5;
+$currentPage = $_GET['page'] ?? 1;
+
+$countSql = "SELECT COUNT(*) AS TOTAL FROM categories";
+$result = $con->query($countSql);
+$totalRows = $result->fetch_assoc()['TOTAL'];
+$totalPage = ceil($totalRows / $limit);
+$offset = ($currentPage - 1) * $limit;
+
+
+
+
+$sql = "SELECT * FROM categories ORDER by category_id DESC LIMIT $offset, $limit";
 $result = $con->query($sql);
 
 
 ?>
-
 <div class="table-responsive">
                 <table>
                   <thead>
@@ -26,8 +38,8 @@ $result = $con->query($sql);
                       <td><?=$data['category_id']?></td>
                       <td><?=$data['category_name']?></td>
                       <td>
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
+                        <a  class="edit-btn btn">Edit</a>
+                        <a href="formServer.php?categoryDelete=<?=$data['category_id']?>" class="delete-btn btn">Delete</a>
                       </td>
                     </tr>
                     <?php } ?>
@@ -37,12 +49,23 @@ $result = $con->query($sql);
               </div>
             
               <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
+                <a href="pages/all_categories.php?page=1">&laquo;</a>
+                <a href="pages/all_categories.php?page=<?=$currentPage-1?>">&lt;</a>
+                <?php 
+                if($currentPage>2){
+                  $page = $currentPage - 2;
+                  $lastPage = $currentPage + 2;
+                }else{
+                  $page = 1;
+                  $lastPage = 5;
+                }
+                if($lastPage>=$totalPage){
+                  $lastPage = $totalPage;
+                }
+                for($page; $page<=$lastPage; $page++){ 
+                  ?>
+                <a href="pages/all_categories.php?page=<?=$page?>" class="<?=$currentPage == $page ? 'active' : '' ?>"><?=$page?></a>
+                <?php } ?>
+                <a href="pages/all_categories.php?page=<?=$currentPage + 1?>">&gt;</a>
+                <a href="pages/all_categories.php?page=<?=$totalPage?>">&raquo;</a>
               </div>

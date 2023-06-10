@@ -65,16 +65,16 @@
                   </h2>
                   <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
-                        <a class="btn btn-block" href="" onclick="allCategories(event)"><i class="fa-solid fa-sitemap"></i>&nbsp; All Categories</a>
+                        <a class="btn btn-block" href="pages/all_categories.php" ><i class="fa-solid fa-sitemap"></i>&nbsp; All Categories</a>
                       </div>
                       <div class="accordion-body">
                         <a class="btn btn-block" href=""><i class="fa-solid fa-sitemap"></i>&nbsp; All SubCategories</a>
                       </div>
                       <div class="accordion-body">
-                        <a class="btn btn-block" href="" onclick="addCategory(event)"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add Category</a>
+                        <a class="btn btn-block" href="pages/add_category.php" data-form="addCategory"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add Category</a>
                       </div>
                       <div class="accordion-body">
-                        <a class="btn btn-block" href="" onclick="addSubCategory(event)"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add SubCategory</a>
+                        <a class="btn btn-block" href="pages/add_subCategory.php" data-form="addSubCategory"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add SubCategory</a>
                       </div>
                       <div class="accordion-body">
                         <a class="btn btn-block" href=""><i class="fa-solid fa-screwdriver-wrench"></i>&nbsp; Reassign Sub Category</a>

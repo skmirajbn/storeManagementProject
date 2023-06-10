@@ -3,7 +3,6 @@ require_once("includes/functions.php");
 getheader();
 getSidebar();
 ?>
-      
         <section class="content col-md-8 col-xl-9 col-xxl-10">
           <!-- Breadcrump Start -->
           <nav class="breadcrumb" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
@@ -13,6 +12,7 @@ getSidebar();
             </ol>
           </nav>
            <!-- Breadcrump End -->
+           <div id="loading"></div>
            <!-- Content Start -->
             <div class="main_content">
               <p>Welcome! Sk Miraj</p>
@@ -20,8 +20,6 @@ getSidebar();
            <!-- Content End -->
         </section>
       </section>
-
-      
       <?php 
       getFooter();
       ?>

@@ -31,43 +31,72 @@ function removeProduct(productEntry){
   parent.remove();
 }
 
-// All Includes
-//all Category
-function allCategories(event){
-  include(event,"pages/all_categories.php");
-}
+// // All Includes
+// //all Category
+// function allCategories(event){
+//   include(event,"pages/all_categories.php");
+// }
 
-// Add Category
-function addCategory(event){
-  include(event,"pages/add_category.php", "addCategory" , "#response");
+// // Add Category
+// function addCategory(event){
+//   include(event,"pages/add_category.php", "addCategory" , "#response");
+//   }
+// //Add SubCategory
+// function addSubCategory(event){
+//   include(event,"pages/add_subCategory.php");
+// }
+
+
+//Listing all links and actions
+document.addEventListener('click', function(event){
+  let target = event.target;
+  if(target.closest('a')){
+      //loading messagin showing
+      let loading = document.getElementById('loading');
+      loading.innerText = "Processing...";
+
+
+      let url = target.getAttribute('href');
+      if(target.dataset.form != undefined){
+        let form = target.dataset.form;
+        include(event, url, form);
+      }else{
+        include(event,url);
+      }
   }
-//Add SubCategory
-function addSubCategory(event){
-  include(event,"pages/add_subCategory.php");
-}
+})
+
+
+
+
+
+
 
 //common Function for include
-function include(event, url, formId, responseId){
+function include(event, url, formId){
   event.preventDefault();
     // breadcrumb
   let breadcrumb = document.getElementById('lastBreadCrumb');
   let container =document.querySelector(".main_content");
 
+
   let breadCrumbValue = url.split("/").pop().split('.').slice(0,-1).join('').replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
 
   
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', url,);
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', url);
     xhr.onload = function() {
       if (xhr.status === 200) {
+        // remove loading message
+        loading.innerText = "";
         // Handle success response
         container.innerHTML = this.responseText;
         //updated breadCrumb
         breadcrumb.innerText = breadCrumbValue;
         // Add Event Listeners
-       if(formId != undefined && responseId != undefined){
-        formSubmit(formId, responseId);
+       if(formId != undefined){
+        formSubmit(formId);
        }
         
       } else {
@@ -85,23 +114,20 @@ function include(event, url, formId, responseId){
 
 
 //Common Form Submission Request and Response Receive Function 
-function formSubmit(formId,responseId){
+function formSubmit(formId){
   document.getElementById(formId).addEventListener('submit', function(event) {
       event.preventDefault(); // Prevent default form submission
       var form = event.target;
       var formData = new FormData(form); // Get form data
-      console.log(form);
-      console.log(formData.get("addCategory"));
       var xhr = new XMLHttpRequest(); // Create AJAX request
-      xhr.open('POST', 'data.php');
-      document.querySelector(responseId).innerHTML = 'Submitting...';
+      xhr.open('POST', 'formServer.php');
+      document.querySelector('#response').innerHTML = 'Submitting...';
       xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status === 200) {
             var response = this.responseText;
             // Handle the response here
-            document.querySelector(responseId).innerHTML = response;
-            console.log(response)
+            document.querySelector('#response').innerHTML = response;
           } else {
             console.error('AJAX request failed.');
           }

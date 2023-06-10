@@ -1,8 +1,7 @@
-<?php 
-$content = <<<HTML
+
 <div class="container" style="width: 80%; margin: 0 auto;">
                 <h4>Add Sub Category</h4>
-                <form action="">
+                <form id="addSubCategory">
                   <div class="form-group">
                     <label for="category">Category:</label>
                     <select class="form-control" id="category">
@@ -21,6 +20,3 @@ $content = <<<HTML
                   <input type="submit" class="btn mybtn-hightlight" value="Add SubCategory">
                 </form>
             </div>
-HTML;
-echo $content;
-?>
