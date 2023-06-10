@@ -325,6 +325,7 @@
           </nav>
            <!-- Breadcrump End -->
            <!-- Content Start -->
+           
             <div class="main_content">
               <div class="table-responsive">
                 <table>
@@ -340,126 +341,27 @@
                     </tr>
                   </thead>
                   <tbody>
+                    <?php
+                      require_once("includes/db_connection.php");
+                      $sql="SELECT * FROM customers ORDER BY customer_id DESC";
+                      $query=$con->query($sql);
+                      while($data=$query->fetch_assoc()){
+                      
+                    ?>
                     <tr>
                       <td><input type="checkbox" class="select"></td>
-                      <td>0001</td>
-                      <td>John Doe</td>
-                      <td>johndoe@example.com</td>
-                      <td>Mirpur,Dhaka</td>
-                      <td>01854123514</td>
+                      <td><?= $data["customer_id"]?></td>
+                      <td><?= $data["customer_name"]?></td>
+                      <td><?= $data["customer_phone"]?></td>
+                      <td><?= $data["customer_email"]?></td>
+                      <td><?= $data["customer_address"]?></td>
                       <td>
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
+                        <a href="delete_customers.php?id=<?= $data["customer_id"]?>" class=" btn edit-btn ">Edit</a>
+                        <a href="delete_customer.php?id=<?= $data["customer_id"]?>" class=" btn delete-btn ">Delete</a>
                       </td>
                     </tr>
-                    <tr>
-                      <td><input type="checkbox" class="select"></td>
-                      <td>0001</td>
-                      <td>John Doe</td>
-                      <td>johndoe@example.com</td>
-                      <td>Mirpur,Dhaka</td>
-                      <td>01854123514</td>
-                      <td>
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="select"></td>
-                      <td>0001</td>
-                      <td>John Doe</td>
-                      <td>johndoe@example.com</td>
-                      <td>Mirpur,Dhaka</td>
-                      <td>01854123514</td>
-                      <td>
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="select"></td>
-                      <td>0001</td>
-                      <td>John Doe</td>
-                      <td>johndoe@example.com</td>
-                      <td>Mirpur,Dhaka</td>
-                      <td>01854123514</td>
-                      <td>
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="select"></td>
-                      <td>0001</td>
-                      <td>John Doe</td>
-                      <td>johndoe@example.com</td>
-                      <td>Mirpur,Dhaka</td>
-                      <td>01854123514</td>
-                      <td>
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="select"></td>
-                      <td>0001</td>
-                      <td>John Doe</td>
-                      <td>johndoe@example.com</td>
-                      <td>Mirpur,Dhaka</td>
-                      <td>01854123514</td>
-                      <td>
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="select"></td>
-                      <td>0001</td>
-                      <td>John Doe</td>
-                      <td>johndoe@example.com</td>
-                      <td>Mirpur,Dhaka</td>
-                      <td>01854123514</td>
-                      <td>
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="select"></td>
-                      <td>0001</td>
-                      <td>John Doe</td>
-                      <td>johndoe@example.com</td>
-                      <td>Mirpur,Dhaka</td>
-                      <td>01854123514</td>
-                      <td>
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="select"></td>
-                      <td>0001</td>
-                      <td>John Doe</td>
-                      <td>johndoe@example.com</td>
-                      <td>Mirpur,Dhaka</td>
-                      <td>01854123514</td>
-                      <td>
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="select"></td>
-                      <td>0001</td>
-                      <td>John Doe</td>
-                      <td>johndoe@example.com</td>
-                      <td>Mirpur,Dhaka</td>
-                      <td>01854123514</td>
-                      <td>
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
-                      </td>
-                    </tr>
+                    <?php }?>
+                    
                     <!-- Add more rows for each user -->
                   </tbody>
                 </table>

@@ -21,8 +21,7 @@
                     data-bs-parent="#accordionExample"
                   >
                     <div class="accordion-body">
-                      <a class="btn btn-block" href=""
-                        ><i class="fa-sharp fa-solid fa-users"></i>&nbsp; All Customers</a
+                      <a class="btn btn-block" href="pages/all_customers.php"><i class="fa-sharp fa-solid fa-users"></i>&nbsp; All Customers</a
                       >
                     </div>
                     <div class="accordion-body">
