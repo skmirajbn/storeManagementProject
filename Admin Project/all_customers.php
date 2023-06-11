@@ -356,8 +356,8 @@
                       <td><?= $data["customer_email"]?></td>
                       <td><?= $data["customer_address"]?></td>
                       <td>
-                        <a href="delete_customers.php?id=<?= $data["customer_id"]?>" class=" btn edit-btn ">Edit</a>
-                        <a href="delete_customer.php?id=<?= $data["customer_id"]?>" class=" btn delete-btn ">Delete</a>
+                        <a href="delete_customers.php?customer_id=<?= $data["customer_id"]?>" class=" btn edit-btn ">Edit</a>
+                        <a href="delete_customer.php?customer_id=<?= $data["customer_id"]?>" class=" btn delete-btn ">Delete</a>
                       </td>
                     </tr>
                     <?php }?>

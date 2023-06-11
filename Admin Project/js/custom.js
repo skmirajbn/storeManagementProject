@@ -126,6 +126,15 @@ function formSubmit(formId){
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status === 200) {
             var response = this.responseText;
+            let form = document.getElementById(formId);
+            console.log(form);
+            let allInput = form.querySelectorAll("input");
+            let btnValue = allInput[allInput.length-1].value;
+            allInput.forEach((x)=>{
+              x.value = "";
+            })
+            allInput[allInput.length-1].value = btnValue; 
+
             // Handle the response here
             document.querySelector('#response').innerHTML = response;
           } else {

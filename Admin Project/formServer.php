@@ -22,6 +22,7 @@ if(isset($_GET['categoryDelete'])){
         header("Location: pages/all_categories.php");
     }
 }
+
 //Add customar
 if(isset($_POST['addCustomer'])){
     $name=$_POST["customer_name"];
@@ -31,9 +32,38 @@ if(isset($_POST['addCustomer'])){
     $sql="INSERT INTO customers(customer_name,customer_address,customer_phone,customer_email) VALUES('$name','$address','$phone','$email')";
     $query=$con->query($sql);
     if($query){
+        
         echo "Upload SuccessFul";
     }else{
         echo "Data Upload Failed";
+    }
+}
+
+//Delete customar
+if(isset($_GET['customer_id'])){
+    $id=$_GET['customer_id'];
+    $sql="DELETE FROM customers WHERE customer_id= $id";
+    $query=$con->query($sql);
+    if($query){
+        header("location: pages/all_customers.php");
+    }else{
+        echo "Data Not Deleted ";
+    }
+}
+
+//Update Customer
+if(isset($_POST['updateCustomer'])){
+    $id=$_POST['updateCustomer'];
+    $name=$_POST["customer_name"];
+    $address=$_POST["customer_address"];
+    $phone=$_POST["customer_phone"];
+    $email=$_POST["customer_email"];
+    $sql="UPDATE customers SET customer_name='$name', customer_address='$address', customer_phone='$phone', customer_email='$email' WHERE customer_id = $id";
+    $query=$con->query($sql);
+    if($query){
+        echo "Updated";
+    }else{
+        echo "Note Update";
     }
 }
            
