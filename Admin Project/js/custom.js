@@ -47,6 +47,13 @@ function removeProduct(productEntry){
 // }
 
 
+//Listining Forms
+document.addEventListener('submit', function(event){
+  event.preventDefault();
+  let form = event.target.closest('form');
+  formSubmit(form);
+})
+
 //Listing all links and actions
 document.addEventListener('click', function(event){
   let target = event.target;
@@ -57,12 +64,7 @@ document.addEventListener('click', function(event){
 
 
       let url = target.getAttribute('href');
-      if(target.dataset.form != undefined){
-        let form = target.dataset.form;
-        include(event, url, form);
-      }else{
-        include(event,url);
-      }
+      include(event,url);
   }
 })
 
@@ -73,7 +75,7 @@ document.addEventListener('click', function(event){
 
 
 //common Function for include
-function include(event, url, formId){
+function include(event, url){
   event.preventDefault();
     // breadcrumb
   let breadcrumb = document.getElementById('lastBreadCrumb');
@@ -94,10 +96,6 @@ function include(event, url, formId){
         container.innerHTML = this.responseText;
         //updated breadCrumb
         breadcrumb.innerText = breadCrumbValue;
-        // Add Event Listeners
-       if(formId != undefined){
-        formSubmit(formId);
-       }
         
       } else {
         // Handle error response
@@ -114,10 +112,7 @@ function include(event, url, formId){
 
 
 //Common Form Submission Request and Response Receive Function 
-function formSubmit(formId){
-  document.getElementById(formId).addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent default form submission
-      var form = event.target;
+function formSubmit(form){
       var formData = new FormData(form); // Get form data
       var xhr = new XMLHttpRequest(); // Create AJAX request
       xhr.open('POST', 'formServer.php');
@@ -126,14 +121,12 @@ function formSubmit(formId){
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status === 200) {
             var response = this.responseText;
-            let form = document.getElementById(formId);
-            console.log(form);
-            let allInput = form.querySelectorAll("input");
-            let btnValue = allInput[allInput.length-1].value;
-            allInput.forEach((x)=>{
-              x.value = "";
-            })
-            allInput[allInput.length-1].value = btnValue; 
+            // let allInput = form.querySelectorAll("input");
+            // let btnValue = allInput[allInput.length-1].value;
+            // allInput.forEach((x)=>{
+            //   x.value = "";
+            // })
+            // allInput[allInput.length-1].value = btnValue; 
 
             // Handle the response here
             document.querySelector('#response').innerHTML = response;
@@ -144,8 +137,6 @@ function formSubmit(formId){
       };
     
       xhr.send(formData); // Send form data
-   
-  });
 }
 
 

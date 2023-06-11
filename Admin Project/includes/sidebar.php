@@ -25,7 +25,7 @@
                       >
                     </div>
                     <div class="accordion-body">
-                      <a class="btn btn-block" href="pages/add_customer.php" data-form="addCustomer"
+                      <a class="btn btn-block" href="pages/add_customer.php""
                         ><i class="fa-solid fa-user-plus"></i>&nbsp; Add Customers</a
                       >
                     </div>
@@ -70,10 +70,10 @@
                         <a class="btn btn-block" href=""><i class="fa-solid fa-sitemap"></i>&nbsp; All SubCategories</a>
                       </div>
                       <div class="accordion-body">
-                        <a class="btn btn-block" href="pages/add_category.php" data-form="addCategory"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add Category</a>
+                        <a class="btn btn-block" href="pages/add_category.php"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add Category</a>
                       </div>
                       <div class="accordion-body">
-                        <a class="btn btn-block" href="pages/add_subCategory.php" data-form="addSubCategory"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add SubCategory</a>
+                        <a class="btn btn-block" href="pages/add_subCategory.php" ><i class="fa-solid fa-circle-plus"></i>&nbsp; Add SubCategory</a>
                       </div>
                       <div class="accordion-body">
                         <a class="btn btn-block" href=""><i class="fa-solid fa-screwdriver-wrench"></i>&nbsp; Reassign Sub Category</a>

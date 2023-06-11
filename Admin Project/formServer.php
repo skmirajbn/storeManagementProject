@@ -61,7 +61,7 @@ if(isset($_POST['updateCustomer'])){
     $sql="UPDATE customers SET customer_name='$name', customer_address='$address', customer_phone='$phone', customer_email='$email' WHERE customer_id = $id";
     $query=$con->query($sql);
     if($query){
-        echo "Updated";
+        echo "Updated <a style='display:inline-block; margin:20px' href='pages/all_customers.php' class='btn mybtn-hightlight'>See All Customers</a>";
     }else{
         echo "Note Update";
     }
