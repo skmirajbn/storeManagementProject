@@ -34,7 +34,7 @@
 }
 .mybtn-hightlight:hover{
   background-color: var(--highlight-color);
-  color:var(secondary-color);
+  color:var(--secondary-color);
 }
 
 #response{

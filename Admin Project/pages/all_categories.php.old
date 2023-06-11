@@ -1,4 +1,3 @@
-
 <?php 
 require_once("../includes/db_connection.php");
 
@@ -13,12 +12,14 @@ $totalPage = ceil($totalRows / $limit);
 $offset = ($currentPage - 1) * $limit;
 
 
+
+
 $sql = "SELECT * FROM categories ORDER by category_id DESC LIMIT $offset, $limit";
 $result = $con->query($sql);
 
-?>
 
-           <div class="table-responsive">
+?>
+<div class="table-responsive">
                 <table>
                   <thead>
                     <tr>
@@ -37,7 +38,7 @@ $result = $con->query($sql);
                       <td><?=$data['category_id']?></td>
                       <td><?=$data['category_name']?></td>
                       <td>
-                        <a href="pages/edit_category.php?category_id=<?=$data['category_id']?>" class="edit-btn btn">Edit</a>
+                        <a class="edit-btn btn">Edit</a>
                         <a href="formServer.php?categoryDelete=<?=$data['category_id']?>" class="delete-btn btn">Delete</a>
                       </td>
                     </tr>
@@ -68,4 +69,3 @@ $result = $con->query($sql);
                 <a href="pages/all_categories.php?page=<?=$currentPage + 1?>">&gt;</a>
                 <a href="pages/all_categories.php?page=<?=$totalPage?>">&raquo;</a>
               </div>
-            </div>

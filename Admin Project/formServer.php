@@ -66,5 +66,19 @@ if(isset($_POST['updateCustomer'])){
         echo "Note Update";
     }
 }
-           
+
+//Update Category
+
+if(isset($_POST['updateCategory'])){
+    $categoryName = $_POST['categoryName'];
+    $id = $_POST['updateCategory'];
+  
+    $sql = "UPDATE categories SET category_name = '$categoryName' WHERE category_id = $id ";
+    $query = $con->query($sql);
+    if($query){
+        echo "Updated Category <a style='display:inline-block; margin:20px' href='pages/all_categories.php' class='btn mybtn-hightlight'>See All Category</a>";
+    }else{
+      echo "Failed";
+    }
+  }
 ?>

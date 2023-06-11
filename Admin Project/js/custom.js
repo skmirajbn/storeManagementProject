@@ -52,7 +52,7 @@ document.addEventListener('submit', function(event){
   event.preventDefault();
   let form = event.target.closest('form');
   formSubmit(form);
-})
+});
 
 //Listing all links and actions
 document.addEventListener('click', function(event){
