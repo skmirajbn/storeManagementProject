@@ -7,34 +7,22 @@
     --footer-background: #222F3E;
     --footer-color: white;
   }
-
-.dark-mode {
-  --primary-color: #F39C12;
-  --secondary-color: #222F3E;
-  --body-color: white;
-  --highlight-color: #1261f3;
-  --breadcrumb-background: #c8d5f7;
-  --footer-background: #222F3E;
-  --footer-color: white;
-      }
-* {
-  padding: 0;
-  margin: 0;
-  outline: 0;
-  box-sizing: border-box;
-}
+  
+  * {
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    box-sizing: border-box;
+  }
   
   .out_body {
     height: 100vh;
+    overflow: hidden;
   }
-  body{
-    overflow-x: hidden;
-  }
+  
   .sidebar,
   .content {
     padding: 0;
-    margin: 0;
-    overflow: hidden;
   }
   
   .navbar-brand {
@@ -152,7 +140,7 @@
   }
   
   .main_content {
-    padding: 10px 20px 10px 10px;
+    padding: 20px;
   }
   
   /* Footer */
@@ -163,89 +151,3 @@
     text-align: center;
   }
   
-
-  /* All_Customer Page Css Start */
-  table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-
-    th {
-      background-color: var( --secondary-color);
-      color: var(--body-color);
-    }
-    .edit-btn{
-      border: none;
-      padding: 5px 7px;
-      color: var(--body-color);
-      background-color: var(--secondary-color);
-    }
-    .delete-btn{
-      border: none;
-      padding: 5px 7px;
-      color: var(--body-color);
-      background-color: red;
-    }
-    .pagination {
-      display: inline-block;
-      margin-top: 10px;
-    }
-
-    .pagination a {
-      color: black;
-      float: left;
-      padding: 8px 16px;
-      text-decoration: none;
-      border: 1px solid #ddd;
-      margin: 0 4px;
-    }
-
-    .pagination a.active {
-      background-color: var(--secondary-color);
-      color: white;
-      border: 1px solid var(--secondary-color);
-    }
-
-    .pagination a:hover:not(.active) {
-      background-color: #ddd;
-    }
-
-    .select-all {
-      margin-right: 10px;
-    }
-  /* All_Customer Page Css End */
-
-  /* Responsive Start */
-@media (min-width: 0px){
-  .navbar-toggler{
-    background-color: var(--highlight-color);
-  }
-  .bottom_sidebar{
-    margin-top: 20px
-  }
-};
-@media (min-width: 576px){
-};
-
-@media (min-width: 768px){
-
-};
-
-@media (min-width: 992px){
-
-};
-
-@media (min-width: 1200px){
-
-};
-
-@media (min-width: 1400px){
-
-};
-  /* Responsive End */

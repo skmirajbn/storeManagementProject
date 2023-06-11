@@ -25,7 +25,6 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
-    <script defer src="js/custom.js"></script>
   </head>
   <body>
     <div class="out_body">
@@ -87,7 +86,7 @@
                   </ul>
                 </li>
               </ul>
-              <i style="color: white; font-size: 20px;" class="fa-solid fa-droplet" onclick="toggleTheme()"></i>
+              
               <ul class="nav_profile">
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -300,10 +299,160 @@
           </nav>
            <!-- Breadcrump End -->
            <!-- Content Start -->
-            <div class="main_content">
-              <p>Welcome! Sk Miraj</p>
+           <div class="main_content">
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th><input type="checkbox" class="select-all"></th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="checkbox" class="select"></td>
+                    <td>0001</td>
+                    <td>John Doe</td>
+                    <td>johndoe@example.com</td>
+                    <td>Mirpur,Dhaka</td>
+                    <td>
+                      <button class="edit-btn">Edit</button>
+                      <button class="delete-btn">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="select"></td>
+                    <td>0001</td>
+                    <td>John Doe</td>
+                    <td>johndoe@example.com</td>
+                    <td>Mirpur,Dhaka</td>
+                    <td>
+                      <button class="edit-btn">Edit</button>
+                      <button class="delete-btn">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="select"></td>
+                    <td>0001</td>
+                    <td>John Doe</td>
+                    <td>johndoe@example.com</td>
+                    <td>Mirpur,Dhaka</td>
+                    <td>
+                      <button class="edit-btn">Edit</button>
+                      <button class="delete-btn">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="select"></td>
+                    <td>0001</td>
+                    <td>John Doe</td>
+                    <td>johndoe@example.com</td>
+                    <td>Mirpur,Dhaka</td>
+                    <td>
+                      <button class="edit-btn">Edit</button>
+                      <button class="delete-btn">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="select"></td>
+                    <td>0001</td>
+                    <td>John Doe</td>
+                    <td>johndoe@example.com</td>
+                    <td>Mirpur,Dhaka</td>
+                    <td>
+                      <button class="edit-btn">Edit</button>
+                      <button class="delete-btn">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="select"></td>
+                    <td>0001</td>
+                    <td>John Doe</td>
+                    <td>johndoe@example.com</td>
+                    <td>Mirpur,Dhaka</td>
+                    <td>
+                      <button class="edit-btn">Edit</button>
+                      <button class="delete-btn">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="select"></td>
+                    <td>0001</td>
+                    <td>John Doe</td>
+                    <td>johndoe@example.com</td>
+                    <td>Mirpur,Dhaka</td>
+                    <td>
+                      <button class="edit-btn">Edit</button>
+                      <button class="delete-btn">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="select"></td>
+                    <td>0001</td>
+                    <td>John Doe</td>
+                    <td>johndoe@example.com</td>
+                    <td>Mirpur,Dhaka</td>
+                    <td>
+                      <button class="edit-btn">Edit</button>
+                      <button class="delete-btn">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="select"></td>
+                    <td>0001</td>
+                    <td>John Doe</td>
+                    <td>johndoe@example.com</td>
+                    <td>Mirpur,Dhaka</td>
+                    <td>
+                      <button class="edit-btn">Edit</button>
+                      <button class="delete-btn">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="select"></td>
+                    <td>0001</td>
+                    <td>John Doe</td>
+                    <td>johndoe@example.com</td>
+                    <td>Mirpur,Dhaka</td>
+                    <td>
+                      <button class="edit-btn">Edit</button>
+                      <button class="delete-btn">Delete</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="select"></td>
+                    <td>0001</td>
+                    <td>John Doe</td>
+                    <td>johndoe@example.com</td>
+                    <td>Mirpur,Dhaka</td>
+                    <td>
+                      <button class="edit-btn">Edit</button>
+                      <button class="delete-btn">Delete</button>
+                    </td>
+                  </tr>
+                  
+            
+                  <!-- Add more rows for each user -->
+                </tbody>
+              </table>
             </div>
-           <!-- Content End -->
+          
+            <div class="pagination">
+              <a href="#">&laquo;</a>
+              <a href="#" class="active">1</a>
+              <a href="#">2</a>
+              <a href="#">3</a>
+              <a href="#">4</a>
+              <a href="#">5</a>
+              <a href="#">6</a>
+              <a href="#">&raquo;</a>
+            </div>
+          </div>
+         <!-- Content End -->
         </section>
       </section>
       <footer class="footer">

@@ -181,6 +181,34 @@
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed" type="button" data-bs-toggle="collapse"  data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+                      <i class="fa-solid fa-box"></i>&nbsp; Category
+                    </button>
+                  </h2>
+                  <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <a class="btn btn-block" href=""><i class="fa-solid fa-sitemap"></i>&nbsp; All Categories</a>
+                      </div>
+                      <div class="accordion-body">
+                        <a class="btn btn-block" href=""><i class="fa-solid fa-sitemap"></i>&nbsp; All SubCategories</a>
+                      </div>
+                      <div class="accordion-body">
+                        <a class="btn btn-block" href=""><i class="fa-solid fa-circle-plus"></i>&nbsp; Add Category</a>
+                      </div>
+                      <div class="accordion-body">
+                        <a class="btn btn-block" href=""><i class="fa-solid fa-circle-plus"></i>&nbsp; Add SubCategory</a>
+                      </div>
+                      <div class="accordion-body">
+                        <a class="btn btn-block" href=""><i class="fa-solid fa-screwdriver-wrench"></i>&nbsp; Reassign Sub Category</a>
+                      </div>
+                      <div class="accordion-body">
+                        <a class="btn btn-block" href=""><i class="fa-solid fa-trash"></i>&nbsp; Restore Categories</a>
+                      </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                       <i class="fa-solid fa-cart-shopping"></i>&nbsp; Sales Order
                     </button>
@@ -290,7 +318,7 @@
             </div>
           </div>
         </section>
-        <section class="content col-md-8 col-lg-9 col-xxl-10">
+        <section class="content col-md-8 col-xl-9 col-xxl-10">
           <!-- Breadcrump Start -->
           <nav class="breadcrumb" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -300,14 +328,56 @@
           </nav>
            <!-- Breadcrump End -->
            <!-- Content Start -->
+           <?php
+          
+            require_once("includes/db_connection.php");
+            if(isset($_POST['addCustomer'])){
+              $name=$_POST["customer_name"];
+              $address=$_POST["customer_address"];
+              $phone=$_POST["customer_phone"];
+              $email=$_POST["customer_email"];
+              $sql="INSERT INTO customers(customer_name,customer_address,customer_phone,customer_email) VALUES('$name','$address','$phone','$email')";
+              $query=$con->query($sql);
+              if($query){
+                echo "Upload SuccessFul";
+              }else{
+                echo "Data Upload Failed";
+              }
+
+            }
+           ?>
+
             <div class="main_content">
-              <p>Welcome! Sk Miraj</p>
+                <div class="form-body container" style="width: 80%; margin:0 auto">
+                    <h4>Add Customer</h4>
+                    <form action="" method="post">
+                        <div class="form-group">
+                          <label for="">Customer Name:</label>
+                          <input class="form-control" name="customer_name" type="text" placeholder="Enter Customer Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Customer address:</label>
+                            <input class="form-control" name="customer_address" type="text" placeholder="Enter Customer Address">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Customer Phone:</label>
+                            <input class="form-control" name="customer_phone" type="text" placeholder="Enter Customer Phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Customer Phone:</label>
+                            <input class="form-control" name="customer_email" type="text" placeholder="Enter Customer Phone">
+                        </div>
+                        <br>
+                        <input type="hidden" name="addCustomer">
+                        <input type="submit" class="mybtn-hightlight btn" value="Add Category">
+                    </form>
+                </div>
             </div>
            <!-- Content End -->
         </section>
       </section>
       <footer class="footer">
-        <p>&copy; 2023 Your Website. All rights reserved.</p>
+        <p>&copy; 2023 Code Scientist Team. All rights reserved.</p>
       </footer>
       
     </div>

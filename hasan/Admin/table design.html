@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Data Table</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .pagination {
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .pagination a {
+      color: black;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+      border: 1px solid #ddd;
+      margin: 0 4px;
+    }
+
+    .pagination a.active {
+      background-color: #4CAF50;
+      color: white;
+      border: 1px solid #4CAF50;
+    }
+
+    .pagination a:hover:not(.active) {
+      background-color: #ddd;
+    }
+
+    .select-all {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="checkbox" class="select"></td>
+        <td>John Doe</td>
+        <td>johndoe@example.com</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="select"></td>
+        <td>John Doe</td>
+        <td>johndoe@example.com</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="select"></td>
+        <td>John Doe</td>
+        <td>johndoe@example.com</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="select"></td>
+        <td>John Doe</td>
+        <td>johndoe@example.com</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="select"></td>
+        <td>John Doe</td>
+        <td>johndoe@example.com</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="select"></td>
+        <td>John Doe</td>
+        <td>johndoe@example.com</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="select"></td>
+        <td>John Doe</td>
+        <td>johndoe@example.com</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="select"></td>
+        <td>John Doe</td>
+        <td>johndoe@example.com</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="select"></td>
+        <td>John Doe</td>
+        <td>johndoe@example.com</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="select"></td>
+        <td>John Doe</td>
+        <td>johndoe@example.com</td>
+        <td>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </td>
+      </tr>
+
+      <!-- Add more rows for each user -->
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <a href="#">&laquo;</a>
+    <a href="#" class="active">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">6</a>
+    <a href="#">&raquo;</a>
+  </div>
+
+  <script>
+    // Select All checkbox functionality
+    const selectAllCheckbox = document.querySelector('.select-all input');
+    const checkboxes = document.querySelectorAll('.select');
+
+    selectAllCheckbox.addEventListener('change', () => {
+      checkboxes.forEach(checkbox => {
+        checkbox.checked = selectAllCheckbox.checked;
+      });
+    });
+
+    // Edit and Delete button functionality
+    const editButtons = document.querySelectorAll('.edit-btn');
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+
+    editButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Perform edit action here
+      });
+    });
+
+    deleteButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Perform delete action here
+      });
+    });
+  </script>
+</body>
+</html>

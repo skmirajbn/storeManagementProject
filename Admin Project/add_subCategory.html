@@ -181,6 +181,34 @@
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed" type="button" data-bs-toggle="collapse"  data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+                      <i class="fa-solid fa-box"></i>&nbsp; Category
+                    </button>
+                  </h2>
+                  <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <a class="btn btn-block" href=""><i class="fa-solid fa-sitemap"></i>&nbsp; All Categories</a>
+                      </div>
+                      <div class="accordion-body">
+                        <a class="btn btn-block" href=""><i class="fa-solid fa-sitemap"></i>&nbsp; All SubCategories</a>
+                      </div>
+                      <div class="accordion-body">
+                        <a class="btn btn-block" href=""><i class="fa-solid fa-circle-plus"></i>&nbsp; Add Category</a>
+                      </div>
+                      <div class="accordion-body">
+                        <a class="btn btn-block" href=""><i class="fa-solid fa-circle-plus"></i>&nbsp; Add SubCategory</a>
+                      </div>
+                      <div class="accordion-body">
+                        <a class="btn btn-block" href=""><i class="fa-solid fa-screwdriver-wrench"></i>&nbsp; Reassign Sub Category</a>
+                      </div>
+                      <div class="accordion-body">
+                        <a class="btn btn-block" href=""><i class="fa-solid fa-trash"></i>&nbsp; Restore Categories</a>
+                      </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                       <i class="fa-solid fa-cart-shopping"></i>&nbsp; Sales Order
                     </button>
@@ -290,7 +318,7 @@
             </div>
           </div>
         </section>
-        <section class="content col-md-8 col-lg-9 col-xxl-10">
+        <section class="content col-md-8 col-xl-9 col-xxl-10">
           <!-- Breadcrump Start -->
           <nav class="breadcrumb" style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -300,14 +328,35 @@
           </nav>
            <!-- Breadcrump End -->
            <!-- Content Start -->
-            <div class="main_content">
-              <p>Welcome! Sk Miraj</p>
+           <div class="main_content">
+            <div class="container" style="width: 80%; margin: 0 auto;">
+                <h4>Add Sub Category</h4>
+                <form action="">
+                  <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select class="form-control" id="category">
+                      <option value="" selected disabled>Select Category</option>
+                      <option value="">Phones</option>
+                      <option value="">Grocery</option>
+                      <option value="">Vegetables</option>
+                      <option value="">TV</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="subCategoryName">Sub Category Name:</label>
+                    <input class="form-control" type="text" id="subCategoryName" placeholder="Enter Sub Category Name">
+                  </div>
+                  <br>
+                  <input type="submit" class="btn mybtn-hightlight" value="Add SubCategory">
+                </form>
             </div>
+              
+        </div>
            <!-- Content End -->
         </section>
       </section>
       <footer class="footer">
-        <p>&copy; 2023 Your Website. All rights reserved.</p>
+        <p>&copy; 2023 Code Scientist Team. All rights reserved.</p>
       </footer>
       
     </div>

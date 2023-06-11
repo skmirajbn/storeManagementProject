@@ -12,7 +12,7 @@
   --primary-color: #F39C12;
   --secondary-color: #222F3E;
   --body-color: white;
-  --highlight-color: #1261f3;
+  --highlight-color: #2270ff;
   --breadcrumb-background: #c8d5f7;
   --footer-background: #222F3E;
   --footer-color: white;
@@ -23,6 +23,59 @@
   outline: 0;
   box-sizing: border-box;
 }
+
+
+/* Common start */
+.mybtn-hightlight{
+  display: block;
+  margin: 0 auto;
+  background-color: var(--secondary-color);
+  color: var(--body-color);
+}
+.mybtn-hightlight:hover{
+  background-color: var(--highlight-color);
+}
+
+#response{
+  
+  text-align: center;
+  color: green;
+  font-size: 20px;
+  
+}
+#loading{
+  margin-left: 20px;
+  color: var(--secondary-color);
+  font-size: 20px;
+}
+/* Common End */
+
+
+
+  /* Scrollbar start */
+  /* width */
+::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track { 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--secondary-color); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--highlight-color); 
+}
+
+  /* Scrollbar end */
+  
   
   .out_body {
     height: 100vh;
@@ -47,6 +100,9 @@
   
   .dropdown-menu {
     background-color: var(--secondary-color);
+  }
+  .fa-droplet{
+    color:var(--highlight-color)!important;
   }
   
   .dropdown-item:focus,
@@ -111,11 +167,13 @@
   .sidebar_container {
     background-color: var(--secondary-color);
     padding: 10px 10px 10px 20px;
+    height: 100%;
   }
   
   .side-body {
     height: 68vh;
     background-color: var(--secondary-color);
+    overflow: scroll;
   }
   
   .bg-primary {
@@ -138,6 +196,13 @@
     text-decoration: none;
   }
   
+  /* content start */
+  .content{
+    margin: 0;
+    padding: 0;
+  }
+  /* content end */
+
   /* Breadcrumb */
   .breadcrumb {
     margin-bottom: 0;
@@ -155,6 +220,8 @@
     padding: 10px 20px 10px 10px;
   }
   
+
+
   /* Footer */
   .footer {
     background-color: var(--footer-background);
@@ -220,6 +287,15 @@
       margin-right: 10px;
     }
   /* All_Customer Page Css End */
+    label{
+      margin: 10px 0;
+    }
+    /* Create Order Form Css Start */
+    
+    /* Create Order Form Css End */
+
+
+
 
   /* Responsive Start */
 @media (min-width: 0px){
@@ -229,23 +305,30 @@
   .bottom_sidebar{
     margin-top: 20px
   }
-};
+}
 @media (min-width: 576px){
-};
+}
 
 @media (min-width: 768px){
-
-};
+  
+}
 
 @media (min-width: 992px){
-
-};
+  /* .accordion-button {
+    padding: 0;
+  } */
+}
 
 @media (min-width: 1200px){
-
-};
+}
+  
 
 @media (min-width: 1400px){
-
-};
+  .sidebar{
+    width: 20%;
+  }
+  .content{
+    width: 80%;
+  }
+}
   /* Responsive End */
