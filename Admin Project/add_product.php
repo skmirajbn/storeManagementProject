@@ -327,7 +327,29 @@
            <!-- Content Start -->
             <?php 
                 require_once("includes/db_connection.php");
+                if(isset($_POST["addProduct"])){
+                  $product_name=$_POST["product_name"];
+                  $product_brand=$_POST["product_brand"];
+                  $product_category=$_POST["product_category"];
+                  $product_unit=$_POST["product_unit"];
+                  $product_sku=$_POST["product_sku"];
+                  $product_price=$_POST["product_price"];
+                  $pd_img_name=$_FILES["product_image"]["name"];
+                  $pd_img_tmpname=$_FILES["product_image"]["name"];
+                  
+                  $imageName='user_'.time().'_'.rand(100000,100000000).'.'.pathinfo($pd_img_name,PATHINFO_EXTENSION); 
 
+                  $sql="INSERT INTO products(product_name,brand_id,category_id,unit_id,sku,selling_price,product_image ) VALUES('$product_name','$product_brand','$product_category','$product_unit','$product_sku','$product_price','$pd_img_name' )";
+                  $query=$con->query($sql);
+                  if($query){
+                    move_uploaded_file($pd_img_tmpname,'uploads/'.$imageName);
+                    echo "Upload Successfull";
+                  }else{
+                    echo "Upload Faild";
+                  }
+
+
+                }
             
             ?>
             <div class="main_content">
@@ -349,6 +371,10 @@
                     <div class="form-group">
                       <label for="">Unit:</label>
                       <input class="form-control" name="product_unit" type="text" placeholder="Enter Customer Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="">SKU:</label>
+                      <input class="form-control" name="product_sku" type="text" placeholder="Enter Product SKU">
                     </div>
                     <div class="form-group">
                       <label for="">Price:</label>
