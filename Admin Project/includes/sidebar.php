@@ -85,6 +85,25 @@
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed" type="button" data-bs-toggle="collapse"  data-bs-target="#collapseBrands" aria-expanded="true" aria-controls="collapseBrands">
+                      <i class="fa-solid fa-box"></i>&nbsp; Brands
+                    </button>
+                  </h2>
+                  <div id="collapseBrands" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <a class="btn btn-block" href=""><i class="fa-solid fa-sitemap"></i>&nbsp; All Brands</a>
+                      </div>
+                      <div class="accordion-body">
+                        <a class="btn btn-block" href="pages/add_category.php"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add Brand</a>
+                      </div>
+                      <div class="accordion-body">
+                        <a class="btn btn-block" href=""><i class="fa-solid fa-trash"></i>&nbsp; Restore Brands</a>
+                      </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                       <i class="fa-solid fa-cart-shopping"></i>&nbsp; Sales Order
                     </button>
