@@ -25,7 +25,7 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
-
+    <script defer src="js/custom.js"></script>
   </head>
   <body>
     <div class="out_body">
@@ -325,103 +325,61 @@
           </nav>
            <!-- Breadcrump End -->
            <!-- Content Start -->
-            <?php 
-                require_once("includes/db_connection.php");
-                if(isset($_POST["addProduct"])){
-                  $product_name=$_POST["product_name"];
-                  $product_brand=$_POST["product_brand"];
-                  $product_category=$_POST["product_category"];
-                  $product_unit=$_POST["product_unit"];
-                  $product_sku=$_POST["product_sku"];
-                  $product_price=$_POST["product_price"];
-                  $product_desc=$_POST["product_desc"];
-                  $pd_img_name=$_FILES["product_image"]["name"];
-                  $pd_img_tmpname=$_FILES["product_image"]["tmp_name"];
-                  
-                  $imageName='product_'.time().'_'.rand(100000,100000000).'.'.pathinfo($pd_img_name,PATHINFO_EXTENSION); 
 
-                  $sql="INSERT INTO products(product_name,brand_id,category_id,unit_id,sku,selling_price,product_image,description ) VALUES('$product_name','$product_brand','$product_category','$product_unit','$product_sku','$product_price','$pd_img_name','$product_desc' )";
-                  $query=$con->query($sql);
-                  if($query){
-                    move_uploaded_file($pd_img_tmpname,'uploads/'.$imageName);
-                    echo "Upload Successfull";
-                  }else{
-                    echo "Upload Faild";
-                  }
-
-
-                }
-            
-            ?>
+           
             <div class="main_content">
-              <div class="form-body container" style="width: 80%; margin:0 auto">
-                <h4>Add Product</h4>
-                <form id="addProduct"  method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                      <label for="">Product Name:</label>
-                      <input class="form-control" name="product_name" type="text" placeholder="Enter Customer Name">
-                    </div>
-                    <div class="form-group">
-                      <label for="">Brand:</label>
-                      <select class="form-control" name="product_brand" id="">
-                        <option value="">Select</option>
-                        <?php 
-                          $sql="SELECT * from brands ORDER BY brand_id ASC";
-                          $query=$con->query($sql);
-                          while($data=$query->fetch_assoc()){
-                          ?>
-                          <option value="<?= $data['brand_id'] ?>"><?= $data['brand_name'] ?></option>
-                          <?php }?>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="">Category:</label>
-                      <select class="form-control" name="product_category" id="">
-                        <option value=""> Select Category</option>
-                        <?php
-                          $sql="SELECT * FROM categories ORDER BY category_id ASC";
-                          $query= $con->query($sql);
-                          while($data=$query->fetch_assoc()){
-                        ?>
-                        <option value="<?= $data['category_id']?>"><?= $data['category_name']?></option>
-                        <?php } ?>
-
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="">Unit:</label>
-                      <select class="form-control" name="product_unit" id="">
-                        <option value="">Select Unit</option>
-                      <?php
-                        $sql="SELECT * FROM unit";
-                        $query=$con->query($sql);
-                        while($data=$query->fetch_assoc()){
-                      ?>
-                      <option value="<?= $data["unit_id"] ?>"><?= $data["unit"] ?></option>
-
-                      <?php } ?>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="">SKU:</label>
-                      <input class="form-control" name="product_sku" type="text" placeholder="Enter Product SKU">
-                    </div>
-                    <div class="form-group">
-                      <label for="">Price:</label>
-                      <input class="form-control" name="product_price" type="text" placeholder="Enter Customer Name">
-                    </div>
-                    <div class="form-group">
-                      <label for="">Product Image:</label>
-                      <input class="form-control" name="product_image" type="file" placeholder="Enter Customer Name">
-                    </div>
-                    <div class="form-group">
-                      <label for="">Description:</label>
-                      <textarea class="form-control" placeholder="Enter Customer Name" name="product_desc" id="" cols="" rows=""></textarea>
-                    </div>
-                    <br>
-                    <input type="hidden" name="addProduct">
-                    <input type="submit" class="mybtn-hightlight btn">
-                </form>
+              <div class="table-responsive">
+                <table>
+                  <thead>
+                    <tr>
+                      <th><input type="checkbox" class="select-all"></th>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Brand</th>
+                      <th>Category</th>
+                      <th>Unit</th>
+                      <th>SKU</th>
+                      <th>Price</th>
+                      <th>Image</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                      require_once("includes/db_connection.php");
+                      $sql="SELECT * FROM products ORDER BY product_id DESC";
+                      $query=$con->query($sql);
+                      while($data=$query->fetch_assoc()){ 
+                      
+                    ?>
+                    <tr>
+                      <td><input type="checkbox" class="select"></td>
+                      <td><?= $data["product_id"]?></td>
+                      <td><?= $data["product_name"]?></td>
+                      <td><?= $data["customer_phone"]?></td>
+                      <td><?= $data["customer_email"]?></td>
+                      <td><?= $data["customer_address"]?></td>
+                      <td>
+                        <a href="delete_customers.php?customer_id=<?= $data["customer_id"]?>" class=" btn edit-btn ">Edit</a>
+                        <a href="delete_customer.php?customer_id=<?= $data["customer_id"]?>" class=" btn delete-btn ">Delete</a>
+                      </td>
+                    </tr>
+                    <?php }?>
+                    
+                    <!-- Add more rows for each user -->
+                  </tbody>
+                </table>
+              </div>
+            
+              <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">&raquo;</a>
               </div>
             </div>
            <!-- Content End -->
