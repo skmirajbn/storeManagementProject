@@ -342,6 +342,7 @@
                       <th>Price</th>
                       <th>Image</th>
                       <th>Description</th>
+                      <th>Update/Delete</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -356,12 +357,22 @@
                       <td><input type="checkbox" class="select"></td>
                       <td><?= $data["product_id"]?></td>
                       <td><?= $data["product_name"]?></td>
-                      <td><?= $data["customer_phone"]?></td>
-                      <td><?= $data["customer_email"]?></td>
-                      <td><?= $data["customer_address"]?></td>
+                      <td><?= $data["brand_id"]?></td>
+                      <td><?= $data["category_id"]?></td>
+                      <td><?= $data["unit_id"]?></td>
+                      <td><?= $data["sku"]?></td>
+                      <td><?= $data["selling_price"]?></td>
                       <td>
-                        <a href="delete_customers.php?customer_id=<?= $data["customer_id"]?>" class=" btn edit-btn ">Edit</a>
-                        <a href="delete_customer.php?customer_id=<?= $data["customer_id"]?>" class=" btn delete-btn ">Delete</a>
+                        <?php if(($data['product_image'])!=''){?>
+                          <img height="50" src="uploads/<?= $data['product_image'];?>" alt="Photo"/>
+                        <?php }else{ ?>
+                          <img height="50" src="uploads/images/avatar.png" alt="product_image"/>
+                      <?php }?>
+                      </td>
+                      <td><?= $data["description"]?></td>
+                      <td>
+                        <a href="update_product.php?product_id=<?= $data["product_id"]?>" class=" btn edit-btn ">Edit</a>
+                        <a href="delete_product.php?product_id=<?= $data["product_id"]?>" class=" btn delete-btn ">Delete</a>
                       </td>
                     </tr>
                     <?php }?>
@@ -384,7 +395,7 @@
             </div>
            <!-- Content End -->
         </section>
-      </section>
+      
       <footer class="footer">
         <p>&copy; 2023 Code Scientist Team. All rights reserved.</p>
       </footer>
