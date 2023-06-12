@@ -25,7 +25,7 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
-    <script defer src="js/custom.js"></script>
+
   </head>
   <body>
     <div class="out_body">
@@ -335,11 +335,11 @@
                   $product_sku=$_POST["product_sku"];
                   $product_price=$_POST["product_price"];
                   $pd_img_name=$_FILES["product_image"]["name"];
-                  $pd_img_tmpname=$_FILES["product_image"]["name"];
+                  $pd_img_tmpname=$_FILES["product_image"]["tmp_name"];
                   
-                  $imageName='user_'.time().'_'.rand(100000,100000000).'.'.pathinfo($pd_img_name,PATHINFO_EXTENSION); 
+                  $imageName='product_'.time().'_'.rand(100000,100000000).'.'.pathinfo($pd_img_name,PATHINFO_EXTENSION); 
 
-                  $sql="INSERT INTO products(product_name,brand_id,category_id,unit_id,sku,selling_price,product_image ) VALUES('$product_name','$product_brand','$product_category','$product_unit','$product_sku','$product_price','$pd_img_name' )";
+                  $sql="INSERT INTO products(product_name,brand_id,category_id,unit_id,sku,selling_price,product_image) VALUES('$product_name','$product_brand','$product_category','$product_unit','$product_sku','$product_price','$pd_img_name' )";
                   $query=$con->query($sql);
                   if($query){
                     move_uploaded_file($pd_img_tmpname,'uploads/'.$imageName);
@@ -355,22 +355,51 @@
             <div class="main_content">
               <div class="form-body container" style="width: 80%; margin:0 auto">
                 <h4>Add Product</h4>
-                <form id="addProduct" action="" method="post">
+                <form id="addProduct"  method="post" enctype="multipart/form-data">
                     <div class="form-group">
                       <label for="">Product Name:</label>
                       <input class="form-control" name="product_name" type="text" placeholder="Enter Customer Name">
                     </div>
                     <div class="form-group">
                       <label for="">Brand:</label>
-                      <input class="form-control" name="product_brand" type="text" placeholder="Enter Customer Name">
+                      <select class="form-control" name="product_brand" id="">
+                        <option value="">Select</option>
+                        <?php 
+                          $sql="SELECT * from brands ORDER BY brand_id ASC";
+                          $query=$con->query($sql);
+                          while($data=$query->fetch_assoc()){
+                          ?>
+                          <option value="<?= $data['brand_id'] ?>"><?= $data['brand_name'] ?></option>
+                          <?php }?>
+                      </select>
                     </div>
                     <div class="form-group">
                       <label for="">Category:</label>
-                      <input class="form-control" name="product_category" type="text" placeholder="Enter Customer Name">
+                      <select class="form-control" name="product_category" id="">
+                        <option value=""> Select Category</option>
+                        <?php
+                          $sql="SELECT * FROM categories ORDER BY category_id ASC";
+                          $query= $con->query($sql);
+                          while($data=$query->fetch_assoc()){
+                        ?>
+                        <option value="<?= $data['category_id']?>"><?= $data['category_name']?></option>
+                        <?php } ?>
+
+                      </select>
                     </div>
                     <div class="form-group">
                       <label for="">Unit:</label>
-                      <input class="form-control" name="product_unit" type="text" placeholder="Enter Customer Name">
+                      <select class="form-control" name="product_unit" id="">
+                        <option value="">Select Unit</option>
+                      <?php
+                        $sql="SELECT * FROM unit";
+                        $query=$con->query($sql);
+                        while($data=$query->fetch_assoc()){
+                      ?>
+                      <option value="<?= $data["unit_id"] ?>"><?= $data["unit"] ?></option>
+
+                      <?php } ?>
+                      </select>
                     </div>
                     <div class="form-group">
                       <label for="">SKU:</label>
