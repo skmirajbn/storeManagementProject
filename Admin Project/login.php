@@ -91,14 +91,14 @@
       <h2>Login</h2>
       <div class="project-title">Store Management Project</div>
       <div class="team-name">Team Code Scientist</div>
-      <form action="" method="post">
+      <form action="includes/authentication.php" method="post">
         <div class="mb-3">
-          <label for="email" class="form-label">Email address</label>
+          <label for="email" class="form-label">UserName</label>
           <div class="input-group">
             <span class="input-group-text">
               <i class="fas fa-envelope"></i>
             </span>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required />
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter email" required />
           </div>
         </div>
         <div class="mb-3">
@@ -111,7 +111,7 @@
           </div>
         </div>
         <div class="text-center">
-          <button type="submit" class="btn btn-primary">Login</button>
+          <button type="submit" class="btn btn-primary" name="login">Login</button>
         </div>
       </form>
     </div>

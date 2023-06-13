@@ -66,15 +66,15 @@
               <i style="color: white; font-size: 20px;" class="fa-solid fa-droplet" onclick="toggleTheme()"></i>
               <ul class="nav_profile">
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Sk Miraj
+                  <a class="nav-link dropdown-toggle" data-disabled="true" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <?=$_SESSION['username'] ?>
                   </a>
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">My Profile</a></li>
                     <li><a class="dropdown-item" href="#">Manage Account</a></li>
                     <li><hr class="dropdown-divider" /></li>
                     <li>
-                      <a class="dropdown-item" href="#">Logout</a>
+                      <a class="dropdown-item" data-disabled="true" href="includes/logout.php">Logout</a>
                     </li>
                   </ul>
                 </li>
