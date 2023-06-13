@@ -53,10 +53,11 @@ if(isset($_GET['customer_id'])){
 //Restore customar - Mosharrof
 if(isset($_GET['restore_customer_id'])){
     $id=$_GET['restore_customer_id'];
-    $sql="UPDATE customers SET customer_status=1 WHERE customer_id= $id";
+    $sql="UPDATE customers SET customer_status = 1 WHERE customer_id= $id";
     $query=$con->query($sql);
     if($query){
         header("location: pages/restore_customers.php");
+        echo "Successfull";
     }else{
         echo "Data Not Deleted ";
     }
