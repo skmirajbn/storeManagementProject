@@ -3,7 +3,7 @@
           <div class="sidebar_container">
             <div class="user_part">
               <img class="" src="uploads/images/avatar.png" alt="avatar"/>
-              <h5>Sk Miraj</h5>
+              <h5><?=$_SESSION['username'] ?></h5>
               <p><i class="fas fa-circle"></i> Online</p>
             </div>
             <!-- Sidebar Menu Start -->

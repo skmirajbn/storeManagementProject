@@ -1,4 +1,18 @@
 <?php 
+require_once("db_connection.php");
+require_once("authentication.php");
+
+
+// authentication and Login
+if(!isset($_SESSION['username'])){
+    header("Location: login.php");
+}
+
+
+
+
+
+
 function getHeader(){
     require_once("includes/header.php");
 }
