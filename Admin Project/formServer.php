@@ -70,6 +70,7 @@ if(isset($_GET['par_delete_customer_id'])){
     $query=$con->query($sql);
     if($query){
         header("location: pages/restore_customers.php");
+        echo "Successfull";
     }else{
         echo "Data Not Deleted ";
     }
@@ -107,28 +108,55 @@ if(isset($_POST['updateCategory'])){
   }
 
   //Add product Mosharrof
-  if(isset($_POST["addProduct"])){
-    $product_name=$_POST["product_name"];
-    $product_brand=$_POST["product_brand"];
-    $product_category=$_POST["product_category"];
-    $product_unit=$_POST["product_unit"];
-    $product_sku=$_POST["product_sku"];
-    $product_price=$_POST["product_price"];
-    $product_desc=$_POST["product_desc"];
-    $pd_img_name=$_FILES["product_image"]["name"];
-    $pd_img_tmpname=$_FILES["product_image"]["tmp_name"];
-    
-    $imageName='product_'.time().'_'.rand(100000,100000000).'.'.pathinfo($pd_img_name,PATHINFO_EXTENSION); 
 
-    $sql="INSERT INTO products(product_name,brand_id,category_id,unit_id,sku,selling_price,product_image,description ) VALUES('$product_name','$product_brand','$product_category','$product_unit','$product_sku','$product_price','$imageName','$product_desc' )";
-    $query=$con->query($sql);
-    if($query){
-      move_uploaded_file($pd_img_tmpname,'uploads/'.$imageName);
-      echo "Upload Successfull";
-    }else{
-      echo "Upload Faild";
+    if(isset($_POST["addProduct"])){
+        $product_name=$_POST["product_name"];
+        $product_brand=$_POST["product_brand"];
+        $product_category=$_POST["product_category"];
+        $product_unit=$_POST["product_unit"];
+        $product_sku=$_POST["product_sku"];
+        $product_price=$_POST["product_price"];
+        $product_desc=$_POST["product_desc"];
+        $pd_img_name=$_FILES["product_image"]["name"];
+        $pd_img_tmpname=$_FILES["product_image"]["tmp_name"];
+
+        $imageName='product_'.time().'_'.rand(100000,100000000).'.'.pathinfo($pd_img_name,PATHINFO_EXTENSION); 
+
+        $sql="INSERT INTO products(product_name,brand_id,category_id,unit_id,sku,selling_price,product_image,description ) VALUES('$product_name','$product_brand','$product_category','$product_unit','$product_sku','$product_price','$imageName','$product_desc' )";
+        $query=$con->query($sql);
+        if($query){
+            move_uploaded_file($pd_img_tmpname,'uploads/'.$imageName);
+            echo "Upload Successfull";
+        }else{
+            echo "Upload Faild";
+        }
     }
-  }
+
+ //Update Product - Mosharrof 
+    
+    if(isset($_POST["updateProduct"])){
+        $product_name=$_POST["product_name"];
+        $product_brand=$_POST["product_brand"];
+        $product_category=$_POST["product_category"];
+        $product_unit=$_POST["product_unit"];
+        $product_sku=$_POST["product_sku"];
+        $product_price=$_POST["product_price"];
+        $product_desc=$_POST["product_desc"];
+        $pd_img_name=$_FILES["product_image"]["name"];
+        $pd_img_tmpname=$_FILES["product_image"]["tmp_name"];
+        
+        $imageName='product_'.time().'_'.rand(100000,100000000).'.'.pathinfo($pd_img_name,PATHINFO_EXTENSION); 
+    
+        $sql="UPDATE products SET product_name='$product_name',brand_id='$product_brand',category_id='$product_category',unit_id='$product_unit',sku='$product_sku',selling_price='$product_price',product_image='$imageName',description='$product_desc')";
+        $query=$con->query($sql);
+        if($query){
+          move_uploaded_file($pd_img_tmpname,'uploads/'.$imageName);
+          echo "Update Successfull";
+        }else{
+          echo "Update Faild";
+        }
+    }
+
   //Add user - Ali Hasan
   if(isset($_POST['addUser'])){
 
