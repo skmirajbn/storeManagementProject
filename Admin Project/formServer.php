@@ -96,7 +96,7 @@ if(isset($_POST['updateCategory'])){
     
     $imageName='product_'.time().'_'.rand(100000,100000000).'.'.pathinfo($pd_img_name,PATHINFO_EXTENSION); 
 
-    $sql="INSERT INTO products(product_name,brand_id,category_id,unit_id,sku,selling_price,product_image,description ) VALUES('$product_name','$product_brand','$product_category','$product_unit','$product_sku','$product_price','$pd_img_name','$product_desc' )";
+    $sql="INSERT INTO products(product_name,brand_id,category_id,unit_id,sku,selling_price,product_image,description ) VALUES('$product_name','$product_brand','$product_category','$product_unit','$product_sku','$product_price','$imageName','$product_desc' )";
     $query=$con->query($sql);
     if($query){
       move_uploaded_file($pd_img_tmpname,'uploads/'.$imageName);
