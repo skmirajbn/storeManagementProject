@@ -104,7 +104,10 @@ if(isset($_POST['updateCategory'])){
     }else{
       echo "Upload Faild";
     }
-
+  }
+  //Add user - Ali Hasan
+  if(isset($_POST['addUser'])){
 
   }
+
 ?>

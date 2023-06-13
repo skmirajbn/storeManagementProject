@@ -17,7 +17,6 @@ $sql = "SELECT * FROM categories ORDER by category_id DESC LIMIT $offset, $limit
 $result = $con->query($sql);
 
 ?>
-
            <div class="table-responsive">
                 <table>
                   <thead>
