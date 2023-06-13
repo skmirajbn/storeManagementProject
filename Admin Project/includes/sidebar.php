@@ -25,7 +25,7 @@
                       >
                     </div>
                     <div class="accordion-body">
-                      <a class="btn btn-block" href="pages/add_customer.php""
+                      <a class="btn btn-block" href="pages/add_customer.php"
                         ><i class="fa-solid fa-user-plus"></i>&nbsp; Add Customers</a
                       >
                     </div>
@@ -45,10 +45,10 @@
                   </h2>
                   <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
-                        <a class="btn btn-block" href=""><i class="fa-solid fa-boxes-stacked"></i>&nbsp; All Products</a>
+                        <a class="btn btn-block" href="pages/all_products.php"><i class="fa-solid fa-boxes-stacked"></i>&nbsp; All Products</a>
                       </div>
                       <div class="accordion-body">
-                        <a class="btn btn-block" href=""><i class="fa-solid fa-box-open"></i>&nbsp; Add Products</a>
+                        <a class="btn btn-block" href="pages/add_product.php"><i class="fa-solid fa-box-open"></i>&nbsp; Add Products</a>
                       </div>
                       <div class="accordion-body">
                         <a class="btn btn-block" href=""><i class="fa-solid fa-trash"></i>&nbsp; Restore Product</a>

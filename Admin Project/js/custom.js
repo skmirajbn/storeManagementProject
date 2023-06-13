@@ -57,7 +57,7 @@ document.addEventListener('submit', function(event){
 //Listing all links and actions
 document.addEventListener('click', function(event){
   let target = event.target;
-  if(target.closest('a')){
+  if(target.closest('a') && target.getAttribute('data-disabled')!=='true'){
       //loading messagin showing
       let loading = document.getElementById('loading');
       loading.innerText = "Processing...";
@@ -84,29 +84,29 @@ function include(event, url){
 
   let breadCrumbValue = url.split("/").pop().split('.').slice(0,-1).join('').replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
 
-  
+  //load url
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', url);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      // remove loading message
+      loading.innerText = "";
+      // Handle success response
+      container.innerHTML = this.responseText;
+      //updated breadCrumb
+      breadcrumb.innerText = breadCrumbValue;
 
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', url);
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        // remove loading message
-        loading.innerText = "";
-        // Handle success response
-        container.innerHTML = this.responseText;
-        //updated breadCrumb
-        breadcrumb.innerText = breadCrumbValue;
-        
-      } else {
-        // Handle error response
-        console.log(xhr.responseText);
-      }
-    };
-    xhr.onerror = function() {
-      // Handle network errors
-      console.log("Network error occurred");
-    };
-    xhr.send();
+      
+    } else {
+      // Handle error response
+      loading.innerText = "Error";
+    }
+  };
+  xhr.onerror = function() {
+    // Handle network errors
+    loading.innerText = "Net Work Error";
+  };
+  xhr.send();
 }
 
 
