@@ -28,13 +28,14 @@
                 <td><?= $data["customer_email"]?></td>
                 <td><?= $data["customer_address"]?></td>
                 <td>
-                    <a href="pages/update_customer.php?customer_id=<?= $data["customer_id"]?>"data-form="updateCustomer" class=" btn edit-btn ">Edit</a>
+                    <a href="pages/update_customer.php?customer_id=<?= $data["customer_id"]?>"
+                        data-form="updateCustomer" class=" btn edit-btn ">Edit</a>
                     <a href="formServer.php?customer_id=<?= $data["customer_id"]?>" class=" btn delete-btn ">Delete</a>
                 </td>
             </tr>
             <?php }?>
-            
-        <!-- Add more rows for each user -->
+
+            <!-- Add more rows for each user -->
         </tbody>
     </table>
 </div>
