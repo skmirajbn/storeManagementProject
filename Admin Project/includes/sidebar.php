@@ -51,7 +51,7 @@
                         <a class="btn btn-block" href="pages/add_product.php"><i class="fa-solid fa-box-open"></i>&nbsp; Add Products</a>
                       </div>
                       <div class="accordion-body">
-                        <a class="btn btn-block" href=""><i class="fa-solid fa-trash"></i>&nbsp; Restore Product</a>
+                        <a class="btn btn-block" href="pages/restore_product.php"><i class="fa-solid fa-trash"></i>&nbsp; Restore Product</a>
                       </div>
                   </div>
                 </div>
@@ -175,6 +175,9 @@
                     </div>
                     <div class="accordion-body">
                       <a class="btn btn-block" href="pages/add_user.php"><i class="fa-solid fa-user-plus"></i>&nbsp; Add Users</a>
+                    </div>
+                    <div class="accordion-body">
+                      <a class="btn btn-block" href="pages/add_user.php"><i class="fa-solid fa-trash"></i>&nbsp; Restore Users</a>
                     </div>
                     <div class="accordion-body">
                       <a class="btn btn-block" href=""><i class="fa-solid fa-toolbox"></i>&nbsp; Roles</a>

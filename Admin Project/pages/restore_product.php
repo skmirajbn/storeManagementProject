@@ -1,5 +1,5 @@
 
-  <div class="table-responsive">
+<div class="table-responsive">
     <table>
       <thead>
         <tr>
@@ -19,7 +19,7 @@
       <tbody>
         <?php
           require_once("../includes/db_connection.php");
-          $sql="SELECT * FROM products WHERE product_status = 1 ORDER BY product_id DESC";
+          $sql="SELECT * FROM products WHERE product_status = 0 ORDER BY product_id DESC";
           $query=$con->query($sql);
           while($data=$query->fetch_assoc()){ 
           
