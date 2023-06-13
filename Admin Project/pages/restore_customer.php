@@ -1,6 +1,6 @@
 <?php
     require_once("../includes/db_connection.php");
-    $sql="SELECT * FROM customers WHERE customer_status = 1 ORDER BY customer_id DESC";
+    $sql="SELECT * FROM customers WHERE customer_status = 0 ORDER BY customer_id DESC";
     $query=$con->query($sql);
 ?>
 <div class="table-responsive">
@@ -28,14 +28,14 @@
                 <td><?= $data["customer_email"]?></td>
                 <td><?= $data["customer_address"]?></td>
                 <td>
-                    <a href="pages/update_customer.php?customer_id=<?= $data["customer_id"]?>"
-                        data-form="updateCustomer" class=" btn edit-btn ">Edit</a>
-                    <a href="formServer.php?customer_id=<?= $data["customer_id"]?>" class=" btn delete-btn ">Delete</a>
+                    
+                    <a href="formServer.php?restore_customer_id=<?= $data["customer_id"]?>" class=" btn delete-btn ">Restore</a>
+                    <a href="formServer.php?par_delete_customer_id=<?= $data["customer_id"]?>" class=" btn delete-btn ">Parmanently Delete</a>
                 </td>
             </tr>
             <?php }?>
-
-            <!-- Add more rows for each user -->
+            
+        <!-- Add more rows for each user -->
         </tbody>
     </table>
 </div>

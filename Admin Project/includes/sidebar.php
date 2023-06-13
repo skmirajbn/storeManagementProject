@@ -30,7 +30,7 @@
                       >
                     </div>
                     <div class="accordion-body">
-                      <a class="btn btn-block" href=""
+                      <a class="btn btn-block" href="pages/restore_customer.php"
                         ><i class="fa-solid fa-trash"></i>&nbsp; Restore Customer</a
                       >
                     </div>
