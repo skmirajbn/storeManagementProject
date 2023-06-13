@@ -105,9 +105,23 @@ if(isset($_POST['updateCategory'])){
       echo "Upload Faild";
     }
   }
+
+
   //Add user - Ali Hasan
-  if(isset($_POST['addUser'])){
+  if(isset($_POST['add_user'])){
+    $user_name = $_POST['i_user_name'];
+    $user_username = $_POST['i_user_username'];
+    $user_email = $_POST['i_user_email'];
+    $user_pass = $_POST['i_user_pass'];
 
+
+    $insest="INSERT INTO users(user_name,user_email,user_password,user_username) 
+    VALUES('$user_name','$user_email','$user_pass','$user_username')";
+    $query=$con->query($insest);
+    if($query){
+    echo "Success";
+    }else{
+    echo "failed";
+    }
   }
-
 ?>

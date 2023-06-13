@@ -3,27 +3,27 @@
   <form>
     <div class="form-group">
       <label for="">Name:</label>
-      <input class="form-control" type="text" name='UserPersonName'>
+      <input class="form-control" type="text" name='i_user_name'>
     </div>
     <div class="form-group">
       <label for="">User Name:</label>
-      <input class="form-control" type="text" name='UserName'>
+      <input class="form-control" type="text" name='i_user_username'>
     </div>
     <div class="form-group">
       <label for="">Email:</label>
-      <input class="form-control" type="text" name='UserEmail'>
+      <input class="form-control" type="text" name='i_user_email'>
     </div>
     <div class="form-group">
       <label for="">Password:</label>
-      <input class="form-control" type="text" name='UserPass'>
+      <input class="form-control" type="text" name='i_user_pass'>
     </div>
     <div class="form-group">
       <label for="">Repassword:</label>
-      <input class="form-control" type="text" name='UserRepass'>
+      <input class="form-control" type="text" name=''>
     </div>
     <div class="form-group">
       <label for="category">User Role:</label>
-      <select class="form-control" id="category" name='UserRole'>
+      <select class="form-control" id="category" name='i_user_role'>
         <option value="">---Select One---</option>
         <option value="">Admin</option>
         <option value="">Admin</option>
@@ -35,7 +35,7 @@
       <input class="form-control" type="file" name='UserPhoto'>
     </div>
     <br>
-    <input type="hidden" name="AddUser">
+    <input type="hidden" name="add_user">
     <input type="submit" class="btn mybtn-hightlight" value="Add User">
   </form>
 </div>
