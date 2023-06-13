@@ -29,7 +29,7 @@ if(isset($_POST['addCustomer'])){
     $address=$_POST["customer_address"];
     $phone=$_POST["customer_phone"];
     $email=$_POST["customer_email"];
-    $sql="INSERT INTO customers(customer_name,customer_address,customer_phone,customer_email) VALUES('$name','$address','$phone','$email')";
+    $sql="INSERT INTO customers(customer_name,customer_address,customer_phone,customer_email,customer_status) VALUES('$name','$address','$phone','$email',1)";
     $query=$con->query($sql);
     if($query){
         
@@ -39,10 +39,10 @@ if(isset($_POST['addCustomer'])){
     }
 }
 
-//Delete customar
+//Delete customar - Mosharrof
 if(isset($_GET['customer_id'])){
     $id=$_GET['customer_id'];
-    $sql="DELETE FROM customers WHERE customer_id= $id";
+    $sql="UPDATE customers SET customer_status=0 WHERE customer_id= $id";
     $query=$con->query($sql);
     if($query){
         header("location: pages/all_customers.php");
@@ -50,8 +50,31 @@ if(isset($_GET['customer_id'])){
         echo "Data Not Deleted ";
     }
 }
+//Restore customar - Mosharrof
+if(isset($_GET['restore_customer_id'])){
+    $id=$_GET['restore_customer_id'];
+    $sql="UPDATE customers SET customer_status=1 WHERE customer_id= $id";
+    $query=$con->query($sql);
+    if($query){
+        header("location: pages/restore_customers.php");
+    }else{
+        echo "Data Not Deleted ";
+    }
+}
 
-//Update Customer
+//Parmanently Delete - Mosharrof
+if(isset($_GET['par_delete_customer_id'])){
+    $id=$_GET['par_delete_customer_id'];
+    $sql="DELETE FROM customers WHERE customer_id= $id";
+    $query=$con->query($sql);
+    if($query){
+        header("location: pages/restore_customers.php");
+    }else{
+        echo "Data Not Deleted ";
+    }
+}
+
+//Update Customar - Mosharrof
 if(isset($_POST['updateCustomer'])){
     $id=$_POST['updateCustomer'];
     $name=$_POST["customer_name"];
@@ -67,7 +90,7 @@ if(isset($_POST['updateCustomer'])){
     }
 }
 
-//Update Category
+//Update Category 
 
 if(isset($_POST['updateCategory'])){
     $categoryName = $_POST['categoryName'];
