@@ -32,11 +32,12 @@
     </div>
     <div class="form-group">
       <label for="">Photo:</label>
-      <input class="form-control" type="file" name='UserPhoto'>
+      <input class="form-control" type="file" name='i_user_photo'>
     </div>
     <br>
     <input type="hidden" name="add_user">
     <input type="submit" class="btn mybtn-hightlight" value="Add User">
   </form>
+  <div id="response"></div>
 </div>
 </div>

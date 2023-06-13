@@ -139,9 +139,9 @@ if(isset($_POST['updateCategory'])){
     $user_pass = $_POST['i_user_pass'];
 
 
-    $insest="INSERT INTO users(user_name,user_email,user_password,user_username) 
+    $insests="INSERT INTO users(user_name,user_email,user_password,user_username) 
     VALUES('$user_name','$user_email','$user_pass','$user_username')";
-    $query=$con->query($insest);
+    $query=$con->query($insests);
     if($query){
     echo "Success";
     }else{
