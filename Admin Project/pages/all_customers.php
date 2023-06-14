@@ -10,12 +10,13 @@
         $totalPage = ceil($totalRows / $limit);
         $offset = ($currentPage - 1) * $limit;
 
-    $sql="SELECT * FROM customers WHERE customer_status = 1 ORDER BY customer_id DESC";
+    $sql="SELECT * FROM customers WHERE customer_status = 1 ORDER BY customer_id DESC LIMIT $offset , $limit";
     $query=$con->query($sql);
 ?>
 <div class="table-responsive">
     <table>
         <thead>
+            
             <tr>
                 <th><input type="checkbox" class="select-all"></th>
                 <th>ID</th>

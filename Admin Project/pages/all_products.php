@@ -29,7 +29,7 @@
             $totalPage = ceil($totalRows / $limit);
             $offset = ($currentPage - 1) * $limit;
 
-          $sql="SELECT * FROM products WHERE product_status = 1 ORDER BY product_id DESC";
+          $sql="SELECT * FROM products WHERE product_status = 1 ORDER BY product_id DESC LIMIT $offset, $limit";
           $query=$con->query($sql);
           while($data=$query->fetch_assoc()){ 
           
