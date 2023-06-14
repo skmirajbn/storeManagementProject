@@ -56,8 +56,7 @@ if(isset($_GET['restore_customer_id'])){
     $sql="UPDATE customers SET customer_status = 1 WHERE customer_id= $id";
     $query=$con->query($sql);
     if($query){
-        header("location: pages/restore_customers.php");
-        echo "Successfull";
+        header("location: pages/restore_customer.php");
     }else{
         echo "Data Not Deleted ";
     }
@@ -69,8 +68,7 @@ if(isset($_GET['par_delete_customer_id'])){
     $sql="DELETE FROM customers WHERE customer_id= $id";
     $query=$con->query($sql);
     if($query){
-        header("location: pages/restore_customers.php");
-        echo "Successfull";
+        header("location: pages/restore_customer.php");
     }else{
         echo "Data Not Deleted ";
     }
@@ -156,9 +154,33 @@ if(isset($_POST['updateCategory'])){
           echo "Update Faild";
         }
     }
-  //Add role - Ali Hasan
-    if(isset($_POST['add_role'])){
-    $role_name = $_POST['i_role_name'];
+  
+    //Delete Product - Mosharrof
+    if(isset($_GET['product_id'])){
+        $id=$_GET['product_id'];
+        $sql="UPDATE products SET product_status=0 WHERE product_id= $id";
+        $query=$con->query($sql);
+        if($query){
+            header("location: pages/all_products.php");
+        }else{
+            echo "Data Not Deleted ";
+        }
+    }
+    //Restore Product - Mosharrof
+    if(isset($_GET['restore_customer_id'])){
+        $id=$_GET['restore_customer_id'];
+        $sql="UPDATE customers SET customer_status = 1 WHERE customer_id= $id";
+        $query=$con->query($sql);
+        if($query){
+            header("location: pages/restore_customer.php");
+        }else{
+            echo "Data Not Deleted ";
+        }
+    }
+
+
+
+
 
     $insests="INSERT INTO roles(role_name)
     VALUES('$role_name')";
