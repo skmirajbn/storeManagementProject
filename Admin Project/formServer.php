@@ -56,8 +56,7 @@ if(isset($_GET['restore_customer_id'])){
     $sql="UPDATE customers SET customer_status = 1 WHERE customer_id= $id";
     $query=$con->query($sql);
     if($query){
-        header("location: pages/restore_customers.php");
-        echo "Successfull";
+        header("location: pages/restore_customer.php");
     }else{
         echo "Data Not Deleted ";
     }
@@ -70,7 +69,6 @@ if(isset($_GET['par_delete_customer_id'])){
     $query=$con->query($sql);
     if($query){
         header("location: pages/restore_customers.php");
-        echo "Successfull";
     }else{
         echo "Data Not Deleted ";
     }
