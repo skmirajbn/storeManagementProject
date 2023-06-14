@@ -211,4 +211,19 @@ if(isset($_POST['updateCategory'])){
     echo "failed";
     }
   }
+
+  // role - Ali Hasan
+
+  if(isset($_POST['add_role'])){
+    $role_name = $_POST['i_role_name'];
+
+    $insests="INSERT INTO roles(role_name)  
+    VALUES('$role_name')";
+    $query=$con->query($insests);
+    if($query){
+    echo "Success";
+    }else{
+    echo "failed";
+    }
+  }
 ?>
