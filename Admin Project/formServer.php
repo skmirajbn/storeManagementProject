@@ -131,7 +131,6 @@ if(isset($_POST['updateCategory'])){
             echo "Upload Faild";
         }
     }
-<<<<<<< HEAD
 
  //Update Product - Mosharrof 
     
@@ -157,10 +156,8 @@ if(isset($_POST['updateCategory'])){
           echo "Update Faild";
         }
     }
-=======
-  }
+  
 
->>>>>>> fdc704bbc925d4dd01c01c9a5574005ac4bc8f43
 
   //Add user - Ali Hasan
   if(isset($_POST['add_user'])){
