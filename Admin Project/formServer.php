@@ -194,8 +194,22 @@ if(isset($_POST['updateCategory'])){
 
 
 
+<<<<<<< HEAD
   //Add user - Ali Hasan
   if(isset($_POST['add_user'])){
+=======
+    $insests="INSERT INTO roles(role_name)
+    VALUES('$role_name')";
+    $query=$con->query($insests);
+    if($query){
+    header ('loaction: ./pages/all_role.php');
+    }else{
+    echo "failed";
+    }
+    }
+    //Add user - Ali Hasan
+    if(isset($_POST['add_user'])){
+>>>>>>> 75ec2249e7bf8260a50994a30eba3e493927a6e4
     $user_name = $_POST['i_user_name'];
     $user_username = $_POST['i_user_username'];
     $user_email = $_POST['i_user_email'];

@@ -174,8 +174,14 @@
                   Users</a>
               </div>
               <div class="accordion-body">
-                <a class="btn btn-block" href=""><i class="fa-solid fa-toolbox"></i>&nbsp; Roles</a>
+                <a class="btn btn-block" href="pages/all_role.php"><i class="fa-solid fa-users"></i>&nbsp; All
+                  Roles</a>
               </div>
+              <div class="accordion-body">
+                <a class="btn btn-block" href="pages/add_role.php"><i class="fa-solid fa-user-plus"></i>&nbsp; Add
+                  Roles</a>
+              </div>
+
             </div>
           </div>
           <div class="accordion-item">
