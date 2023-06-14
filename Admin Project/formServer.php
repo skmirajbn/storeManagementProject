@@ -120,7 +120,7 @@ if(isset($_POST['updateCategory'])){
 
         $imageName='product_'.time().'_'.rand(100000,100000000).'.'.pathinfo($pd_img_name,PATHINFO_EXTENSION); 
 
-        $sql="INSERT INTO products(product_name,brand_id,category_id,unit_id,sku,selling_price,product_image,description ) VALUES('$product_name','$product_brand','$product_category','$product_unit','$product_sku','$product_price','$imageName','$product_desc' )";
+        $sql="INSERT INTO products(product_name,brand_id,category_id,unit_id,sku,selling_price,product_image,description, product_status) VALUES('$product_name','$product_brand','$product_category','$product_unit','$product_sku','$product_price','$imageName','$product_desc', 1)";
         $query=$con->query($sql);
         if($query){
             move_uploaded_file($pd_img_tmpname,'uploads/'.$imageName);
@@ -167,17 +167,28 @@ if(isset($_POST['updateCategory'])){
         }
     }
     //Restore Product - Mosharrof
-    if(isset($_GET['restore_customer_id'])){
-        $id=$_GET['restore_customer_id'];
-        $sql="UPDATE customers SET customer_status = 1 WHERE customer_id= $id";
+    if(isset($_GET['restore_product_id'])){
+        $id=$_GET['restore_product_id'];
+        $sql="UPDATE products SET product_status = 1 WHERE product_id = $id";
         $query=$con->query($sql);
         if($query){
-            header("location: pages/restore_customer.php");
+            header("location: pages/restore_product.php");
+        }else{
+            echo "Data Not Deleted "; 
+        }
+    }
+
+    //Parmanently Delete - Mosharrof
+    if(isset($_GET['par_delete_product_id'])){
+        $id=$_GET['par_delete_product_id'];
+        $sql="DELETE FROM customers WHERE customer_id= $id";
+        $query=$con->query($sql);
+        if($query){
+            header("location: pages/restore_product.php");
         }else{
             echo "Data Not Deleted ";
         }
     }
-
 
 
 

@@ -53,7 +53,7 @@
         <td><?= $data["description"]?></td>
         <td>
           <a href="update_product.php?product_id=<?= $data["product_id"]?>" class=" btn edit-btn ">Edit</a>
-          <a href="delete_product.php?product_id=<?= $data["product_id"]?>" class=" btn delete-btn ">Delete</a>
+          <a href="formServer.php?product_id=<?= $data["product_id"]?>" class=" btn delete-btn ">Delete</a>
         </td>
       </tr>
       <?php }?>

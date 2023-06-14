@@ -41,8 +41,8 @@
         </td>
         <td><?= $data["description"]?></td>
         <td>
-          <a href="update_product.php?product_id=<?= $data["product_id"]?>" class=" btn edit-btn ">Edit</a>
-          <a href="delete_product.php?product_id=<?= $data["product_id"]?>" class=" btn delete-btn ">Delete</a>
+          <a href="formServer.php?restore_product_id=<?= $data["product_id"]?>" class=" btn edit-btn ">Restore</a>
+          <a href="formServer.php?par_delete_product_id=<?= $data["product_id"]?>" class=" btn delete-btn ">Delete</a>
         </td>
       </tr>
       <?php }?>
