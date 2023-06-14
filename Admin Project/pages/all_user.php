@@ -2,20 +2,20 @@
   <table>
     <thead>
       <tr>
-        <td></td>
-        <td>Name</td>
-        <td>user Name</td>
-        <td>Email</td>
-        <td>Role</td>
-        <td>Photo</td>
-        <td>Action</td>
+        <th><input type="checkbox" class="select"></th>
+        <th>Name</th>
+        <th>User Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Photo</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td></td>
         <td><input type="checkbox" class="select"></td>
         <td>Ali Hasan</td>
+        <td>dbhasan</td>
         <td>info@gmail.com</td>
         <td>Admin</td>
         <td><img class="user_img" src="uploads/images/avatar.png" alt=""></td>
