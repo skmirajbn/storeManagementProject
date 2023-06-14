@@ -145,7 +145,7 @@ if(isset($_POST['updateCategory'])){
         
         $imageName='product_'.time().'_'.rand(100000,100000000).'.'.pathinfo($pd_img_name,PATHINFO_EXTENSION); 
     
-        $sql="UPDATE products SET product_name='$product_name',brand_id='$product_brand',category_id='$product_category',unit_id='$product_unit',sku='$product_sku',selling_price='$product_price',product_image='$imageName',description='$product_desc')";
+        $sql="UPDATE products SET product_name='$product_name',brand_id='$product_brand',category_id='$product_category',unit_id='$product_unit',sku='$product_sku',selling_price='$product_price',product_image='$imageName',description='$product_desc'";
         $query=$con->query($sql);
         if($query){
           move_uploaded_file($pd_img_tmpname,'uploads/'.$imageName);
@@ -178,10 +178,10 @@ if(isset($_POST['updateCategory'])){
         }
     }
 
-    //Parmanently Delete - Mosharrof
+    //Parmanently Product Delete - Mosharrof
     if(isset($_GET['par_delete_product_id'])){
         $id=$_GET['par_delete_product_id'];
-        $sql="DELETE FROM customers WHERE customer_id= $id";
+        $sql="DELETE FROM products WHERE product_id= $id";
         $query=$con->query($sql);
         if($query){
             header("location: pages/restore_product.php");

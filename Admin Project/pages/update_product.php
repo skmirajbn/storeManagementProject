@@ -1,5 +1,5 @@
 <?php
-require_once("../includes/db_connection.php")
+require_once("../includes/db_connection.php");
 
   $id=$_GET['product_id'];
   $sql="SELECT * from products WHERE product_id=$id ";
