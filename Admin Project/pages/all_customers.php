@@ -1,7 +1,7 @@
 <?php
     require_once("../includes/db_connection.php");
     //pagination
-        $limit = 5;
+        $limit = 13;
         $currentPage = $_GET['page'] ?? 1;
 
         $countSql = "SELECT COUNT(*) AS TOTAL FROM customers";

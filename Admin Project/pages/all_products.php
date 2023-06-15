@@ -1,3 +1,69 @@
+
+
+<!-- Modal -->
+<div class="modal fade" id="product_view_modal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Product Information</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+      <div class="col-md-6">
+        <img src="uploads/images/product_1686830292_60952360.jpg" class="img-fluid" alt="Product Image">
+      </div>
+      <div class="col-md-6">
+        <h3>Product Information</h3>
+        <table class="table">
+          <tr>
+            <th>Product ID:</th>
+            <td>123456</td>
+          </tr>
+          <tr>
+            <th>Product Name:</th>
+            <td>Example Product</td>
+          </tr>
+          <tr>
+            <th>Product Brand:</th>
+            <td>Example Brand</td>
+          </tr>
+          <tr>
+            <th>Product Category:</th>
+            <td>Example Category</td>
+          </tr>
+          <tr>
+            <th>Product Unit:</th>
+            <td>1</td>
+          </tr>
+          <tr>
+            <th>Product SKU:</th>
+            <td>SKU123</td>
+          </tr>
+          <tr>
+            <th>Product Price:</th>
+            <td>$19.99</td>
+          </tr>
+          <tr>
+            <th>Product Description:</th>
+            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn mybtn-hightlight" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 <div class="table-responsive">
   <table>
     <thead>
@@ -12,7 +78,7 @@
         <th>Price</th>
         <th>Image</th>
         <th>Description</th>
-        <th>Update/Delete</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -45,15 +111,16 @@
         <td><?= $data["selling_price"]?></td>
         <td>
           <?php if(($data['product_image'])!=''){?>
-          <img height="50" src="uploads/<?= $data['product_image']?>" alt="Photo" />
+          <img height="50" src="uploads/images/<?= $data['product_image']?>" alt="Photo" />
           <?php }else{ ?>
-          <img height="50" src="uploads/images/avatar.png" alt="product_image" />
+          <img height="50" src="uploads/images/sample-product.jpg" alt="product_image" />
           <?php }?>
         </td>
         <td><?= $data["description"]?></td>
         <td>
-          <a href="pages/update_product.php?product_id=<?= $data["product_id"]?>" class=" btn edit-btn ">Edit</a>
-          <a href="formServer.php?product_id=<?= $data["product_id"]?>" class=" btn delete-btn ">Delete</a>
+          <button class=" btn edit-btn" data-bs-toggle="modal" data-bs-target="#product_view_modal"><i class="fa-solid fa-eye"></i></button>
+          <a href="pages/update_product.php?product_id=<?= $data["product_id"]?>" class=" btn edit-btn "><i class="fa-solid fa-pen-to-square"></i></a>
+          <a href="formServer.php?product_id=<?= $data["product_id"]?>" class=" btn delete-btn "><i class="fa-solid fa-trash"></i></a>
         </td>
       </tr>
       <?php }?>

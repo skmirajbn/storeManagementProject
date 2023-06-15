@@ -34,9 +34,9 @@
         <td><?= $data["selling_price"]?></td>
         <td>
           <?php if(($data['product_image'])!=''){?>
-          <img height="50" src="uploads/<?= $data['product_image']?>" alt="Photo" />
+          <img height="50" src="uploads/images/<?= $data['product_image']?>" alt="Photo" />
           <?php }else{ ?>
-          <img height="50" src="uploads/images/avatar.png" alt="product_image" />
+          <img height="50" src="uploads/images/sample-product.jpg" alt="product_image" />
           <?php }?>
         </td>
         <td><?= $data["description"]?></td>

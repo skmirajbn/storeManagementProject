@@ -42,7 +42,7 @@ require_once("../includes/db_connection.php")
         <select class="form-control" name="product_unit" id="">
           <option value="">Select Unit</option>
           <?php
-            $sql="SELECT * FROM unit";
+            $sql="SELECT * FROM units";
             $query=$con->query($sql);
             while($data=$query->fetch_assoc()){
           ?>

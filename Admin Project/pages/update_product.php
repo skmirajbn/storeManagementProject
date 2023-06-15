@@ -1,43 +1,52 @@
 <?php
 require_once("../includes/db_connection.php");
-
+  //Retriving for Update from Product_view Table
   $id=$_GET['product_id'];
-  $sql="SELECT * from products WHERE product_id=$id ";
-  $query=$con->query($sql);
-  $show_data=$query->fetch_assoc();
+  $sql="SELECT * from product_information WHERE product_id=$id ";
+  $product_query=$con->query($sql);
+  $product_data=$product_query->fetch_assoc();
+
+  //Retriving Brand List
+  $sql = "SELECT * FROM brands";
+  $brand_query = $con->query($sql);
+  
+
+  //Retriving Category List
+  $sql = "SELECT * FROM categories";
+  $category_query = $con->query($sql);
+  
+
+  //Retriving Unit List
+  $sql = "SELECT * FROM units";
+  $unit_query = $con->query($sql);
+  
 ?>
 
 <div class="main_content">
   <div class="form-body container" style="width: 80%; margin:0 auto">
-    <h4>Add Product</h4>
+    <h4>Edit Product</h4>
     <form id="addProduct" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label for="">Product Name:</label>
-        <input class="form-control" name="product_name" type="text" placeholder="Enter Customer Name" value="<?= $show_data['product_name'] ?>">
+        <input class="form-control" name="product_name" type="text" placeholder="Enter Customer Name" value="<?= $product_data['product_name'] ?>">
       </div>
       <div class="form-group">
         <label for="">Brand:</label>
         <select class="form-control" name="product_brand" id="">
-          <option value=""><?= $show_data['brand_id'] ?></option>
           <?php 
-              $sql="SELECT * from brands ORDER BY brand_id ASC";
-              $query=$con->query($sql);
-              while($data=$query->fetch_assoc()){
+              while($brand_data = $brand_query->fetch_assoc()){
               ?>
-          <option value="<?= $data['brand_id'] ?>"><?= $data['brand_name'] ?></option>
+          <option value="<?= $brand_data['brand_id'] ?>" <?= $brand_data['brand_id'] == $product_data['brand_id'] ? "selected": ""?> ><?= $brand_data['brand_name'] ?></option>
           <?php }?>
         </select>
       </div>
       <div class="form-group">
         <label for="">Category:</label>
         <select class="form-control" name="product_category" id="">
-          <option value=""><?= $show_data['category_id'] ?></option>
           <?php
-              $sql="SELECT * FROM categories ORDER BY category_id ASC";
-              $query= $con->query($sql);
-              while($data=$query->fetch_assoc()){
+              while($category_data = $category_query->fetch_assoc()){
             ?>
-          <option value="<?= $data['category_id']?>"><?= $data['category_name']?></option>
+          <option value="<?= $category_data['category_id']?>" <?= $category_data['category_id'] == $product_data['category_id'] ? "selected": ""?> ><?= $category_data['category_name']?></option>
           <?php } ?>
 
         </select>
@@ -45,35 +54,40 @@ require_once("../includes/db_connection.php");
       <div class="form-group">
         <label for="">Unit:</label>
         <select class="form-control" name="product_unit" id="">
-          <option value=""><?= $show_data['unit_id'] ?></option>
           <?php
-            $sql="SELECT * FROM unit";
-            $query=$con->query($sql);
-            while($data=$query->fetch_assoc()){
+            while($unit_data = $unit_query->fetch_assoc()){
           ?>
-          <option value="<?= $data["unit_id"] ?>"><?= $data["unit"] ?></option>
+          <option value="<?= $unit_data["unit_id"] ?>"  <?= $unit_data["unit_id"] == $product_data['unit_id'] ? "selected": ""?>><?= $unit_data["unit"] ?></option>
 
           <?php } ?>
         </select>
       </div>
       <div class="form-group">
         <label for="">SKU:</label>
-        <input class="form-control" name="product_sku" type="text" placeholder="Enter Product SKU" value="<?= $show_data['sku'] ?>">
+        <input class="form-control" name="product_sku" type="text" placeholder="Enter Product SKU" value="<?= $product_data['sku'] ?>">
       </div>
       <div class="form-group">
         <label for="">Price:</label>
-        <input class="form-control" name="product_price" type="text" placeholder="Enter Customer Name" value="<?= $show_data ['selling_price'] ?>">
+        <input class="form-control" name="product_price" type="text" placeholder="Enter Customer Name" value="<?= $product_data ['selling_price'] ?>">
       </div>
       <div class="form-group">
         <label for="">Product Image:</label>
-        <input class="form-control" name="product_image" type="file" placeholder="Enter Customer Name" >
+        <?php 
+        if(!empty($product_data['product_image'])){
+          printf(<<<HTML
+          <div><img style="width:150px" src='uploads/images/%s'></div> 
+          HTML,$product_data['product_image']);
+        }
+        ?>
+
+        <input class="form-control" name="product_image" type="file" name="image_name">
       </div>
       <div class="form-group">
         <label for="">Description:</label>
-        <textarea class="form-control" placeholder="Enter Customer Name" name="product_desc" id="" cols="" rows=""><?=$show_data['description'] ?></textarea>
+        <textarea class="form-control" placeholder="Enter Customer Name" name="product_desc" id="" cols="" rows=""><?=$product_data['description'] ?></textarea>
       </div>
       <br>
-      <input type="hidden" name="updateProduct">
+      <input type="hidden" name="updateProduct" value="<?=$id?>">
       <input type="submit" class="mybtn-hightlight btn">
     </form>
     <div id="response"></div>

@@ -117,13 +117,16 @@ if(isset($_POST['updateCategory'])){
         $product_desc=$_POST["product_desc"];
         $pd_img_name=$_FILES["product_image"]["name"];
         $pd_img_tmpname=$_FILES["product_image"]["tmp_name"];
+        $imageName = '';
 
-        $imageName='product_'.time().'_'.rand(100000,100000000).'.'.pathinfo($pd_img_name,PATHINFO_EXTENSION); 
+        if($pd_img_name !== ''){
+            $imageName='product_'.time().'_'.rand(100000,100000000).'.'.pathinfo($pd_img_name,PATHINFO_EXTENSION); 
+        }
 
         $sql="INSERT INTO products(product_name,brand_id,category_id,unit_id,sku,selling_price,product_image,description, product_status) VALUES('$product_name','$product_brand','$product_category','$product_unit','$product_sku','$product_price','$imageName','$product_desc', 1)";
         $query=$con->query($sql);
         if($query){
-            move_uploaded_file($pd_img_tmpname,'uploads/'.$imageName);
+            move_uploaded_file($pd_img_tmpname,'uploads/images/'.$imageName);
             echo "Upload Successfull";
         }else{
             echo "Upload Faild";
@@ -133,6 +136,7 @@ if(isset($_POST['updateCategory'])){
  //Update Product - Mosharrof 
     
     if(isset($_POST["updateProduct"])){
+        $product_id = $_POST['updateProduct'];
         $product_name=$_POST["product_name"];
         $product_brand=$_POST["product_brand"];
         $product_category=$_POST["product_category"];
@@ -140,15 +144,16 @@ if(isset($_POST['updateCategory'])){
         $product_sku=$_POST["product_sku"];
         $product_price=$_POST["product_price"];
         $product_desc=$_POST["product_desc"];
+        // $product_img_name=$_POST["image_name"];
         $pd_img_name=$_FILES["product_image"]["name"];
         $pd_img_tmpname=$_FILES["product_image"]["tmp_name"];
         
         $imageName='product_'.time().'_'.rand(100000,100000000).'.'.pathinfo($pd_img_name,PATHINFO_EXTENSION); 
     
-        $sql="UPDATE products SET product_name='$product_name',brand_id='$product_brand',category_id='$product_category',unit_id='$product_unit',sku='$product_sku',selling_price='$product_price',product_image='$imageName',description='$product_desc'";
+        $sql="UPDATE products SET product_name='$product_name',brand_id='$product_brand',category_id='$product_category',unit_id='$product_unit',sku='$product_sku',selling_price='$product_price', product_image= '$imageName',description='$product_desc' WHERE product_id =  $product_id";
         $query=$con->query($sql);
         if($query){
-          move_uploaded_file($pd_img_tmpname,'uploads/'.$imageName);
+          move_uploaded_file($pd_img_tmpname,'uploads/images/'.$imageName);
           echo "Update Successfull";
         }else{
           echo "Update Faild";
