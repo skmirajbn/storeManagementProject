@@ -150,10 +150,17 @@ if(isset($_POST['updateCategory'])){
         
         $imageName='product_'.time().'_'.rand(100000,100000000).'.'.pathinfo($pd_img_name,PATHINFO_EXTENSION); 
     
-        $sql="UPDATE products SET product_name='$product_name',brand_id='$product_brand',category_id='$product_category',unit_id='$product_unit',sku='$product_sku',selling_price='$product_price', product_image= '$imageName',description='$product_desc' WHERE product_id =  $product_id";
+        if(!empty($pd_img_name)){
+            $sql="UPDATE products SET product_name='$product_name',brand_id='$product_brand',category_id='$product_category',unit_id='$product_unit',sku='$product_sku',selling_price='$product_price', product_image= '$imageName',description='$product_desc' WHERE product_id =  $product_id";
+        }else{
+            $sql="UPDATE products SET product_name='$product_name',brand_id='$product_brand',category_id='$product_category',unit_id='$product_unit',sku='$product_sku',selling_price='$product_price',description='$product_desc' WHERE product_id =  $product_id";
+        }
+
         $query=$con->query($sql);
         if($query){
-          move_uploaded_file($pd_img_tmpname,'uploads/images/'.$imageName);
+          if(!empty($pd_img_name)){
+            move_uploaded_file($pd_img_tmpname,'uploads/images/'.$imageName);
+          }
           echo "Update Successfull";
         }else{
           echo "Update Faild";
