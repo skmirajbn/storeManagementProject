@@ -233,6 +233,14 @@ a:hover {
   width: 50px;
 }
 
+/* Hide colums of Product table */
+#product_information_table tr td:nth-child(6),#product_information_table tr th:nth-child(6),
+#product_information_table tr td:nth-child(7),#product_information_table tr th:nth-child(7),
+#product_information_table tr td:nth-child(10),#product_information_table tr th:nth-child(10){
+  display: none;
+}
+
+
 /* Footer */
 .footer {
   background-color: var(--footer-background);

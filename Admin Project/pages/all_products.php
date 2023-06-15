@@ -1,6 +1,6 @@
 
 
-<!-- Modal -->
+<!-- Product Information Modal -->
 <div class="modal fade" id="product_view_modal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-xl">
     <div class="modal-content">
@@ -18,35 +18,35 @@
         <table class="table">
           <tr>
             <th>Product ID:</th>
-            <td>123456</td>
+            <td>--</td>
           </tr>
           <tr>
             <th>Product Name:</th>
-            <td>Example Product</td>
+            <td>--</td>
           </tr>
           <tr>
             <th>Product Brand:</th>
-            <td>Example Brand</td>
+            <td>--</td>
           </tr>
           <tr>
             <th>Product Category:</th>
-            <td>Example Category</td>
+            <td>--</td>
           </tr>
           <tr>
             <th>Product Unit:</th>
-            <td>1</td>
+            <td>--</td>
           </tr>
           <tr>
             <th>Product SKU:</th>
-            <td>SKU123</td>
+            <td>--</td>
           </tr>
           <tr>
             <th>Product Price:</th>
-            <td>$19.99</td>
+            <td>--</td>
           </tr>
           <tr>
             <th>Product Description:</th>
-            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+            <td>--</td>
           </tr>
         </table>
       </div>
@@ -65,7 +65,7 @@
 
 
 <div class="table-responsive">
-  <table>
+  <table id="product_information_table">
     <thead>
       <tr>
         <th><input type="checkbox" class="select-all"></th>
@@ -95,7 +95,7 @@
             $totalPage = ceil($totalRows / $limit);
             $offset = ($currentPage - 1) * $limit;
 
-          $sql="SELECT * FROM products WHERE product_status = 1 ORDER BY product_id DESC LIMIT $offset, $limit";
+          $sql="SELECT * FROM product_information WHERE product_status = 1 ORDER BY product_id DESC LIMIT $offset, $limit";
           $query=$con->query($sql);
           while($data=$query->fetch_assoc()){ 
           
@@ -104,9 +104,9 @@
         <td><input type="checkbox" class="select"></td>
         <td><?= $data["product_id"]?></td>
         <td><?= $data["product_name"]?></td>
-        <td><?= $data["brand_id"]?></td>
-        <td><?= $data["category_id"]?></td>
-        <td><?= $data["unit_id"]?></td>
+        <td><?= $data["brand_name"]?></td>
+        <td><?= $data["category_name"]?></td>
+        <td><?= $data["unit"]?></td>
         <td><?= $data["sku"]?></td>
         <td><?= $data["selling_price"]?></td>
         <td>
@@ -118,7 +118,7 @@
         </td>
         <td><?= $data["description"]?></td>
         <td>
-          <button class=" btn edit-btn" data-bs-toggle="modal" data-bs-target="#product_view_modal"><i class="fa-solid fa-eye"></i></button>
+          <button class=" btn edit-btn view" data-bs-toggle="modal" data-bs-target="#product_view_modal"><i class="fa-solid fa-eye"></i></button>
           <a href="pages/update_product.php?product_id=<?= $data["product_id"]?>" class=" btn edit-btn "><i class="fa-solid fa-pen-to-square"></i></a>
           <a href="formServer.php?product_id=<?= $data["product_id"]?>" class=" btn delete-btn "><i class="fa-solid fa-trash"></i></a>
         </td>

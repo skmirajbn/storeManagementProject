@@ -1,178 +1,124 @@
+$(document).ready(function() {
+  // Toggle theme
+  $(document).on('click', '#themeToggleBtn', function() {
+    $('body').toggleClass('dark-mode');
+  });
 
+  // Add product
+  $(document).on('click', '#addProductBtn', function(event) {
+    event.preventDefault();
+    let productContainer = $('.product_container');
+    let index = productContainer.children().length + 1;
 
-//theme change
-function toggleTheme() {
-  const body = document.body;
-  body.classList.toggle("dark-mode");
-}
+    let productEntry = $('<div>').addClass('product_entry');
 
-//Add & Remove Product
+    productEntry.html(`
+      <label for="product${index}">Product Name:</label>
+      <input style="display: inline-block;width: 250px;" class="form-control" type="text" placeholder="Enter Product Name" id="product${index}" name="product[${index}]">
+      <label for="quantity${index}">Quantity :</label>
+      <input style="display: inline-block;width: 130px;" class="form-control" type="text" placeholder="Enter Quantity" id="quantity${index}">
+      <span>&nbsp; &nbsp;</span>
+      <button type="button" class="btn btn-danger removeProduct"><i class="fa-solid fa-trash"></i></button>
+    `);
 
-function addProduct(event){
-  event.preventDefault();
-  let prodcutContainer = document.querySelector(".product_container");
-  let index = prodcutContainer.childElementCount + 1;
+    productContainer.append(productEntry);
+  });
 
-  let productEntry = document.createElement("div");
-  productEntry.classList.add("product_entry");
+  // Remove product
+  $(document).on('click', '.removeProduct', function() {
+    $(this).closest('.product_entry').remove();
+  });
 
-  productEntry.innerHTML = `
-  <label for="product${index}">Product Name:</label>
-  <input style="display: inline-block;width: 250px;" class="form-control" type="text" placeholder="Enter Product Name" id="product${index}" name="product[${index}]">
-  <label for="quantity${index}">Quantity :</label>
-  <input style="display: inline-block;width: 130px;" class="form-control" type="text" placeholder="Enter Quantity" id="quantity${index}"> <span>&nbsp; &nbsp;</span>
-  <button type="button" class="btn btn-danger" onclick="removeProduct(this)"><i class="fa-solid fa-trash"></i></button>`;
+  // Form submission
+  $(document).on('submit', 'form', function(event) {
+    event.preventDefault();
+    let form = $(this).closest('form');
+    formSubmit(form);
+  });
 
-  prodcutContainer.appendChild(productEntry);
-}
+  // Link actions
+  $(document).on('click', 'a', function(event) {
+    let target = $(this);
+    if (target.closest('a') && target.attr('data-disabled') !== 'true') {
+      let loading = $('#loading');
+      loading.text('Processing...');
 
-function removeProduct(productEntry){
-  let parent = productEntry.parentElement;
-  parent.remove();
-}
-
-// // All Includes
-// //all Category
-// function allCategories(event){
-//   include(event,"pages/all_categories.php");
-// }
-
-// // Add Category
-// function addCategory(event){
-//   include(event,"pages/add_category.php", "addCategory" , "#response");
-//   }
-// //Add SubCategory
-// function addSubCategory(event){
-//   include(event,"pages/add_subCategory.php");
-// }
-
-
-//Listining Forms
-document.addEventListener('submit', function(event){
-  event.preventDefault();
-  let form = event.target.closest('form');
-  formSubmit(form);
-});
-
-//Listing all links and actions
-document.addEventListener('click', function(event){
-  let target = event.target;
-  if(target.closest('a') && target.getAttribute('data-disabled')!=='true'){
-      //loading messagin showing
-      let loading = document.getElementById('loading');
-      loading.innerText = "Processing...";
-
-
-      let url = target.getAttribute('href');
-      include(event,url);
-  }
-})
-
-
-
-
-
-
-
-//common Function for include
-function include(event, url){
-  event.preventDefault();
-    // breadcrumb
-  let breadcrumb = document.getElementById('lastBreadCrumb');
-  let container =document.querySelector(".main_content");
-
-
-  let breadCrumbValue = url.split("/").pop().split('.').slice(0,-1).join('').replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
-
-  //load url
-  let xhr = new XMLHttpRequest();
-  xhr.open('POST', url);
-  xhr.onload = function() {
-    if (xhr.status === 200) {
-      // remove loading message
-      loading.innerText = "";
-      // Handle success response
-      container.innerHTML = this.responseText;
-      //updated breadCrumb
-      breadcrumb.innerText = breadCrumbValue;
-
-      
-    } else {
-      // Handle error response
-      loading.innerText = "Error";
+      let url = target.attr('href');
+      include(event, url);
     }
-  };
-  xhr.onerror = function() {
-    // Handle network errors
-    loading.innerText = "Net Work Error";
-  };
-  xhr.send();
-}
+  });
 
+  // Include function
+  function include(event, url) {
+    event.preventDefault();
+    let breadcrumb = $('#lastBreadCrumb');
+    let container = $('.main_content');
+    let loading =$('#loading');
+    let breadCrumbValue = url.split('/').pop().split('.').slice(0, -1).join('').replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
 
+    $.ajax({
+      url: url,
+      type: 'POST',
+      success: function(response) {
+        loading.text('');
+        container.html(response);
+        breadcrumb.text(breadCrumbValue);
+      },
+      error: function() {
+        loading.text('Error');
+      }
+    });
+  }
 
-//Common Form Submission Request and Response Receive Function 
-function formSubmit(form){
-      var formData = new FormData(form); // Get form data
-      var xhr = new XMLHttpRequest(); // Create AJAX request
-      xhr.open('POST', 'formServer.php');
-      document.querySelector('#response').innerHTML = 'Submitting...';
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status === 200) {
-            var response = this.responseText;
-            // let allInput = form.querySelectorAll("input");
-            // let btnValue = allInput[allInput.length-1].value;
-            // allInput.forEach((x)=>{
-            //   x.value = "";
-            // })
-            // allInput[allInput.length-1].value = btnValue; 
+  // Form submission
+  function formSubmit(form) {
+    let formData = new FormData(form[0]);
+    let loading = $('#loading');
+    let responseContainer = $('#response');
+    responseContainer.html('Submitting...');
 
-            // Handle the response here
-            document.querySelector('#response').innerHTML = response;
-          } else {
-            console.error('AJAX request failed.');
-          }
-        }
-      };
-    
-      xhr.send(formData); // Send form data
-}
+    $.ajax({
+      url: 'formServer.php',
+      type: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+        responseContainer.html(response);
+      },
+      error: function() {
+        console.error('AJAX request failed.');
+      }
+    });
+  }
 
+  //product information Table colum hide
 
+  $(document).on('load' , '#product_information_table', function(){
+    $('#product_information_table tr td:nth-child(6)').hide();
+  })
 
+  // Product information modal
+  $(document).on('click', '.view', function() {
+    let row = $(this).closest('tr');
+    let productId = row.find('td').eq(1).text();
+    let productName = row.find('td').eq(2).text();
+    let productBrand = row.find('td').eq(3).text();
+    let productCategory = $(this).closest('tr').find('td').eq(4).text();
+    let productUnit = $(this).closest('tr').find('td').eq(5).text();
+    let productSKU = $(this).closest('tr').find('td').eq(6).text();
+    let productPrice = $(this).closest('tr').find('td').eq(7).text();
+    let productDescription = $(this).closest('tr').find('td').eq(9).text();
+    let productImage = $(this).closest('tr').find('img').attr('src');
 
-
-
-
-
-
-
-// // All_pages Javascript Start
-// // Select All checkbox functionality
-// const selectAllCheckbox = document.querySelector('.select-all input');
-// const checkboxes = document.querySelectorAll('.select');
-
-// selectAllCheckbox.addEventListener('change', () => {
-//   checkboxes.forEach(checkbox => {
-//     checkbox.checked = selectAllCheckbox.checked;
-//   });
-// });
-
-// // Edit and Delete button functionality
-// const editButtons = document.querySelectorAll('.edit-btn');
-// const deleteButtons = document.querySelectorAll('.delete-btn');
-
-// editButtons.forEach(button => {
-//   button.addEventListener('click', () => {
-//     // Perform edit action here
-//   });
-// });
-
-// deleteButtons.forEach(button => {
-//   button.addEventListener('click', () => {
-//     // Perform delete action here
-//   });
-// });
-
-// // All_pages Javascript End
+    $('#product_view_modal').find('.modal-body td').eq(0).text(productId);
+    $('#product_view_modal').find('.modal-body td').eq(1).text(productName);
+    $('#product_view_modal').find('.modal-body td').eq(2).text(productBrand);
+    $('#product_view_modal').find('.modal-body td').eq(3).text(productCategory);
+    $('#product_view_modal').find('.modal-body td').eq(4).text(productUnit);
+    $('#product_view_modal').find('.modal-body td').eq(5).text(productSKU);
+    $('#product_view_modal').find('.modal-body td').eq(6).text(productPrice);
+    $('#product_view_modal').find('.modal-body td').eq(7).text(productDescription);
+    $('#product_view_modal').find('img').attr('src', productImage);
+  });
+});

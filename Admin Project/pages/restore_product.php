@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <table>
+  <table id="product_information_table">
     <thead>
       <tr>
         <th><input type="checkbox" class="select-all"></th>
@@ -18,7 +18,7 @@
     <tbody>
       <?php
           require_once("../includes/db_connection.php");
-          $sql="SELECT * FROM products WHERE product_status = 0 ORDER BY product_id DESC";
+          $sql="SELECT * FROM product_information WHERE product_status = 0 ORDER BY product_id DESC";
           $query=$con->query($sql);
           while($data=$query->fetch_assoc()){ 
           
@@ -27,9 +27,9 @@
         <td><input type="checkbox" class="select"></td>
         <td><?= $data["product_id"]?></td>
         <td><?= $data["product_name"]?></td>
-        <td><?= $data["brand_id"]?></td>
-        <td><?= $data["category_id"]?></td>
-        <td><?= $data["unit_id"]?></td>
+        <td><?= $data["brand_name"]?></td>
+        <td><?= $data["category_name"]?></td>
+        <td><?= $data["unit"]?></td>
         <td><?= $data["sku"]?></td>
         <td><?= $data["selling_price"]?></td>
         <td>
@@ -41,8 +41,8 @@
         </td>
         <td><?= $data["description"]?></td>
         <td>
-          <a href="formServer.php?restore_product_id=<?= $data["product_id"]?>" class=" btn edit-btn ">Restore</a>
-          <a href="formServer.php?par_delete_product_id=<?= $data["product_id"]?>" class=" btn delete-btn ">Delete</a>
+          <a style="background-color:green; color: white; margin-right:10px" href="formServer.php?restore_product_id=<?= $data["product_id"]?>" class=" btn edit-btn"><i class="fa-solid fa-trash-can-arrow-up"></i></a>
+          <a href="formServer.php?par_delete_product_id=<?= $data["product_id"]?>" class=" btn delete-btn "><i class="fa-solid fa-trash-can"></i></a>
         </td>
       </tr>
       <?php }?>
