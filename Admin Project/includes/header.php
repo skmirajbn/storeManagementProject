@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="css/style.css"/>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script defer src="js/custom.js"></script>
   </head>
   <body>
@@ -36,7 +37,7 @@
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="#">Add Users</a>
+                  <a class="nav-link" aria-current="page" href="pages/">Add Users</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="#"
@@ -66,15 +67,15 @@
               <i style="color: white; font-size: 20px;" class="fa-solid fa-droplet" onclick="toggleTheme()"></i>
               <ul class="nav_profile">
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Sk Miraj
+                  <a class="nav-link dropdown-toggle" data-disabled="true" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <?=$_SESSION['username'] ?>
                   </a>
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">My Profile</a></li>
                     <li><a class="dropdown-item" href="#">Manage Account</a></li>
                     <li><hr class="dropdown-divider" /></li>
                     <li>
-                      <a class="dropdown-item" href="#">Logout</a>
+                      <a class="dropdown-item" data-disabled="true" href="includes/logout.php">Logout</a>
                     </li>
                   </ul>
                 </li>

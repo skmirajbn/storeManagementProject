@@ -12,46 +12,43 @@ $totalPage = ceil($totalRows / $limit);
 $offset = ($currentPage - 1) * $limit;
 
 
-
-
 $sql = "SELECT * FROM categories ORDER by category_id DESC LIMIT $offset, $limit";
 $result = $con->query($sql);
 
-
 ?>
 <div class="table-responsive">
-                <table>
-                  <thead>
-                    <tr>
-                      <th><input type="checkbox" class="select-all"></th>
-                      <th>Category ID</th>
-                      <th>Category Name</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php 
+  <table>
+    <thead>
+      <tr>
+        <th><input type="checkbox" class="select-all"></th>
+        <th>Category ID</th>
+        <th>Category Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php 
                     while($data = $result->fetch_assoc()){
                     ?>
-                    <tr>
-                      <td><input type="checkbox" class="select"></td>
-                      <td><?=$data['category_id']?></td>
-                      <td><?=$data['category_name']?></td>
-                      <td>
-                        <a  class="edit-btn btn">Edit</a>
-                        <a href="formServer.php?categoryDelete=<?=$data['category_id']?>" class="delete-btn btn">Delete</a>
-                      </td>
-                    </tr>
-                    <?php } ?>
-                    <!-- Add more rows for each user -->
-                  </tbody>
-                </table>
-              </div>
-            
-              <div class="pagination">
-                <a href="pages/all_categories.php?page=1">&laquo;</a>
-                <a href="pages/all_categories.php?page=<?=$currentPage-1?>">&lt;</a>
-                <?php 
+      <tr>
+        <td><input type="checkbox" class="select"></td>
+        <td><?=$data['category_id']?></td>
+        <td><?=$data['category_name']?></td>
+        <td>
+          <a href="pages/edit_category.php?category_id=<?=$data['category_id']?>" class="edit-btn btn">Edit</a>
+          <a href="formServer.php?categoryDelete=<?=$data['category_id']?>" class="delete-btn btn">Delete</a>
+        </td>
+      </tr>
+      <?php } ?>
+      <!-- Add more rows for each user -->
+    </tbody>
+  </table>
+</div>
+
+<div class="pagination">
+  <a href="pages/all_categories.php?page=1">&laquo;</a>
+  <a href="pages/all_categories.php?page=<?=$currentPage-1?>">&lt;</a>
+  <?php 
                 if($currentPage>2){
                   $page = $currentPage - 2;
                   $lastPage = $currentPage + 2;
@@ -64,8 +61,9 @@ $result = $con->query($sql);
                 }
                 for($page; $page<=$lastPage; $page++){ 
                   ?>
-                <a href="pages/all_categories.php?page=<?=$page?>" class="<?=$currentPage == $page ? 'active' : '' ?>"><?=$page?></a>
-                <?php } ?>
-                <a href="pages/all_categories.php?page=<?=$currentPage + 1?>">&gt;</a>
-                <a href="pages/all_categories.php?page=<?=$totalPage?>">&raquo;</a>
-              </div>
+  <a href="pages/all_categories.php?page=<?=$page?>" class="<?=$currentPage == $page ? 'active' : '' ?>"><?=$page?></a>
+  <?php } ?>
+  <a href="pages/all_categories.php?page=<?=$currentPage + 1?>">&gt;</a>
+  <a href="pages/all_categories.php?page=<?=$totalPage?>">&raquo;</a>
+</div>
+</div>
