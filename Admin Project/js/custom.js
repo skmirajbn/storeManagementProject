@@ -29,11 +29,17 @@ $(document).ready(function() {
     $(this).closest('.product_entry').remove();
   });
 
+
+
+
+
+  //Listining
+
   // Form submission
   $(document).on('submit', 'form', function(event) {
     event.preventDefault();
     let form = $(this).closest('form');
-    formSubmit(form);
+    formSubmit(form[0]);
   });
 
   // Link actions
@@ -72,7 +78,7 @@ $(document).ready(function() {
 
   // Form submission
   function formSubmit(form) {
-    let formData = new FormData(form[0]);
+    let formData = new FormData(form);
     let loading = $('#loading');
     let responseContainer = $('#response');
     responseContainer.html('Submitting...');

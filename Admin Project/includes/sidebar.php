@@ -66,7 +66,7 @@
                   Categories</a>
               </div>
               <div class="accordion-body">
-                <a class="btn btn-block" href=""><i class="fa-solid fa-sitemap"></i>&nbsp; All SubCategories</a>
+                <a class="btn btn-block" href="pages/all_subCategories.php"><i class="fa-solid fa-sitemap"></i>&nbsp; All SubCategories</a>
               </div>
               <div class="accordion-body">
                 <a class="btn btn-block" href="pages/add_category.php"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add

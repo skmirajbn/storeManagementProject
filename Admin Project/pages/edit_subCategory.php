@@ -4,6 +4,9 @@ require_once('./../includes/db_connection.php');
 $sql = "SELECT * FROM categories";
 $cat_result = $con->query($sql);
 
+//Retriving Sub Category list
+$sql = "SELECT * FROM sub_categoreis"
+
 ?>
 
 <div class="container" style="width: 80%; margin: 0 auto;">

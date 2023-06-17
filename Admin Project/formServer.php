@@ -238,4 +238,21 @@ if(isset($_POST['updateCategory'])){
     echo "failed";
     }
   }
+
+// Add Sub Category
+if(isset($_POST['addSubCategory'])){
+    $categoryId = $_POST['categoryId'];
+    $subCategoryName = $_POST['subCategoryName'];
+
+    $sql = "INSERT INTO sub_categories(sub_category_name,category_id,sub_category_status) VALUES('$subCategoryName', $categoryId, 1)";
+    $insert = $con->query($sql);
+    if($insert){
+        echo "Sub Category Inserted";
+    }else{
+        echo "Sub Category Insertion Failed";
+    }
+
+}
+
+
 ?>
