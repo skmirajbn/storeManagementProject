@@ -4,8 +4,9 @@
       <tr>
         <th><input type="checkbox" class="select"></th>
         <th>Name</th>
-        <th>User Name</th>
         <th>Email</th>
+        <th>Number</th>
+        <th>Password</th>
         <th>Role</th>
         <th>Photo</th>
         <th>Action</th>
@@ -15,8 +16,9 @@
       <tr>
         <td><input type="checkbox" class="select"></td>
         <td>Ali Hasan</td>
-        <td>dbhasan</td>
+        <td>01723608090</td>
         <td>info@gmail.com</td>
+        <td>password</td>
         <td>Admin</td>
         <td><img class="user_img" src="uploads/images/avatar.png" alt=""></td>
         <td>

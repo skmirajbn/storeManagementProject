@@ -209,20 +209,37 @@ if(isset($_POST['updateCategory'])){
   //Add user - Ali Hasan
   if(isset($_POST['add_user'])){
     $user_name = $_POST['i_user_name'];
-    $user_username = $_POST['i_user_username'];
+    $user_phone = $_POST['i_user_phone'];
     $user_email = $_POST['i_user_email'];
     $user_pass = $_POST['i_user_pass'];
+    $user_repass = $_POST['i_user_repass'];
+    $user_role = $_POST['i_user_role'];
+    $user_image = $_FILES['i_user_photo'];
 
+    
 
-    $insests="INSERT INTO users(user_name,user_email,user_password,user_username) 
-    VALUES('$user_name','$user_email','$user_pass','$user_username')";
-    $query=$con->query($insests);
-    if($query){
-    echo "Success";
-    }else{
-    echo "failed";
-    }
-  }
+     $insest="INSERT INTO users(user_name,user_phone,user_email,user_password,role_id,user_image)
+     VALUES('$user_name','$user_phone','$user_email','$user_pass','$user_role','$user_image')";
+     $query=$con->query($insest);
+     if($query){
+     echo "Success";
+     }else{
+     echo "failed";
+     }
+     // if(preg_match('/^[A-Za-z]{3,14}+$/',$user_name) && preg_match('/^[0-9]{11,13}+$/',$user_phone) &&
+     // preg_match('/@.+\./',$user_email) && preg_match($user_pass=== $user_repass)){
+     // $insest="INSERT INTO users(user_name,user_phone,user_email,user_password)
+     // VALUES('$user_name','$user_phone','$user_email','$user_pass')";
+     // $query=$con->query($insest);
+     // if($query){
+     // echo "Success";
+     // }
+     // }else{
+     // echo "failed";
+     // }
+ }
+   
+ 
 
   // role - Ali Hasan
 

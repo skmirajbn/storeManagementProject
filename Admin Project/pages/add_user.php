@@ -6,8 +6,8 @@
       <input class="form-control" type="text" name='i_user_name'>
     </div>
     <div class="form-group">
-      <label for="">User Name:</label>
-      <input class="form-control" type="text" name='i_user_username'>
+      <label for="">Phone:</label>
+      <input class="form-control" type="text" name='i_user_phone'>
     </div>
     <div class="form-group">
       <label for="">Email:</label>
@@ -19,15 +19,20 @@
     </div>
     <div class="form-group">
       <label for="">Repassword:</label>
-      <input class="form-control" type="text" name=''>
+      <input class="form-control" type="text" name='i_user_repass'>
     </div>
     <div class="form-group">
       <label for="category">User Role:</label>
       <select class="form-control" id="category" name='i_user_role'>
-        <option value="">---Select One---</option>
-        <option value="">Admin</option>
-        <option value="">Admin</option>
-        <option value="">Super </option>
+        <option value="">Select Role</option>
+        <?php
+          $sel="SELECT * FROM roles ORDER BY role_id='ASC'";
+          $query=mysqli_query($con,$sel);
+          while($data=mysqli_fetch_assoc($query)){
+          ?>
+        <option value="<?= $data['role_id']; ?>"><?= $data['role_name']; ?></option>
+        <?php } ?>
+      </select>
       </select>
     </div>
     <div class="form-group">
