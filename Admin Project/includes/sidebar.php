@@ -81,7 +81,7 @@
                   Category</a>
               </div>
               <div class="accordion-body">
-                <a class="btn btn-block" href=""><i class="fa-solid fa-trash"></i>&nbsp; Restore Categories</a>
+                <a class="btn btn-block" href="pages/restore_categories.php"><i class="fa-solid fa-trash"></i>&nbsp; Restore Categories</a>
               </div>
             </div>
           </div>

@@ -12,7 +12,7 @@ $totalPage = ceil($totalRows / $limit);
 $offset = ($currentPage - 1) * $limit;
 
 
-$sql = "SELECT * FROM categories WHERE category_status = 1 ORDER by category_id DESC LIMIT $offset, $limit";
+$sql = "SELECT * FROM categories WHERE category_status = 0 ORDER by category_id DESC LIMIT $offset, $limit";
 $result = $con->query($sql);
 
 ?>
@@ -35,8 +35,8 @@ $result = $con->query($sql);
         <td><?=$data['category_id']?></td>
         <td><?=$data['category_name']?></td>
         <td>
-          <a href="pages/edit_category.php?category_id=<?=$data['category_id']?>" class="edit-btn btn"><i class="fa-solid fa-pen-to-square"></i></a>
-          <a href="formServer.php?categoryDelete=<?=$data['category_id']?>" class="delete-btn btn"><i class="fa-solid fa-trash"></i></a>
+          <a href="pages/edit_category.php?category_id=<?=$data['category_id']?>" class="edit-btn btn">Restore</a>
+          <a href="formServer.php?categoryDelete=<?=$data['category_id']?>" class="delete-btn btn">Permanat Delete</a>
         </td>
       </tr>
       <?php } ?>

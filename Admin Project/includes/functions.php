@@ -10,9 +10,6 @@ if(!isset($_SESSION['username'])){
 
 
 
-
-
-
 function getHeader(){
     require_once("includes/header.php");
 }

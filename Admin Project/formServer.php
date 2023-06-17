@@ -16,7 +16,7 @@ if(isset($_POST["addCategory"])){
 //Category Data Delete
 if(isset($_GET['categoryDelete'])){
     $id = $_GET['categoryDelete'];
-    $sql = "DELETE FROM categories WHERE category_id = $id";
+    $sql = "UPDATE categories SET category_status = 0 WHERE category_id = $id";
     $delete = $con->query($sql);
     if($delete){
         header("Location: pages/all_categories.php");
