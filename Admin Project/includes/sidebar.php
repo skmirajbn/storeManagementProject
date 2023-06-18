@@ -94,14 +94,14 @@
             </h2>
             <div id="collapseBrands" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <a class="btn btn-block" href=""><i class="fa-solid fa-sitemap"></i>&nbsp; All Brands</a>
+                <a class="btn btn-block" href="pages/all_brand.php"><i class="fa-solid fa-sitemap"></i>&nbsp; All Brands</a>
               </div>
               <div class="accordion-body">
-                <a class="btn btn-block" href="pages/add_category.php"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add
+                <a class="btn btn-block" href="pages/add_brand.php"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add
                   Brand</a>
               </div>
               <div class="accordion-body">
-                <a class="btn btn-block" href=""><i class="fa-solid fa-trash"></i>&nbsp; Restore Brands</a>
+                <a class="btn btn-block" href="pages/restore_brand.php"><i class="fa-solid fa-trash"></i>&nbsp; Restore Brands</a>
               </div>
             </div>
           </div>
