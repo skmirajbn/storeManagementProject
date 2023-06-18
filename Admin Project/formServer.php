@@ -271,4 +271,53 @@ if(isset($_POST['addSubCategory'])){
 }
 
 
+    //Add Brand - Mosharrof
+    if(isset($_POST['addbrand'])){
+        $brandName=$_POST['brandName'];
+        $sql="INSERT INTO brands(brand_name,brand_status) VALUES('$brandName',1)";
+        $query=$con->query($sql);
+        if($query){
+            echo "Brand Add Successfull";
+        }else{
+            echo "Data Upload Failed";
+        }
+    }
+
+    //Delete Brand - Mosharrof
+    if(isset($_GET['brandDelete'])){
+        $id=$_GET['brandDelete'];
+        $sql="UPDATE brands SET brand_status=0 WHERE brand_id= $id";
+        $query=$con->query($sql);
+        if($query){
+            header("location: pages/all_brand.php");
+        }else{
+            echo "Data Not Deleted ";
+        }
+    }
+
+    //Restore Brand -Mosharrof 
+    if(isset($_GET['restore_brand'])){
+        $id=$_GET['restore_brand'];
+        $sql="UPDATE brands SET brand_status=1 WHERE brand_id= $id";
+        $query=$con->query($sql);
+        if($query){
+            header("location: pages/restore_brand.php");
+        }else{
+            echo "Data Not Restored ";
+        }
+    }
+
+    //Parmanently Delete Brand - Mosharrof
+    if(isset($_GET['par_brandDelete'])){
+        $id=$_GET['par_brandDelete'];
+        $sql="DELETE FROM brands WHERE brand_id= $id";
+        $query=$con->query($sql);
+        if($query){
+            header("location: pages/restore_brand.php");
+        }else{
+            echo "Data Not Deleted ";
+        }
+    }
+    
+
 ?>
