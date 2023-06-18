@@ -1,3 +1,7 @@
+<?php
+require_once("../includes/db_connection.php");
+?>
+
 <div class="container" style="width: 80%; margin: 0 auto;">
   <h4>Add Users</h4>
   <form>
@@ -6,12 +10,16 @@
       <input class="form-control" type="text" name='i_user_name'>
     </div>
     <div class="form-group">
-      <label for="">Phone:</label>
-      <input class="form-control" type="text" name='i_user_phone'>
+      <label for="">User Name:</label>
+      <input class="form-control" type="text" name='i_user_username'>
     </div>
     <div class="form-group">
       <label for="">Email:</label>
       <input class="form-control" type="text" name='i_user_email'>
+    </div>
+    <div class="form-group">
+      <label for="">Phone:</label>
+      <input class="form-control" type="text" name='i_user_phone'>
     </div>
     <div class="form-group">
       <label for="">Password:</label>
@@ -24,7 +32,7 @@
     <div class="form-group">
       <label for="category">User Role:</label>
       <select class="form-control" id="category" name='i_user_role'>
-        <option value="">Select Role</option>
+        <option value="">---Select Role---</option>
         <?php
           $sel="SELECT * FROM roles ORDER BY role_id='ASC'";
           $query=mysqli_query($con,$sel);

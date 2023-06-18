@@ -209,17 +209,16 @@ if(isset($_POST['updateCategory'])){
   //Add user - Ali Hasan
   if(isset($_POST['add_user'])){
     $user_name = $_POST['i_user_name'];
-    $user_phone = $_POST['i_user_phone'];
+    $user_username = $_POST['i_user_username'];
     $user_email = $_POST['i_user_email'];
+    $user_phone = $_POST['i_user_phone'];
     $user_pass = $_POST['i_user_pass'];
     $user_repass = $_POST['i_user_repass'];
     $user_role = $_POST['i_user_role'];
     $user_image = $_FILES['i_user_photo'];
 
-    
-
-     $insest="INSERT INTO users(user_name,user_phone,user_email,user_password,role_id,user_image)
-     VALUES('$user_name','$user_phone','$user_email','$user_pass','$user_role','$user_image')";
+     $insest="INSERT INTO users(user_name,user_username,user_email,user_phone,user_password,role_id)
+     VALUES('$user_name','$user_username','$user_email','$user_phone','$user_pass','$user_role')";
      $query=$con->query($insest);
      if($query){
      echo "Success";
