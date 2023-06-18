@@ -20,18 +20,18 @@ require_once("../includes/db_connection.php");
     </thead>
     <tbody>
       <?php
-        $sel="SELECT * FROM users ORDER BY id DESC";
+        $sel="SELECT * FROM users";
         $query=$con->query($sel);
         while($data=$query->fetch_assoc()){
       ?>
       <tr>
         <td><input type="checkbox" class="select"></td>
-        <th><?= $data['user_id'] ; ?></th>
-        <th><?= $data['user_name'] ; ?></th>
-        <th><?= $data['user_username'] ; ?></th>
-        <th><?= $data['user_email'] ; ?></th>
-        <th><?= $data['user_phone'] ; ?></th>
-        <th><?= $data['user_password'] ; ?></th>
+        <td><?= $data['user_id'] ; ?></td>
+        <td><?= $data['user_name'] ; ?></td>
+        <td><?= $data['user_username'] ; ?></td>
+        <td><?= $data['user_email'] ; ?></td>
+        <td><?= $data['user_phone'] ; ?></td>
+        <td><?= $data['user_password'] ; ?></td>
         <!-- <td>Admin</td>
         <td><img class="user_img" src="uploads/images/avatar.png" alt=""></td>
         <td>
