@@ -1,5 +1,8 @@
 <?php 
 require_once('./../includes/db_connection.php');
+if(isset($_GET['subCategory_id'])){
+  $subCategoryId = $_GET['subCategory_id'];
+}
 //Categories Data retriving
 $sql = "SELECT * FROM categories";
 $cat_result = $con->query($sql);
@@ -15,9 +18,9 @@ $sql = "SELECT * FROM sub_categoreis"
     <div class="form-group">
       <label for="category">Category:</label>
       <select class="form-control" id="category" name="categoryId">
-        <option value="" selected disabled>Select Category</option>
+        <option value="" disabled>Select Category</option>
         <?php while($data = $cat_result->fetch_assoc()){ ?>
-        <option value="<?=$data['category_id']?>"><?=$data['category_name']?></option>
+        <option <?=$data['category_id'] == $subCategoryId ? "active": "" ?> value="<?=$data['category_id']?>"><?=$data['category_name']?></option>
         <?php } ?>
       </select>
     </div>
