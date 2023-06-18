@@ -32,12 +32,15 @@ require_once("../includes/db_connection.php");
         <td><?= $data['user_email'] ; ?></td>
         <td><?= $data['user_phone'] ; ?></td>
         <td><?= $data['user_password'] ; ?></td>
-        <!-- <td>Admin</td>
-        <td><img class="user_img" src="uploads/images/avatar.png" alt=""></td>
+        <td><?= $data['role_id'] ; ?></td>
         <td>
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
-        </td> -->
+          <img class="user_img" src="uploads/images/avatar.png" alt="">
+        </td>
+        <td>
+          <a href="" class=" btn edit-btn "><i class="fa-solid fa-eye"></i></a>
+          <a href="" class=" btn edit-btn "><i class="fa-solid fa-pen-to-square"></i></a>
+          <a href="" class=" btn delete-btn "><i class="fa-solid fa-trash"></i></a>
+        </td>
       </tr>
       <?php } ?>
     </tbody>
