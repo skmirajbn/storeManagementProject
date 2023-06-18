@@ -35,8 +35,10 @@ $result = $con->query($sql);
         <td><?=$data['sub_category_id']?></td>
         <td><?=$data['sub_category_name']?></td>
         <td>
-          <a href="pages/edit_subCategory.php?subCategory_id=<?=$data['sub_category_id']?>" class="edit-btn btn"><i class="fa-solid fa-pen-to-square"></i></a>
-          <a href="formServer.php?subCategoryDelete=<?=$data['sub_category_id']?>" class="delete-btn btn"><i class="fa-solid fa-trash"></i></a>
+          <a href="pages/edit_subCategory.php?subCategory_id=<?=$data['sub_category_id']?>" class="edit-btn btn"><i
+              class="fa-solid fa-pen-to-square"></i></a>
+          <a href="formServer.php?subCategoryDelete=<?=$data['sub_category_id']?>" class="delete-btn btn"><i
+              class="fa-solid fa-trash"></i></a>
         </td>
       </tr>
       <?php } ?>

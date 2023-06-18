@@ -20,7 +20,8 @@ $cat_result = $con->query($sql);
     </div>
     <div class="form-group">
       <label for="subCategoryName">Sub Category Name:</label>
-      <input class="form-control" type="text" id="subCategoryName" name="subCategoryName" placeholder="Enter Sub Category Name">
+      <input class="form-control" type="text" id="subCategoryName" name="subCategoryName"
+        placeholder="Enter Sub Category Name">
     </div>
     <br>
     <input type="hidden" name="addSubCategory">
