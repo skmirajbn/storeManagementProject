@@ -315,6 +315,18 @@ if(isset($_POST['addSubCategory'])){
             echo "Data Not Deleted ";
         }
     }
+
+    // Update Brand -Mosharrof
+    if(isset($_POST['editBrand'])){
+        $brandName=$_POST['brandName'];
+        $sql="UPDATE brands SET brand_name='$brandName' WHERE brand_id='$id'";
+        $query=$con->query($sql);
+        if($query){
+          echo "Data Upload Successful";
+        }else{
+          echo "Data Upload Failed";
+        }
+      }
     
 
 ?>

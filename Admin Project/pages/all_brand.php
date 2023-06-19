@@ -12,10 +12,9 @@ $totalPage = ceil($totalRows / $limit);
 $offset = ($currentPage - 1) * $limit;
 
 
-$sql = "SELECT * FROM brands WHERE brand_status = 1 ORDER by brand_id DESC LIMIT $offset, $limit";
-$result = $con->query($sql);
-
 ?>
+
+
 <div class="table-responsive">
   <table>
     <thead>
@@ -28,6 +27,8 @@ $result = $con->query($sql);
     </thead>
     <tbody>
       <?php 
+        $sql = "SELECT * FROM brands WHERE brand_status = 1 ORDER by brand_id DESC LIMIT     $offset, $limit";
+        $result = $con->query($sql);
         while($data = $result->fetch_assoc()){
         ?>
       <tr>
@@ -35,10 +36,8 @@ $result = $con->query($sql);
         <td><?=$data['brand_id']?></td>
         <td><?=$data['brand_name']?></td>
         <td>
-          <a href="pages/edit_brand.php?brand_id=<?=$data['brand_id']?>" class="edit-btn btn"><i
-              class="fa-solid fa-pen-to-square"></i></a>
-          <a href="formServer.php?brandDelete=<?=$data['brand_id']?>" class="delete-btn btn"><i
-              class="fa-solid fa-trash"></i></a>
+          <a href="pages/edit_brand.php?brand_id=<?=$data['brand_id']?>" class="edit-btn btn" ><i class="fa-solid fa-pen-to-square"></i></a>
+          <a href="formServer.php?brandDelete=<?=$data['brand_id']?>" class="delete-btn btn"><i class="fa-solid fa-trash"></i></a>
         </td>
       </tr>
       <?php } ?>
