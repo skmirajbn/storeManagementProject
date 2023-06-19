@@ -1,9 +1,9 @@
 <?php
 require_once("../includes/db_connection.php");
-$id=$_GET['user_id'];
-$sql="SELECT * From users WHERE user_id='$id'";
-$query=$con->query($sql);
-$data=$query->fetch_assoc();
+ $id=$_GET['e'];
+ $sel="SELECT * FROM users WHERE user_id='$id'";
+ $query=mysqli_query($con,$sel);
+ $data=mysqli_fetch_assoc($query);
 
 ?>
 
@@ -32,10 +32,12 @@ $data=$query->fetch_assoc();
         <option value="">---Select Role---</option>
         <?php
           $sel="SELECT * FROM roles ORDER BY role_id='ASC'";
-          $query=mysqli_query($con,$sel);
-          while($data=mysqli_fetch_assoc($query)){
-          ?>
-        <option value="<?= $data['role_id']; ?>"><?= $data['role_name']; ?></option>
+          $Qr=mysqli_query($con,$sel);
+          while($role=mysqli_fetch_assoc($Qr)){
+        ?>
+        <option value="<?= $role['role_id']; ?>" <?php if($data['role_id']==$role['role_id']){ echo 'selected';} ?>>
+          <?= $role['role_name']; ?>
+        </option>
         <?php } ?>
       </select>
       </select>
@@ -45,7 +47,7 @@ $data=$query->fetch_assoc();
       <input class="form-control" type="file" name='i_user_photo' value="<?= $data['user_name']?>">
     </div>
     <br>
-    <input type="hidden" name="add_user" value="<?=$id?>">
+    <input type="hidden" name="update_user" value="<?=$id?>">
     <input type=" submit" class="btn mybtn-hightlight" value="Update">
   </form>
   <div id="response"></div>
