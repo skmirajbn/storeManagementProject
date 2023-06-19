@@ -307,7 +307,7 @@ if(isset($_POST['addSubCategory'])){
     //Parmanently Delete Brand - Mosharrof
     if(isset($_GET['par_brandDelete'])){
         $id=$_GET['par_brandDelete'];
-        $sql="DELETE FROM brands WHERE brand_id= $id";
+        $sql="DELETE FROM brands WHERE brand_id = $id";
         $query=$con->query($sql);
         if($query){
             header("location: pages/restore_brand.php");
@@ -318,15 +318,16 @@ if(isset($_POST['addSubCategory'])){
 
     // Update Brand -Mosharrof
     if(isset($_POST['editBrand'])){
+        $id = $_POST['editBrand'];
         $brandName=$_POST['brandName'];
-        $sql="UPDATE brands SET brand_name='$brandName' WHERE brand_id='$id'";
+        $sql="UPDATE brands SET brand_name='$brandName', brand_status=1 WHERE brand_id = $id";
         $query=$con->query($sql);
         if($query){
           echo "Data Upload Successful";
         }else{
           echo "Data Upload Failed";
         }
-      }
+    }
     
 
 ?>
