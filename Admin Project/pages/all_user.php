@@ -20,7 +20,7 @@ require_once("../includes/db_connection.php");
     </thead>
     <tbody>
       <?php
-        $sel="SELECT * FROM users";
+        $sel="SELECT * FROM users NATURAL JOIN roles";
         $query=$con->query($sel);
         while($data=$query->fetch_assoc()){
       ?>
@@ -32,9 +32,9 @@ require_once("../includes/db_connection.php");
         <td><?= $data['user_email'] ; ?></td>
         <td><?= $data['user_phone'] ; ?></td>
         <td><?= $data['user_password'] ; ?></td>
-        <td><?= $data['role_id'] ; ?></td>
+        <td><?= $data['role_name'] ; ?></td>
         <td>
-          <img class="user_img" src="uploads/images/avatar.png" alt="">
+          <img class="user_img" src="uploads/images/<?= $data['user_image'];?>" alt="">
         </td>
         <td>
           <a href="" class=" btn edit-btn "><i class="fa-solid fa-eye"></i></a>

@@ -224,7 +224,7 @@ if(isset($_POST['updateCategory'])){
     }
 
      $insest="INSERT INTO users(user_name,user_username,user_email,user_phone,user_password,role_id,user_image)
-     VALUES('$user_name','$user_username','$user_email','$user_phone','$user_pass','$user_role','$user_image')";
+     VALUES('$user_name','$user_username','$user_email','$user_phone','$user_pass','$user_role','$imageName')";
      $query=$con->query($insest);
      if($query){
         move_uploaded_file($user_tmpname,'uploads/images/'.$imageName);
