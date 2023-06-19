@@ -41,8 +41,11 @@
         </td>
         <td><?= $data["description"]?></td>
         <td>
-          <a style="background-color:green; color: white; margin-right:10px" href="formServer.php?restore_product_id=<?= $data["product_id"]?>" class=" btn edit-btn"><i class="fa-solid fa-trash-can-arrow-up"></i></a>
-          <a href="formServer.php?par_delete_product_id=<?= $data["product_id"]?>" class=" btn delete-btn "><i class="fa-solid fa-trash-can"></i></a>
+          <a style="background-color:green; color: white; margin-right:10px"
+            href="formServer.php?restore_product_id=<?= $data["product_id"]?>" class=" btn edit-btn"><i
+              class="fa-solid fa-trash-can-arrow-up"></i></a>
+          <a href="formServer.php?par_delete_product_id=<?= $data["product_id"]?>" class=" btn delete-btn "><i
+              class="fa-solid fa-trash-can"></i></a>
         </td>
       </tr>
       <?php }?>

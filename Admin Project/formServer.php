@@ -215,27 +215,24 @@ if(isset($_POST['updateCategory'])){
     $user_pass = $_POST['i_user_pass'];
     $user_repass = $_POST['i_user_repass'];
     $user_role = $_POST['i_user_role'];
-    $user_image = $_FILES['i_user_photo'];
+    $user_image = $_FILES['i_user_photo']["name"];
+    $user_tmpname = $_FILES['i_user_photo']["tmp_name"];
+    $imageName = '';
 
-     $insest="INSERT INTO users(user_name,user_username,user_email,user_phone,user_password,role_id)
-     VALUES('$user_name','$user_username','$user_email','$user_phone','$user_pass','$user_role')";
+    if($user_image !==''){
+    $imageName='user_'.time().'_'.rand(100000,10000000).'.'.pathinfo($user_image,PATHINFO_EXTENSION);
+    }
+
+     $insest="INSERT INTO users(user_name,user_username,user_email,user_phone,user_password,role_id,user_image)
+     VALUES('$user_name','$user_username','$user_email','$user_phone','$user_pass','$user_role','$imageName')";
      $query=$con->query($insest);
      if($query){
-     echo "Success";
+        move_uploaded_file($user_tmpname,'uploads/images/'.$imageName);
+        echo "Success";
      }else{
-     echo "failed";
+        echo "failed";
      }
-     // if(preg_match('/^[A-Za-z]{3,14}+$/',$user_name) && preg_match('/^[0-9]{11,13}+$/',$user_phone) &&
-     // preg_match('/@.+\./',$user_email) && preg_match($user_pass=== $user_repass)){
-     // $insest="INSERT INTO users(user_name,user_phone,user_email,user_password)
-     // VALUES('$user_name','$user_phone','$user_email','$user_pass')";
-     // $query=$con->query($insest);
-     // if($query){
-     // echo "Success";
-     // }
-     // }else{
-     // echo "failed";
-     // }
+
  }
    
  

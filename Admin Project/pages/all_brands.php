@@ -35,8 +35,10 @@ $result = $con->query($sql);
         <td><?=$data['brand_id']?></td>
         <td><?=$data['brand_name']?></td>
         <td>
-          <a href="pages/edit_brand.php?brand_id=<?=$data['brand_id']?>" class="edit-btn btn"><i class="fa-solid fa-pen-to-square"></i></a>
-          <a href="formServer.php?brandDelete=<?=$data['brand_id']?>" class="delete-btn btn"><i class="fa-solid fa-trash"></i></a>
+          <a href="pages/edit_brand.php?brand_id=<?=$data['brand_id']?>" class="edit-btn btn"><i
+              class="fa-solid fa-pen-to-square"></i></a>
+          <a href="formServer.php?brandDelete=<?=$data['brand_id']?>" class="delete-btn btn"><i
+              class="fa-solid fa-trash"></i></a>
         </td>
       </tr>
       <?php } ?>

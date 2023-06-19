@@ -1,9 +1,15 @@
+<?php
+require_once("../includes/db_connection.php");
+?>
+
 <div class="container-fluid">
   <table>
     <thead>
       <tr>
         <th><input type="checkbox" class="select"></th>
+        <th>ID</th>
         <th>Name</th>
+        <th>User Name</th>
         <th>Email</th>
         <th>Number</th>
         <th>Password</th>
@@ -13,19 +19,30 @@
       </tr>
     </thead>
     <tbody>
+      <?php
+        $sel="SELECT * FROM users NATURAL JOIN roles";
+        $query=$con->query($sel);
+        while($data=$query->fetch_assoc()){
+      ?>
       <tr>
         <td><input type="checkbox" class="select"></td>
-        <td>Ali Hasan</td>
-        <td>01723608090</td>
-        <td>info@gmail.com</td>
-        <td>password</td>
-        <td>Admin</td>
-        <td><img class="user_img" src="uploads/images/avatar.png" alt=""></td>
+        <td><?= $data['user_id'] ; ?></td>
+        <td><?= $data['user_name'] ; ?></td>
+        <td><?= $data['user_username'] ; ?></td>
+        <td><?= $data['user_email'] ; ?></td>
+        <td><?= $data['user_phone'] ; ?></td>
+        <td><?= $data['user_password'] ; ?></td>
+        <td><?= $data['role_name'] ; ?></td>
         <td>
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
+          <img class="user_img" src="uploads/images/<?= $data['user_image'];?>" alt="">
+        </td>
+        <td>
+          <a href="" class=" btn edit-btn "><i class="fa-solid fa-eye"></i></a>
+          <a href="" class=" btn edit-btn "><i class="fa-solid fa-pen-to-square"></i></a>
+          <a href="" class=" btn delete-btn "><i class="fa-solid fa-trash"></i></a>
         </td>
       </tr>
+      <?php } ?>
     </tbody>
   </table>
   <div class="pagination">
