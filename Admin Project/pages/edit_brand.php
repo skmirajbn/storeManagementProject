@@ -30,6 +30,4 @@ require_once("../includes/db_connection.php");
   </form>
   <div id="response"></div>
 
-</div> 
-        
-      
+</div>
