@@ -329,5 +329,26 @@ if(isset($_POST['addSubCategory'])){
         }
     }
     
+    if(isset($_POST['update_user'])){
+        $id =$_POST['update_user'];
+        $user_name = $_POST['i_user_name'];
+        $user_username = $_POST['i_user_username'];
+        $user_email = $_POST['i_user_email'];
+        $user_phone = $_POST['i_user_phone'];
+        $user_role = $_POST['i_user_role'];
+
+        $sql= "UPDATE users set
+        user_name='$user_name',user_username='$user_username',user_email='$user_email',user_phone='$user_phone',role_id='$user_role'
+        Where user_id=$id";
+        $query= $con->query($sql);
+        if($query){
+            if($query){
+            echo "User update Successful";
+            }else{
+            echo "User update Failed";
+            }
+            }
+
+        }
 
 ?>

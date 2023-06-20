@@ -48,7 +48,7 @@ require_once("../includes/db_connection.php");
     </div>
     <br>
     <input type="hidden" name="update_user" value="<?=$id?>">
-    <input type=" submit" class="btn mybtn-hightlight" value="Update">
+    <input type="submit" class="btn mybtn-hightlight" value="Update">
   </form>
   <div id="response"></div>
 </div>
