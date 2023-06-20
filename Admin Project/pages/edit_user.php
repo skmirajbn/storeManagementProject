@@ -44,6 +44,9 @@ require_once("../includes/db_connection.php");
     </div>
     <div class="form-group">
       <label for="">Photo:</label>
+      <?php if($data['user_image']!=''){ ?>
+      <img class="user_img" src="uploads/images/<?= $data['user_image']; ?>" alt="Image" />
+      <?php }?>
       <input class="form-control" type="file" name='i_user_photo' value="<?= $data['user_name']?>">
     </div>
     <br>
