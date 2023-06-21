@@ -37,15 +37,16 @@ require_once("../includes/db_connection.php");
           <img class="user_img" src="uploads/images/<?= $data['user_image'];?>" alt="">
         </td>
         <td>
-          <a href="" class=" btn edit-btn "><i class="fa-solid fa-eye"></i></a>
-          <a href="" class=" btn edit-btn "><i class="fa-solid fa-pen-to-square"></i></a>
-          <a href="" class=" btn delete-btn "><i class="fa-solid fa-trash"></i></a>
+          <a href="pages/view_user.php" class=" btn edit-btn "><i class="fa-solid fa-eye"></i></a>
+          <a href="pages/edit_user.php ? e=<?= $data['user_id']; ?>" class=" btn edit-btn "><i
+              class="fa-solid fa-pen-to-square"></i></a>
+          <a href="pages/delet_user.php" class=" btn delete-btn "><i class="fa-solid fa-trash"></i></a>
         </td>
       </tr>
       <?php } ?>
     </tbody>
   </table>
-  <div class="pagination">
+  <div class=" pagination">
     <a href="#">&laquo;</a>
     <a href="#" class="active">1</a>
     <a href="#">2</a>

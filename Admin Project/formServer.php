@@ -328,6 +328,36 @@ if(isset($_POST['addSubCategory'])){
           echo "Data Upload Failed";
         }
     }
+
     
+    // Update Brand - Ali hasan
+    if(isset($_POST['update_user'])){
+        $id =$_POST['update_user'];
+        $user_name = $_POST['i_user_name'];
+        $user_username = $_POST['i_user_username'];
+        $user_email = $_POST['i_user_email'];
+        $user_phone = $_POST['i_user_phone'];
+        $user_role = $_POST['i_user_role'];
+        $user_image = $_FILES['i_user_photo']["name"];
+        $user_tmpname = $_FILES['i_user_photo']["tmp_name"];
+
+        if($user_image !==''){
+        $imageName='user_'.time().'_'.rand(100000,10000000).'.'.pathinfo($user_image,PATHINFO_EXTENSION);
+        }
+        $sql= "UPDATE users set
+        user_name='$user_name',user_username='$user_username',user_email='$user_email',user_phone='$user_phone',role_id='$user_role',user_image='$imageName'
+        Where user_id=$id";
+        $query= $con->query($sql);
+        $query=$con->query($sql);
+        if($query){
+            if(!empty($pd_img_name)){
+                move_uploaded_file($pd_img_tmpname,'uploads/images/'.$imageName);
+                echo "Update Successfull";
+                }
+                }else{
+                echo "Update Faild";
+                }
+
+        }
 
 ?>
