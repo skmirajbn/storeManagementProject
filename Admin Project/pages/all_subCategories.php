@@ -12,7 +12,7 @@ $totalPage = ceil($totalRows / $limit);
 $offset = ($currentPage - 1) * $limit;
 
 
-$sql = "SELECT * FROM sub_categories WHERE sub_category_status = 1 ORDER by sub_category_id DESC LIMIT $offset, $limit";
+$sql = "SELECT * FROM categories_information WHERE sub_category_status = 1 ORDER by sub_category_id DESC LIMIT $offset, $limit";
 $result = $con->query($sql);
 
 ?>
@@ -38,6 +38,9 @@ $result = $con->query($sql);
           </td>
           <td>
             <?= $data['sub_category_name'] ?>
+          </td>
+          <td>
+            <?= $data['category_name'] ?>
           </td>
           <td>
             <a href="pages/edit_subCategory.php?subCategory_id=<?= $data['sub_category_id'] ?>" class="edit-btn btn"><i
