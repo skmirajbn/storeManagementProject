@@ -2,8 +2,10 @@
   <section class="sidebar col-md-4 col-xl-3 col-xxl-2">
     <div class="sidebar_container">
       <div class="user_part">
-        <img class="" src="uploads/images/avatar.png" alt="avatar" />
-        <h5><?=$_SESSION['username'] ?></h5>
+        <img class="" src="uploads/images/<?= $_SESSION['user_image'] ?>" alt="avatar" />
+        <h5>
+          <?= $_SESSION['user_name'] ?>
+        </h5>
         <p><i class="fas fa-circle"></i> Online</p>
       </div>
       <!-- Sidebar Menu Start -->
@@ -66,7 +68,8 @@
                   Categories</a>
               </div>
               <div class="accordion-body">
-                <a class="btn btn-block" href=""><i class="fa-solid fa-sitemap"></i>&nbsp; All SubCategories</a>
+                <a class="btn btn-block" href="pages/all_subCategories.php"><i class="fa-solid fa-sitemap"></i>&nbsp;
+                  All SubCategories</a>
               </div>
               <div class="accordion-body">
                 <a class="btn btn-block" href="pages/add_category.php"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add
@@ -81,7 +84,8 @@
                   Category</a>
               </div>
               <div class="accordion-body">
-                <a class="btn btn-block" href=""><i class="fa-solid fa-trash"></i>&nbsp; Restore Categories</a>
+                <a class="btn btn-block" href="pages/restore_categories.php"><i class="fa-solid fa-trash"></i>&nbsp;
+                  Restore Categories</a>
               </div>
             </div>
           </div>
@@ -94,14 +98,16 @@
             </h2>
             <div id="collapseBrands" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <a class="btn btn-block" href=""><i class="fa-solid fa-sitemap"></i>&nbsp; All Brands</a>
+                <a class="btn btn-block" href="pages/all_brand.php"><i class="fa-solid fa-sitemap"></i>&nbsp; All
+                  Brands</a>
               </div>
               <div class="accordion-body">
-                <a class="btn btn-block" href="pages/add_category.php"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add
+                <a class="btn btn-block" href="pages/add_brand.php"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add
                   Brand</a>
               </div>
               <div class="accordion-body">
-                <a class="btn btn-block" href=""><i class="fa-solid fa-trash"></i>&nbsp; Restore Brands</a>
+                <a class="btn btn-block" href="pages/restore_brand.php"><i class="fa-solid fa-trash"></i>&nbsp; Restore
+                  Brands</a>
               </div>
             </div>
           </div>

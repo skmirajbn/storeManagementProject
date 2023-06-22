@@ -1,7 +1,6 @@
-
-
 <!-- Product Information Modal -->
-<div class="modal fade" id="product_view_modal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="product_view_modal" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-xl">
     <div class="modal-content">
       <div class="modal-header">
@@ -9,48 +8,48 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <div class="row">
-      <div class="col-md-6">
-        <img src="uploads/images/product_1686830292_60952360.jpg" class="img-fluid" alt="Product Image">
-      </div>
-      <div class="col-md-6">
-        <h3>Product Information</h3>
-        <table class="table">
-          <tr>
-            <th>Product ID:</th>
-            <td>--</td>
-          </tr>
-          <tr>
-            <th>Product Name:</th>
-            <td>--</td>
-          </tr>
-          <tr>
-            <th>Product Brand:</th>
-            <td>--</td>
-          </tr>
-          <tr>
-            <th>Product Category:</th>
-            <td>--</td>
-          </tr>
-          <tr>
-            <th>Product Unit:</th>
-            <td>--</td>
-          </tr>
-          <tr>
-            <th>Product SKU:</th>
-            <td>--</td>
-          </tr>
-          <tr>
-            <th>Product Price:</th>
-            <td>--</td>
-          </tr>
-          <tr>
-            <th>Product Description:</th>
-            <td>--</td>
-          </tr>
-        </table>
-      </div>
-    </div>
+        <div class="row">
+          <div class="col-md-6">
+            <img src="uploads/images/product_1686830292_60952360.jpg" class="img-fluid" alt="Product Image">
+          </div>
+          <div class="col-md-6">
+            <h3>Product Information</h3>
+            <table class="table">
+              <tr>
+                <th>Product ID:</th>
+                <td>--</td>
+              </tr>
+              <tr>
+                <th>Product Name:</th>
+                <td>--</td>
+              </tr>
+              <tr>
+                <th>Product Brand:</th>
+                <td>--</td>
+              </tr>
+              <tr>
+                <th>Product Category:</th>
+                <td>--</td>
+              </tr>
+              <tr>
+                <th>Product Unit:</th>
+                <td>--</td>
+              </tr>
+              <tr>
+                <th>Product SKU:</th>
+                <td>--</td>
+              </tr>
+              <tr>
+                <th>Product Price:</th>
+                <td>--</td>
+              </tr>
+              <tr>
+                <th>Product Description:</th>
+                <td>--</td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn mybtn-hightlight" data-bs-dismiss="modal">Close</button>
@@ -118,9 +117,12 @@
         </td>
         <td><?= $data["description"]?></td>
         <td>
-          <button class=" btn edit-btn view" data-bs-toggle="modal" data-bs-target="#product_view_modal"><i class="fa-solid fa-eye"></i></button>
-          <a href="pages/update_product.php?product_id=<?= $data["product_id"]?>" class=" btn edit-btn "><i class="fa-solid fa-pen-to-square"></i></a>
-          <a href="formServer.php?product_id=<?= $data["product_id"]?>" class=" btn delete-btn "><i class="fa-solid fa-trash"></i></a>
+          <button class=" btn edit-btn view" data-bs-toggle="modal" data-bs-target="#product_view_modal"><i
+              class="fa-solid fa-eye"></i></button>
+          <a href="pages/update_product.php?product_id=<?= $data["product_id"]?>" class=" btn edit-btn "><i
+              class="fa-solid fa-pen-to-square"></i></a>
+          <a href="formServer.php?product_id=<?= $data["product_id"]?>" class=" btn delete-btn "><i
+              class="fa-solid fa-trash"></i></a>
         </td>
       </tr>
       <?php }?>

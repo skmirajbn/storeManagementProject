@@ -28,7 +28,8 @@ require_once("../includes/db_connection.php");
     <form id="addProduct" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label for="">Product Name:</label>
-        <input class="form-control" name="product_name" type="text" placeholder="Enter Customer Name" value="<?= $product_data['product_name'] ?>">
+        <input class="form-control" name="product_name" type="text" placeholder="Enter Customer Name"
+          value="<?= $product_data['product_name'] ?>">
       </div>
       <div class="form-group">
         <label for="">Brand:</label>
@@ -36,7 +37,9 @@ require_once("../includes/db_connection.php");
           <?php 
               while($brand_data = $brand_query->fetch_assoc()){
               ?>
-          <option value="<?= $brand_data['brand_id'] ?>" <?= $brand_data['brand_id'] == $product_data['brand_id'] ? "selected": ""?> ><?= $brand_data['brand_name'] ?></option>
+          <option value="<?= $brand_data['brand_id'] ?>"
+            <?= $brand_data['brand_id'] == $product_data['brand_id'] ? "selected": ""?>><?= $brand_data['brand_name'] ?>
+          </option>
           <?php }?>
         </select>
       </div>
@@ -46,7 +49,9 @@ require_once("../includes/db_connection.php");
           <?php
               while($category_data = $category_query->fetch_assoc()){
             ?>
-          <option value="<?= $category_data['category_id']?>" <?= $category_data['category_id'] == $product_data['category_id'] ? "selected": ""?> ><?= $category_data['category_name']?></option>
+          <option value="<?= $category_data['category_id']?>"
+            <?= $category_data['category_id'] == $product_data['category_id'] ? "selected": ""?>>
+            <?= $category_data['category_name']?></option>
           <?php } ?>
 
         </select>
@@ -57,18 +62,21 @@ require_once("../includes/db_connection.php");
           <?php
             while($unit_data = $unit_query->fetch_assoc()){
           ?>
-          <option value="<?= $unit_data["unit_id"] ?>"  <?= $unit_data["unit_id"] == $product_data['unit_id'] ? "selected": ""?>><?= $unit_data["unit"] ?></option>
+          <option value="<?= $unit_data["unit_id"] ?>"
+            <?= $unit_data["unit_id"] == $product_data['unit_id'] ? "selected": ""?>><?= $unit_data["unit"] ?></option>
 
           <?php } ?>
         </select>
       </div>
       <div class="form-group">
         <label for="">SKU:</label>
-        <input class="form-control" name="product_sku" type="text" placeholder="Enter Product SKU" value="<?= $product_data['sku'] ?>">
+        <input class="form-control" name="product_sku" type="text" placeholder="Enter Product SKU"
+          value="<?= $product_data['sku'] ?>">
       </div>
       <div class="form-group">
         <label for="">Price:</label>
-        <input class="form-control" name="product_price" type="text" placeholder="Enter Customer Name" value="<?= $product_data ['selling_price'] ?>">
+        <input class="form-control" name="product_price" type="text" placeholder="Enter Customer Name"
+          value="<?= $product_data ['selling_price'] ?>">
       </div>
       <div class="form-group">
         <label for="">Product Image:</label>
@@ -84,7 +92,8 @@ require_once("../includes/db_connection.php");
       </div>
       <div class="form-group">
         <label for="">Description:</label>
-        <textarea class="form-control" placeholder="Enter Customer Name" name="product_desc" id="" cols="" rows=""><?=$product_data['description'] ?></textarea>
+        <textarea class="form-control" placeholder="Enter Customer Name" name="product_desc" id="" cols=""
+          rows=""><?=$product_data['description'] ?></textarea>
       </div>
       <br>
       <input type="hidden" name="updateProduct" value="<?=$id?>">

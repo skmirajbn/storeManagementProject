@@ -16,7 +16,7 @@
 <div class="table-responsive">
     <table>
         <thead>
-            
+
             <tr>
                 <th><input type="checkbox" class="select-all"></th>
                 <th>ID</th>
@@ -40,8 +40,9 @@
                 <td><?= $data["customer_address"]?></td>
                 <td>
                     <a href="pages/update_customer.php?customer_id=<?= $data["customer_id"]?>"
-                        data-form="updateCustomer" class=" btn edit-btn ">Edit</a>
-                    <a href="formServer.php?customer_id=<?= $data["customer_id"]?>" class=" btn delete-btn ">Delete</a>
+                        data-form="updateCustomer" class=" btn edit-btn "><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="formServer.php?customer_id=<?= $data["customer_id"]?>" class=" btn delete-btn "><i
+                            class="fa-solid fa-trash"></i></a>
                 </td>
             </tr>
             <?php }?>
@@ -51,9 +52,9 @@
     </table>
 </div>
 <div class="pagination">
-  <a href="pages/all_customers.php?page=1">&laquo;</a>
-  <a href="pages/all_customers.php?page=<?=$currentPage-1?>">&lt;</a>
-  <?php 
+    <a href="pages/all_customers.php?page=1">&laquo;</a>
+    <a href="pages/all_customers.php?page=<?=$currentPage-1?>">&lt;</a>
+    <?php 
     if($currentPage>2){
       $page = $currentPage - 2;
       $lastPage = $currentPage + 2;
@@ -66,8 +67,8 @@
     }
     for($page; $page<=$lastPage; $page++){ 
   ?>
-  <a href="pages/all_customers.php?page=<?=$page?>" class="<?=$currentPage == $page ? 'active' : '' ?>"><?=$page?></a>
-  <?php } ?>
-  <a href="pages/all_customers.php?page=<?=$currentPage + 1?>">&gt;</a>
-  <a href="pages/all_customers.php?page=<?=$totalPage?>">&raquo;</a>
+    <a href="pages/all_customers.php?page=<?=$page?>" class="<?=$currentPage == $page ? 'active' : '' ?>"><?=$page?></a>
+    <?php } ?>
+    <a href="pages/all_customers.php?page=<?=$currentPage + 1?>">&gt;</a>
+    <a href="pages/all_customers.php?page=<?=$totalPage?>">&raquo;</a>
 </div>

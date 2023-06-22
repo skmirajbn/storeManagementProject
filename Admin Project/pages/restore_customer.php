@@ -28,14 +28,17 @@
                 <td><?= $data["customer_email"]?></td>
                 <td><?= $data["customer_address"]?></td>
                 <td>
-                    
-                    <a href="formServer.php?restore_customer_id=<?= $data["customer_id"]?>" class=" btn delete-btn ">Restore</a>
-                    <a href="formServer.php?par_delete_customer_id=<?= $data["customer_id"]?>" class=" btn delete-btn ">Parmanently Delete</a>
+
+                    <a style="background-color:green; color: white; margin-right:10px"
+                        href="formServer.php?restore_customer_id=<?= $data["customer_id"]?>" class=" btn delete-btn "><i
+                            class="fa-solid fa-trash-can-arrow-up"></i></a>
+                    <a href="formServer.php?par_delete_customer_id=<?= $data["customer_id"]?>"
+                        class=" btn delete-btn "><i class="fa-solid fa-trash-can"></i></a>
                 </td>
             </tr>
             <?php }?>
-            
-        <!-- Add more rows for each user -->
+
+            <!-- Add more rows for each user -->
         </tbody>
     </table>
 </div>
