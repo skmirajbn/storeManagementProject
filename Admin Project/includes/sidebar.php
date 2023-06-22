@@ -2,9 +2,9 @@
   <section class="sidebar col-md-4 col-xl-3 col-xxl-2">
     <div class="sidebar_container">
       <div class="user_part">
-        <img class="" src="uploads/images/avatar.png" alt="avatar" />
+        <img class="" src="uploads/images/<?= $_SESSION['user_image'] ?>" alt="avatar" />
         <h5>
-          <?= $_SESSION['username'] ?>
+          <?= $_SESSION['user_name'] ?>
         </h5>
         <p><i class="fas fa-circle"></i> Online</p>
       </div>

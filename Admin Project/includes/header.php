@@ -67,7 +67,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-disabled="true" role="button" data-bs-toggle="dropdown"
                   aria-expanded="false">
-                  <?= $_SESSION['username'] ?>
+                  <?= $_SESSION['user_name'] ?>
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="#">My Profile</a></li>
@@ -82,7 +82,7 @@
               </li>
             </ul>
             <div class="user_part">
-              <img style="width: 40px;" class="" src="uploads/images/avatar.png" alt="avatar" />
+              <img style="width: 40px;" class="" src="uploads/images/<?= $_SESSION['user_image'] ?>" alt="avatar" />
             </div>
             <!-- <form class="d-flex" role="search">
                 <input
