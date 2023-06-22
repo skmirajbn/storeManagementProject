@@ -59,7 +59,7 @@
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
-                <i class="fa-solid fa-box"></i>&nbsp; Category
+                <i class="fa-solid fa-sitemap"></i>&nbsp; Categories
               </button>
             </h2>
             <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -93,7 +93,7 @@
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseBrands" aria-expanded="true" aria-controls="collapseBrands">
-                <i class="fa-solid fa-box"></i>&nbsp; Brands
+                <i class="fa-solid fa-tags"></i>&nbsp; Brands
               </button>
             </h2>
             <div id="collapseBrands" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
@@ -108,6 +108,28 @@
               <div class="accordion-body">
                 <a class="btn btn-block" href="pages/restore_brand.php"><i class="fa-solid fa-trash"></i>&nbsp; Restore
                   Brands</a>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseUnit" aria-expanded="true" aria-controls="collapseUnit">
+                <i class="fa-solid fa-weight-hanging"></i>&nbsp; Units
+              </button>
+            </h2>
+            <div id="collapseUnit" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <a class="btn btn-block" href="pages/all_units.php"><i class="fa-solid fa-sitemap"></i>&nbsp; All
+                  Units</a>
+              </div>
+              <div class="accordion-body">
+                <a class="btn btn-block" href="pages/add_brand.php"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add
+                  Unit</a>
+              </div>
+              <div class="accordion-body">
+                <a class="btn btn-block" href="pages/restore_brand.php"><i class="fa-solid fa-trash"></i>&nbsp; Restore
+                  Units</a>
               </div>
             </div>
           </div>

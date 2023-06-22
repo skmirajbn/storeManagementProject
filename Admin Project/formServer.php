@@ -1,27 +1,7 @@
 <?php
 require_once("includes/db_connection.php");
 
-
-// Add Category Data Insert
-if (isset($_POST["addCategory"])) {
-    $categoryName = $_POST["categoryName"];
-
-    $sql = "INSERT INTO categories(category_name) VALUES('$categoryName')";
-    $query = $con->query($sql);
-    if ($query) {
-        echo "Data Inserted Successfully";
-    }
-}
-
-//Category Data Delete
-if (isset($_GET['categoryDelete'])) {
-    $id = $_GET['categoryDelete'];
-    $sql = "UPDATE categories SET category_status = 0 WHERE category_id = $id";
-    $delete = $con->query($sql);
-    if ($delete) {
-        header("Location: pages/all_categories.php");
-    }
-}
+//Customers Section  Start <<================================>>
 
 //Add customar
 if (isset($_POST['addCustomer'])) {
@@ -36,41 +16,6 @@ if (isset($_POST['addCustomer'])) {
         echo "Upload SuccessFul";
     } else {
         echo "Data Upload Failed";
-    }
-}
-
-//Delete customar - Mosharrof
-if (isset($_GET['customer_id'])) {
-    $id = $_GET['customer_id'];
-    $sql = "UPDATE customers SET customer_status=0 WHERE customer_id= $id";
-    $query = $con->query($sql);
-    if ($query) {
-        header("location: pages/all_customers.php");
-    } else {
-        echo "Data Not Deleted ";
-    }
-}
-//Restore customar - Mosharrof
-if (isset($_GET['restore_customer_id'])) {
-    $id = $_GET['restore_customer_id'];
-    $sql = "UPDATE customers SET customer_status = 1 WHERE customer_id= $id";
-    $query = $con->query($sql);
-    if ($query) {
-        header("location: pages/restore_customer.php");
-    } else {
-        echo "Data Not Deleted ";
-    }
-}
-
-//Parmanently Delete - Mosharrof
-if (isset($_GET['par_delete_customer_id'])) {
-    $id = $_GET['par_delete_customer_id'];
-    $sql = "DELETE FROM customers WHERE customer_id= $id";
-    $query = $con->query($sql);
-    if ($query) {
-        header("location: pages/restore_customer.php");
-    } else {
-        echo "Data Not Deleted ";
     }
 }
 
@@ -90,20 +35,45 @@ if (isset($_POST['updateCustomer'])) {
     }
 }
 
-//Update Category 
-
-if (isset($_POST['updateCategory'])) {
-    $categoryName = $_POST['categoryName'];
-    $id = $_POST['updateCategory'];
-
-    $sql = "UPDATE categories SET category_name = '$categoryName' WHERE category_id = $id ";
+//Delete customar - Mosharrof
+if (isset($_GET['customer_id'])) {
+    $id = $_GET['customer_id'];
+    $sql = "UPDATE customers SET customer_status=0 WHERE customer_id= $id";
     $query = $con->query($sql);
     if ($query) {
-        echo "Updated Category <a style='display:inline-block; margin:20px' href='pages/all_categories.php' class='btn mybtn-hightlight'>See All Category</a>";
+        header("location: pages/all_customers.php");
     } else {
-        echo "Failed";
+        echo "Data Not Deleted ";
     }
 }
+
+//Restore customar - Mosharrof
+if (isset($_GET['restore_customer_id'])) {
+    $id = $_GET['restore_customer_id'];
+    $sql = "UPDATE customers SET customer_status = 1 WHERE customer_id= $id";
+    $query = $con->query($sql);
+    if ($query) {
+        header("location: pages/restore_customer.php");
+    } else {
+        echo "Data Not Deleted ";
+    }
+}
+
+//Parmanently Delete Customer - Mosharrof
+if (isset($_GET['par_delete_customer_id'])) {
+    $id = $_GET['par_delete_customer_id'];
+    $sql = "DELETE FROM customers WHERE customer_id= $id";
+    $query = $con->query($sql);
+    if ($query) {
+        header("location: pages/restore_customer.php");
+    } else {
+        echo "Data Not Deleted ";
+    }
+}
+//Customers Section  End <<================================>>
+
+
+//Products Section  Start <<================================>>
 
 //Add product Mosharrof
 
@@ -178,6 +148,7 @@ if (isset($_GET['product_id'])) {
         echo "Data Not Deleted ";
     }
 }
+
 //Restore Product - Mosharrof
 if (isset($_GET['restore_product_id'])) {
     $id = $_GET['restore_product_id'];
@@ -201,58 +172,45 @@ if (isset($_GET['par_delete_product_id'])) {
         echo "Data Not Deleted ";
     }
 }
+//Products Section  End <<================================>>
 
+//Categoris Section  Start <<================================>>
+// Add Category Data Insert
+if (isset($_POST["addCategory"])) {
+    $categoryName = $_POST["categoryName"];
 
-
-
-
-//Add user - Ali Hasan
-if (isset($_POST['add_user'])) {
-    $user_name = $_POST['i_user_name'];
-    $user_username = $_POST['i_user_username'];
-    $user_email = $_POST['i_user_email'];
-    $user_phone = $_POST['i_user_phone'];
-    $user_pass = $_POST['i_user_pass'];
-    $user_repass = $_POST['i_user_repass'];
-    $user_role = $_POST['i_user_role'];
-    $user_image = $_FILES['i_user_photo']["name"];
-    $user_tmpname = $_FILES['i_user_photo']["tmp_name"];
-    $imageName = '';
-
-    if ($user_image !== '') {
-        $imageName = 'user_' . time() . '_' . rand(100000, 10000000) . '.' . pathinfo($user_image, PATHINFO_EXTENSION);
-    } else {
-        $imageName = 'avatar.png';
-    }
-
-    $insest = "INSERT INTO users(user_name,user_username,user_email,user_phone,user_password,role_id,user_image)
-     VALUES('$user_name','$user_username','$user_email','$user_phone','$user_pass','$user_role','$imageName')";
-    $query = $con->query($insest);
+    $sql = "INSERT INTO categories(category_name) VALUES('$categoryName')";
+    $query = $con->query($sql);
     if ($query) {
-        move_uploaded_file($user_tmpname, 'uploads/images/' . $imageName);
-        echo "Success";
-    } else {
-        echo "failed";
+        echo "Data Inserted Successfully";
     }
-
 }
 
+//Update Category 
 
+if (isset($_POST['updateCategory'])) {
+    $categoryName = $_POST['categoryName'];
+    $id = $_POST['updateCategory'];
 
-// role - Ali Hasan
-
-if (isset($_POST['add_role'])) {
-    $role_name = $_POST['i_role_name'];
-
-    $insests = "INSERT INTO roles(role_name)  
-    VALUES('$role_name')";
-    $query = $con->query($insests);
+    $sql = "UPDATE categories SET category_name = '$categoryName' WHERE category_id = $id ";
+    $query = $con->query($sql);
     if ($query) {
-        echo "Success";
+        echo "Updated Category <a style='display:inline-block; margin:20px' href='pages/all_categories.php' class='btn mybtn-hightlight'>See All Category</a>";
     } else {
-        echo "failed";
+        echo "Failed";
     }
 }
+
+//Category Data Delete
+if (isset($_GET['categoryDelete'])) {
+    $id = $_GET['categoryDelete'];
+    $sql = "UPDATE categories SET category_status = 0 WHERE category_id = $id";
+    $delete = $con->query($sql);
+    if ($delete) {
+        header("Location: pages/all_categories.php");
+    }
+}
+
 
 // Add Sub Category
 if (isset($_POST['addSubCategory'])) {
@@ -269,6 +227,26 @@ if (isset($_POST['addSubCategory'])) {
 
 }
 
+// Update SubCategory - Sk Miraj
+
+if (isset($_POST['updateSubCategory'])) {
+    $id = $_POST['updateSubCategory'];
+    $categoryId = $_POST['categoryId'];
+    $subCategoryName = $_POST['subCategoryName'];
+
+    $sql = "UPDATE sub_categories SET sub_category_name = '$subCategoryName', category_id= $categoryId WHERE sub_category_id = $id";
+
+    $query = $con->query($sql);
+    if ($query) {
+        echo "Sub Category Updated";
+    } else {
+        echo "Sub Category Update Failed";
+    }
+}
+//Categoris Section  End <<================================>>
+
+
+//Brands Section  Start <<================================>>
 
 //Add Brand - Mosharrof
 if (isset($_POST['addbrand'])) {
@@ -277,6 +255,19 @@ if (isset($_POST['addbrand'])) {
     $query = $con->query($sql);
     if ($query) {
         echo "Brand Add Successfull";
+    } else {
+        echo "Data Upload Failed";
+    }
+}
+
+// Update Brand -Mosharrof
+if (isset($_POST['editBrand'])) {
+    $id = $_POST['editBrand'];
+    $brandName = $_POST['brandName'];
+    $sql = "UPDATE brands SET brand_name='$brandName', brand_status=1 WHERE brand_id = $id";
+    $query = $con->query($sql);
+    if ($query) {
+        echo "Data Upload Successful";
     } else {
         echo "Data Upload Failed";
     }
@@ -317,22 +308,44 @@ if (isset($_GET['par_brandDelete'])) {
         echo "Data Not Deleted ";
     }
 }
+//Brands Section  End <<================================>>
 
-// Update Brand -Mosharrof
-if (isset($_POST['editBrand'])) {
-    $id = $_POST['editBrand'];
-    $brandName = $_POST['brandName'];
-    $sql = "UPDATE brands SET brand_name='$brandName', brand_status=1 WHERE brand_id = $id";
-    $query = $con->query($sql);
-    if ($query) {
-        echo "Data Upload Successful";
+//Units Section  Start <<================================>>
+
+//Units Section  End <<================================>>
+
+//Users Section  Start <<================================>>
+//Add user - Ali Hasan
+if (isset($_POST['add_user'])) {
+    $user_name = $_POST['i_user_name'];
+    $user_username = $_POST['i_user_username'];
+    $user_email = $_POST['i_user_email'];
+    $user_phone = $_POST['i_user_phone'];
+    $user_pass = $_POST['i_user_pass'];
+    $user_repass = $_POST['i_user_repass'];
+    $user_role = $_POST['i_user_role'];
+    $user_image = $_FILES['i_user_photo']["name"];
+    $user_tmpname = $_FILES['i_user_photo']["tmp_name"];
+    $imageName = '';
+
+    if ($user_image !== '') {
+        $imageName = 'user_' . time() . '_' . rand(100000, 10000000) . '.' . pathinfo($user_image, PATHINFO_EXTENSION);
     } else {
-        echo "Data Upload Failed";
+        $imageName = 'avatar.png';
+    }
+
+    $insest = "INSERT INTO users(user_name,user_username,user_email,user_phone,user_password,role_id,user_image)
+     VALUES('$user_name','$user_username','$user_email','$user_phone','$user_pass','$user_role','$imageName')";
+    $query = $con->query($insest);
+    if ($query) {
+        move_uploaded_file($user_tmpname, 'uploads/images/' . $imageName);
+        echo "Success";
+    } else {
+        echo "failed";
     }
 }
 
-
-// Update Brand - Ali hasan
+// Update user - Ali hasan
 if (isset($_POST['update_user'])) {
     $id = $_POST['update_user'];
     $user_name = $_POST['i_user_name'];
@@ -360,20 +373,66 @@ if (isset($_POST['update_user'])) {
     }
 
 }
+//Users Section  End <<================================>>
 
-if (isset($_POST['updateSubCategory'])) {
-    $id = $_POST['updateSubCategory'];
-    $categoryId = $_POST['categoryId'];
-    $subCategoryName = $_POST['subCategoryName'];
 
-    $sql = "UPDATE sub_categories SET sub_category_name = '$subCategoryName', category_id= $categoryId WHERE sub_category_id = $id";
 
-    $query = $con->query($sql);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// role - Ali Hasan
+
+if (isset($_POST['add_role'])) {
+    $role_name = $_POST['i_role_name'];
+
+    $insests = "INSERT INTO roles(role_name)  
+    VALUES('$role_name')";
+    $query = $con->query($insests);
     if ($query) {
-        echo "Sub Category Updated";
+        echo "Success";
     } else {
-        echo "Sub Category Update Failed";
+        echo "failed";
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>
