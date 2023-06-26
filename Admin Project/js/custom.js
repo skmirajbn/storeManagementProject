@@ -114,20 +114,47 @@ $(document).ready(function () {
     let productName = row.find("td").eq(2).text();
     let productBrand = row.find("td").eq(3).text();
     let productCategory = $(this).closest("tr").find("td").eq(4).text();
-    let productUnit = $(this).closest("tr").find("td").eq(5).text();
-    let productSKU = $(this).closest("tr").find("td").eq(6).text();
-    let productPrice = $(this).closest("tr").find("td").eq(7).text();
-    let productDescription = $(this).closest("tr").find("td").eq(9).text();
+    console.log(productCategory);
+    let productSubCategory = $(this).closest("tr").find("td").eq(5).text();
+    let productUnit = $(this).closest("tr").find("td").eq(6).text();
+    let productSKU = $(this).closest("tr").find("td").eq(7).text();
+    let productPrice = $(this).closest("tr").find("td").eq(8).text();
+    let productDescription = $(this).closest("tr").find("td").eq(10).text();
     let productImage = $(this).closest("tr").find("img").attr("src");
 
     $("#product_view_modal").find(".modal-body td").eq(0).text(productId);
     $("#product_view_modal").find(".modal-body td").eq(1).text(productName);
     $("#product_view_modal").find(".modal-body td").eq(2).text(productBrand);
     $("#product_view_modal").find(".modal-body td").eq(3).text(productCategory);
-    $("#product_view_modal").find(".modal-body td").eq(4).text(productUnit);
-    $("#product_view_modal").find(".modal-body td").eq(5).text(productSKU);
-    $("#product_view_modal").find(".modal-body td").eq(6).text(productPrice);
-    $("#product_view_modal").find(".modal-body td").eq(7).text(productDescription);
+    $("#product_view_modal").find(".modal-body td").eq(4).text(productSubCategory);
+    $("#product_view_modal").find(".modal-body td").eq(5).text(productUnit);
+    $("#product_view_modal").find(".modal-body td").eq(6).text(productSKU);
+    $("#product_view_modal")
+      .find(".modal-body td")
+      .eq(7)
+      .text(productPrice + "Tk");
+    $("#product_view_modal").find(".modal-body td").eq(8).text(productDescription);
     $("#product_view_modal").find("img").attr("src", productImage);
+  });
+
+  // Retriving Sub Categories by Category ID
+  $(document).on("change", "[name='product_category']", function () {
+    let categoryId = $(this).val();
+    let subCategoryDropdown = $("[name='product_sub_category']");
+    console.log(categoryId);
+    $.ajax({
+      url: "pages/get_subCategories.php",
+      method: "GET",
+      data: { category_id: categoryId },
+      beforeSend: function () {
+        $("[name='product_sub_category']").empty().append("<option selected disabled>Loading</option>");
+      },
+      success: function (response) {
+        subCategoryDropdown.empty().html(response);
+      },
+      error: function () {
+        console.log("Error");
+      },
+    });
   });
 });

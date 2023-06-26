@@ -81,6 +81,7 @@ if (isset($_POST["addProduct"])) {
     $product_name = $_POST["product_name"];
     $product_brand = $_POST["product_brand"];
     $product_category = $_POST["product_category"];
+    $product_sub_category = $_POST["product_sub_category"];
     $product_unit = $_POST["product_unit"];
     $product_sku = $_POST["product_sku"];
     $product_price = $_POST["product_price"];
@@ -93,7 +94,7 @@ if (isset($_POST["addProduct"])) {
         $imageName = 'product_' . time() . '_' . rand(100000, 100000000) . '.' . pathinfo($pd_img_name, PATHINFO_EXTENSION);
     }
 
-    $sql = "INSERT INTO products(product_name,brand_id,category_id,unit_id,sku,selling_price,product_image,description, product_status) VALUES('$product_name','$product_brand','$product_category','$product_unit','$product_sku','$product_price','$imageName','$product_desc', 1)";
+    $sql = "INSERT INTO products(product_name,brand_id,category_id,sub_category_id,unit_id,sku,selling_price,product_image,description, product_status) VALUES('$product_name','$product_brand','$product_category','$product_sub_category','$product_unit','$product_sku','$product_price','$imageName','$product_desc', 1)";
     $query = $con->query($sql);
     if ($query) {
         move_uploaded_file($pd_img_tmpname, 'uploads/images/' . $imageName);
@@ -179,7 +180,7 @@ if (isset($_GET['par_delete_product_id'])) {
 if (isset($_POST["addCategory"])) {
     $categoryName = $_POST["categoryName"];
 
-    $sql = "INSERT INTO categories(category_name) VALUES('$categoryName')";
+    $sql = "INSERT INTO categories(category_name, category_status) VALUES('$categoryName',1)";
     $query = $con->query($sql);
     if ($query) {
         echo "Data Inserted Successfully";

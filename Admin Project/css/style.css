@@ -1,20 +1,20 @@
 :root {
-  --primary-color: #F39C12;
-  --secondary-color: #222F3E;
+  --primary-color: #f39c12;
+  --secondary-color: #222f3e;
   --body-color: white;
-  --highlight-color: #F39C12;
+  --highlight-color: #f39c12;
   --breadcrumb-background: #f7e5c8;
-  --footer-background: #222F3E;
+  --footer-background: #222f3e;
   --footer-color: white;
 }
 
 .dark-mode {
-  --primary-color: #F39C12;
-  --secondary-color: #222F3E;
+  --primary-color: #f39c12;
+  --secondary-color: #222f3e;
   --body-color: white;
   --highlight-color: #2270ff;
   --breadcrumb-background: #c8d5f7;
-  --footer-background: #222F3E;
+  --footer-background: #222f3e;
   --footer-color: white;
 }
 
@@ -24,7 +24,6 @@
   outline: 0;
   box-sizing: border-box;
 }
-
 
 /* Common start */
 .mybtn-hightlight {
@@ -40,11 +39,9 @@
 }
 
 #response {
-
   text-align: center;
   color: green;
   font-size: 20px;
-
 }
 
 #loading {
@@ -54,8 +51,6 @@
 }
 
 /* Common End */
-
-
 
 /* Scrollbar start */
 /* width */
@@ -80,7 +75,6 @@
 }
 
 /* Scrollbar end */
-
 
 .out_body {
   height: 100vh;
@@ -234,12 +228,14 @@ a:hover {
 }
 
 /* Hide colums of Product table */
-#product_information_table tr td:nth-child(6),#product_information_table tr th:nth-child(6),
-#product_information_table tr td:nth-child(7),#product_information_table tr th:nth-child(7),
-#product_information_table tr td:nth-child(10),#product_information_table tr th:nth-child(10){
+#product_information_table tr th:nth-child(7),
+#product_information_table tr td:nth-child(7),
+#product_information_table tr th:nth-child(8),
+#product_information_table tr td:nth-child(8),
+#product_information_table tr th:nth-child(11),
+#product_information_table tr td:nth-child(11) {
   display: none;
 }
-
 
 /* Footer */
 .footer {
@@ -248,7 +244,6 @@ a:hover {
   padding: 12px;
   text-align: center;
 }
-
 
 /* All_Customer Page Css Start */
 table {
@@ -319,9 +314,6 @@ label {
 
 /* Create Order Form Css End */
 
-
-
-
 /* Responsive Start */
 @media (min-width: 0px) {
   .navbar-toggler {
@@ -329,13 +321,15 @@ label {
   }
 
   .bottom_sidebar {
-    margin-top: 20px
+    margin-top: 20px;
   }
 }
 
-@media (min-width: 576px) {}
+@media (min-width: 576px) {
+}
 
-@media (min-width: 768px) {}
+@media (min-width: 768px) {
+}
 
 @media (min-width: 992px) {
   /* .accordion-button {
@@ -343,8 +337,8 @@ label {
   } */
 }
 
-@media (min-width: 1200px) {}
-
+@media (min-width: 1200px) {
+}
 
 @media (min-width: 1400px) {
   .sidebar {

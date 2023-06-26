@@ -32,6 +32,10 @@
                 <td>--</td>
               </tr>
               <tr>
+                <th>Product Sub Category:</th>
+                <td>--</td>
+              </tr>
+              <tr>
                 <th>Product Unit:</th>
                 <td>--</td>
               </tr>
@@ -72,6 +76,7 @@
         <th>Name</th>
         <th>Brand</th>
         <th>Category</th>
+        <th>Sub Category</th>
         <th>Unit</th>
         <th>SKU</th>
         <th>Price</th>
@@ -112,6 +117,9 @@
           </td>
           <td>
             <?= $data["category_name"] ?>
+          </td>
+          <td>
+            <?= $data["sub_category_name"] ?>
           </td>
           <td>
             <?= $data["unit_name"] ?>
