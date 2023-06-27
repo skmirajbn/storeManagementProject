@@ -36,7 +36,10 @@
                 <a class="nav-link active" aria-current="page" href="#">DashBoard</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="pages/">Add Users</a>
+                <a class="nav-link" aria-current="page" href="pages/create_order.php">Create Order</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="pages/">Add User</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="#">Add Category</a>

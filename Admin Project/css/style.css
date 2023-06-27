@@ -74,6 +74,9 @@
   background: var(--highlight-color);
 }
 
+.products_group::-webkit-scrollbar {
+  width: 7px; /* width of the scrollbar */
+}
 /* Scrollbar end */
 
 .out_body {
