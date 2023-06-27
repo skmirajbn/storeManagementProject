@@ -169,10 +169,50 @@ $(document).ready(function () {
     $(this).closest(".product_entry").remove();
   });
 
-  //Listening the SKU Fields
-  // $(document).on("input", ".sku-input", function () {
-  //   $.ajax({
-  //     url:
-  //   })
-  // });
+  //Listening the Product Search Field
+
+  $(document).on("input", "#product_search", function (e) {
+    let debounceTimer;
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function () {
+      let inputValue = e.target.value;
+      $.ajax({
+        url: "pages/get_all_products.php",
+        method: "POST",
+        // dataType: "json",
+        data: {
+          search: inputValue,
+        },
+        beforeSend: function () {
+          console.log("sending");
+        },
+        success: function (response) {
+          $(".products_group").empty();
+          productObj = JSON.parse(response);
+          console.log(productObj);
+          productObj.forEach(function (p) {
+            $(".products_group").append(`
+          <div class="card product d-inline-block p-1" style="width: 10rem">
+                    <div class="img_container"><img src="uploads/images/${p.product_image}"
+                            class="card-img-top img-fluid" alt="..."></div>
+                    <div class="card-body">
+                        <h5 class="card-title small">
+                        ${p.product_name}
+                        </h5>
+                        <button class="btn d-block mx-auto w-100 mybtn-hightlight"
+                            value="${p.product_id}">ADD</button>
+                    </div>
+                </div>
+          `);
+          });
+        },
+        error: function () {
+          console.log("error");
+        },
+        complete: function () {
+          console.log("completed");
+        },
+      });
+    }, 2000);
+  });
 });

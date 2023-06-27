@@ -308,6 +308,26 @@ th {
   margin-right: 10px;
 }
 
+/* Create order page Start */
+.product {
+  margin-bottom: 10px;
+}
+.img_container {
+  padding: 5px;
+  display: flex;
+  height: 10rem;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.img_container img {
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+/* Create order page end */
+
 /* All_Customer Page Css End */
 label {
   margin: 10px 0;

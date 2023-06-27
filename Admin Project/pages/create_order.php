@@ -1,3 +1,12 @@
+<?php
+require_once("./../includes/db_connection.php");
+$limit = 10;
+$sql = "SELECT * FROM product_information ORDER BY product_id DESC LIMIT $limit";
+
+$result = $con->query($sql);
+
+?>
+
 <div class="row">
     <div class="col-md-6">
         <div class="form-body container">
@@ -64,165 +73,22 @@
         </div>
     </div>
     <div class="col-md-6 p-4" style="background: #f1f1f1;">
-        <input class="form-control" type="text" placeholder="Search Products">
+        <input class="form-control" type="text" id="product_search" placeholder="Search Products">
         <h3 class="text-center m-3">All Products</h3>
         <div class="products_group text-center" style="overflow: scroll; height: 71vh">
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
+            <?php while ($data = $result->fetch_assoc()) { ?>
+                <div class="card product d-inline-block p-1" style="width: 10rem">
+                    <div class="img_container"><img src="uploads/images/<?= $data['product_image'] ?>"
+                            class="card-img-top img-fluid" alt="..."></div>
+                    <div class="card-body">
+                        <h5 class="card-title small">
+                            <?= $data['product_name'] ?>
+                        </h5>
+                        <button class="btn d-block mx-auto w-100 mybtn-hightlight"
+                            value="<?= $data['product_id'] ?>">ADD</button>
+                    </div>
                 </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-            <div class="card product d-inline-block p-1" style="width: 10rem;">
-                <img src="uploads/images/product_1687791994_67629988.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title small">22 Inch Monitor</h5>
-                    <button class="btn d-block mx-auto w-50 mybtn-hightlight">ADD</button>
-                </div>
-            </div>
-
-
+            <?php } ?>
         </div>
     </div>
 </div>
