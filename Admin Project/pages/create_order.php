@@ -39,9 +39,9 @@ $result = $con->query($sql);
                     <input class="form-control" type="text" placeholder="Enter Customer Name">
                 </div>
                 <div class="form-group">
-                    <label for="">Product</label><br>
+                    <label for="">Sales Order</label><br>
                     <div class="product_container">
-                        <div class="product_entry">
+                        <!-- <div class="product_entry">
                             <label for="sku1">SKU:</label>
                             <input style="display: inline-block;width: 100px;" class="form-control sku-input"
                                 type="text" placeholder="SKU" id="sku1" name="sku[1]">
@@ -63,12 +63,33 @@ $result = $con->query($sql);
                                 style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">Total:
                                 --</span>
                             <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                        </div> -->
+
+                        <div class="table-responsive">
+                            <table id="sales_order_table">
+                                <tr>
+                                    <th>SKU</th>
+                                    <th>Product</th>
+                                    <th>Image</th>
+                                    <th>Stock</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                    <th>X</th>
+                                </tr>
+
+
+                            </table>
+                            <div
+                                style="text-align: right;background-color: var(--secondary-color); color:white; padding: 2px 10px">
+                                <h5 id="sub_total">Sub Total: 00.00</h5>
+                            </div>
                         </div>
                     </div><br>
                     <button style="text-align: right;" class="btn btn-success" id="addProductBtn"><i
                             class="fa-solid fa-plus"></i></button>
                 </div><br>
-                <input type="submit" class="mybtn-hightlight btn">
+                <input type="submit" class="mybtn-hightlight btn" value="Create Order">
             </form>
         </div>
     </div>
@@ -84,7 +105,7 @@ $result = $con->query($sql);
                         <h5 class="card-title small">
                             <?= $data['product_name'] ?>
                         </h5>
-                        <button class="btn d-block mx-auto w-100 mybtn-hightlight"
+                        <button class="add_product btn d-block mx-auto w-100 mybtn-hightlight"
                             value="<?= $data['product_id'] ?>">ADD</button>
                     </div>
                 </div>

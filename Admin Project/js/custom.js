@@ -199,7 +199,7 @@ $(document).ready(function () {
                         <h5 class="card-title small">
                         ${p.product_name}
                         </h5>
-                        <button class="btn d-block mx-auto w-100 mybtn-hightlight"
+                        <button class="add_product btn d-block mx-auto w-100 mybtn-hightlight"
                             value="${p.product_id}">ADD</button>
                     </div>
                 </div>
@@ -213,6 +213,74 @@ $(document).ready(function () {
           console.log("completed");
         },
       });
-    }, 2000);
+    }, 100);
   });
+
+  // Listening The Add prodcut Button and Add product to the Invoice
+  $(document).on("click", ".add_product", function (e) {
+    let productId = e.target.value;
+    $.ajax({
+      url: "pages/get_product_info.php",
+      method: "POST",
+      dataType: "json",
+      data: {
+        product_id: productId,
+      },
+      beforeSend: function () {
+        console.log("sending");
+      },
+      success: function (response) {
+        $("#sales_order_table").append(`
+        <tr>
+            <td>ST013</td>
+            <td>${response.product_name}</td>
+            <td><img style="width: 30px" src="uploads/images/${response.product_image}">
+            </td>
+            <td>Stock</td>
+            <td class="quantity"><input class="form-control" style="width:50px" type="number" value="1"></td>
+            <td class="selling_price">${response.selling_price}</td>
+            <td class="total_price">${response.selling_price}</td>
+            <td class="delete_row"><i class="fa-solid fa-x" style="color:red"></i></td>
+        </tr>
+        `);
+
+        calSubTotal();
+      },
+      error: function () {
+        console.log("error");
+      },
+      complete: function () {
+        console.log("completed");
+      },
+    });
+  });
+
+  //Listing Quantity and Total price Calculation
+  $(document).on("change", ".quantity", function (e) {
+    let quantity = e.target.value;
+    let price = e.target.parentNode.parentNode.querySelector(".selling_price").innerText;
+    let totalPrice = quantity * price;
+    let totalElement = e.target.parentNode.parentNode.querySelector(".total_price");
+    totalElement.innerText = totalPrice.toFixed(2);
+  });
+
+  //Listing the Delete Row and Delete the data
+  $(document).on("click", ".delete_row", function (e) {
+    let row = e.target.parentNode.parentNode;
+    row.remove();
+    calSubTotal();
+  });
+
+  //SubTotal Funciton Defination
+  function calSubTotal() {
+    // Calculating The Subtotal Price
+    let sum = 0;
+    $(".total_price").each(function () {
+      let totalPrice = $(this).text();
+      totalPrice = parseInt(totalPrice);
+      sum += isNaN(totalPrice) ? 0 : totalPrice;
+    });
+    let subTotal = sum.toFixed(2);
+    $("#sub_total").text("Sub Total: " + subTotal);
+  }
 });
