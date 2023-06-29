@@ -170,9 +170,8 @@ $(document).ready(function () {
   });
 
   //Listening the Product Search Field
-
+  let debounceTimer;
   $(document).on("input", "#product_search", function (e) {
-    let debounceTimer;
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(function () {
       let inputValue = e.target.value;
@@ -213,11 +212,12 @@ $(document).ready(function () {
           console.log("completed");
         },
       });
-    }, 100);
+    }, 300);
   });
 
   // Listening The Add prodcut Button and Add product to the Invoice
   $(document).on("click", ".add_product", function (e) {
+    let addButton = e.target;
     let productId = e.target.value;
     $.ajax({
       url: "pages/get_product_info.php",
@@ -227,23 +227,23 @@ $(document).ready(function () {
         product_id: productId,
       },
       beforeSend: function () {
-        console.log("sending");
+        addButton.innerText = "Loading";
       },
       success: function (response) {
         $("#sales_order_table").append(`
         <tr>
-            <td>ST013</td>
+            <td>${response.sku}</td>
             <td>${response.product_name}</td>
             <td><img style="width: 30px" src="uploads/images/${response.product_image}">
             </td>
             <td>Stock</td>
-            <td class="quantity"><input class="form-control" style="width:50px" type="number" value="1"></td>
+            <td class="quantity"><input class="form-control" style="width:60px" type="number" value="1"></td>
             <td class="selling_price">${response.selling_price}</td>
             <td class="total_price">${response.selling_price}</td>
-            <td class="delete_row"><i class="fa-solid fa-x" style="color:red"></i></td>
+            <td><i class="delete_row fa-solid fa-x" style="color:red"></i></td>
         </tr>
         `);
-
+        addButton.innerText = "ADD";
         calSubTotal();
       },
       error: function () {
@@ -262,6 +262,7 @@ $(document).ready(function () {
     let totalPrice = quantity * price;
     let totalElement = e.target.parentNode.parentNode.querySelector(".total_price");
     totalElement.innerText = totalPrice.toFixed(2);
+    calSubTotal();
   });
 
   //Listing the Delete Row and Delete the data
@@ -281,6 +282,95 @@ $(document).ready(function () {
       sum += isNaN(totalPrice) ? 0 : totalPrice;
     });
     let subTotal = sum.toFixed(2);
-    $("#sub_total").text("Sub Total: " + subTotal);
+    $("#sub_total").text("Sub Total: " + subTotal + " Tk.");
+  }
+
+  //listening the customer phone for retriving customer data
+  $(document).on("keyup", ".customer_phone", function () {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function () {
+      let phoneNumber = $(".customer_phone").val();
+      $.ajax({
+        url: "pages/get_customerInfo.php",
+        method: "POST",
+        data: {
+          customer_search: phoneNumber,
+        },
+        dataType: "json",
+        beforeSend: function () {},
+        success: function (response) {
+          let matchCount = response.length;
+          if (matchCount === 1) {
+            $("#customer_match_count").text("Customer Match Found");
+            addDisabledAttr();
+
+            $("form").find(".form-control").attr("style", "border: 1px solid green");
+            $("input[name='customer_phone']").eq(0).val(response[0].customer_phone);
+            $("input[name='customer_id'").val(response[0].customer_id);
+            $("input[name='customer_name'").val(response[0].customer_name);
+            $("input[name='customer_email'").val(response[0].customer_email);
+            $("input[name='customer_address'").val(response[0].customer_address);
+          } else if (matchCount === 10) {
+            //remove green border style
+            $("form").find(".form-control").removeAttr("style");
+            addDisabledAttr();
+            removeInputValue();
+            changeDisabledPlaceholderText();
+            //Writing matched data
+            $("#customer_match_count").text("More than 10 Matches Found");
+          } else if (matchCount === 0) {
+            $("#customer_match_count").text("No match Enter Customer Data");
+            //remove green border style
+            $("form").find(".form-control").removeAttr("style");
+
+            removeDisabledInput();
+            changeEnterPlaceholderText();
+            removeInputValue();
+          } else {
+            $("#customer_match_count").text(matchCount + " Matches Found");
+            removeInputValue();
+            changeDisabledPlaceholderText();
+          }
+        },
+        error: function () {},
+      });
+    }, 300);
+  });
+
+  //fucntion defination for customer data retriving
+
+  function removeDisabledInput() {
+    // removing disabled input
+    $("form").find(".form-control").not(":eq(1)").removeAttr("disabled");
+  }
+  function changeEnterPlaceholderText() {
+    // Changing placeholder text
+    $("input[name='customer_phone'").attr("placeholder", "Enter Customer Phone");
+    $("input[name='customer_id'").attr("placeholder", "Customer ID will be generated");
+    $("input[name='customer_name'").attr("placeholder", "Enter Customer Name");
+    $("input[name='customer_email'").attr("placeholder", "Enter Customer Email");
+    $("input[name='customer_address'").attr("placeholder", "Enter Customer Address");
+  }
+  function changeDisabledPlaceholderText() {
+    // Changing placeholder text
+    $("input[name='customer_phone'").attr("placeholder", "Enter Customer Phone");
+    $("input[name='customer_id'").attr("placeholder", "ID will be loaded");
+    $("input[name='customer_name'").attr("placeholder", "Name will be loaded");
+    $("input[name='customer_email'").attr("placeholder", "Email will be loaded");
+    $("input[name='customer_address'").attr("placeholder", "Address will be loaded");
+  }
+  function addDisabledAttr() {
+    //Adding disabled attribute
+    $("input[name='customer_id']").attr("disabled", "");
+    $("input[name='customer_name']").attr("disabled", "");
+    $("input[name='customer_email']").attr("disabled", "");
+    $("input[name='customer_address']").attr("disabled", "");
+  }
+  function removeInputValue() {
+    //removing input value
+    $("input[name='customer_id'").val("");
+    $("input[name='customer_name'").val("");
+    $("input[name='customer_email'").val("");
+    $("input[name='customer_address'").val("");
   }
 });

@@ -11,32 +11,38 @@ $result = $con->query($sql);
     <div class="col-md-6">
         <div class="form-body container">
             <h4>Create Order</h4>
+            <h5 style="text-align:right; font-size: 16px" id="customer_match_count"></h5>
             <form action="">
                 <div class=" row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="">Customer ID:</label>
-                            <input class="form-control" type="text" placeholder="Enter Customer Name">
+                            <label for="">Search by Customer Phone:</label>
+                            <input class="form-control customer_phone" type="text" placeholder="Enter Customer Phone"
+                                name="customer_phone">
                         </div>
                         <div class="form-group">
-                            <label for="">Customer Name:</label>
-                            <input class="form-control" type="text" placeholder="Enter Customer Name">
+                            <label for="">Customer ID:</label>
+                            <input class="form-control" type="text" placeholder="ID will be loaded" disabled
+                                name="customer_id">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="">Customer Phone:</label>
-                            <input class="form-control" type="text" placeholder="Enter Customer Name">
+                            <label for="">Customer Name:</label>
+                            <input class="form-control" type="text" placeholder="Name will be loaded" disabled
+                                name="customer_name">
                         </div>
                         <div class="form-group">
                             <label for="">Customer Email:</label>
-                            <input class="form-control" type="text" placeholder="Enter Customer Name">
+                            <input class="form-control" type="text" placeholder="Email will be loaded" disabled
+                                name="customer_email">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="">Customer Address:</label>
-                    <input class="form-control" type="text" placeholder="Enter Customer Name">
+                    <input class="form-control" type="text" placeholder="Address will be loaded" disabled
+                        name="customer_address">
                 </div>
                 <div class="form-group">
                     <label for="">Sales Order</label><br>
@@ -82,7 +88,7 @@ $result = $con->query($sql);
                             </table>
                             <div
                                 style="text-align: right;background-color: var(--secondary-color); color:white; padding: 2px 10px">
-                                <h5 id="sub_total">Sub Total: 00.00</h5>
+                                <h5 id="sub_total">Sub Total: 00.00 Tk.</h5>
                             </div>
                         </div>
                     </div><br>

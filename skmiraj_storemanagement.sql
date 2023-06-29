@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 19, 2023 at 01:11 AM
+-- Generation Time: Jun 28, 2023 at 08:14 AM
 -- Server version: 8.0.33
 -- PHP Version: 8.2.6
 
@@ -31,7 +31,7 @@ CREATE TABLE `brands` (
   `brand_id` int NOT NULL,
   `brand_name` varchar(50) DEFAULT NULL,
   `brand_status` int NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `brands`
@@ -41,7 +41,9 @@ INSERT INTO `brands` (`brand_id`, `brand_name`, `brand_status`) VALUES
 (20, 'Tecno', 0),
 (21, 'Apple', 1),
 (22, 'Tecno', 1),
-(26, 'Apple2', 1);
+(26, 'Apple2', 0),
+(27, 'Hatil', 1),
+(28, 'Miayako', 1);
 
 -- --------------------------------------------------------
 
@@ -55,7 +57,7 @@ CREATE TABLE `b_order_purchase` (
   `product_id` int DEFAULT NULL,
   `quantity` int DEFAULT NULL,
   `buying_price` decimal(10,2) DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -67,14 +69,15 @@ CREATE TABLE `categories` (
   `category_id` int NOT NULL,
   `category_name` varchar(50) DEFAULT NULL,
   `category_status` int DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`category_id`, `category_name`, `category_status`) VALUES
-(1, 'Electronics', 1);
+(1, 'Electronics', 1),
+(4, 'House Hold', 1);
 
 -- --------------------------------------------------------
 
@@ -104,7 +107,7 @@ CREATE TABLE `customers` (
   `customer_phone` varchar(20) DEFAULT NULL,
   `customer_email` varchar(100) DEFAULT NULL,
   `customer_status` int NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `customers`
@@ -1127,7 +1130,9 @@ INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_address`, `cu
 (1048, 'Linus Ezele', '4681 Red Cloud Lane', '944-125-3460', 'lezelero@quantcast.com', 0),
 (1049, 'Beckie Maharg', '43296 Brentwood Pass', '784-841-9043', 'bmahargrp@netlog.com', 0),
 (1050, 'Conni Hegel', '0 Hanson Court', '173-706-4171', 'chegelrq@bigcartel.com', 0),
-(1051, 'Leonelle Ehrat', '79956 Talmadge Point', '627-509-2294', 'lehratrr@columbia.edu', 1);
+(1051, 'lehratrrs', '79956 Talmadge Point', '627-509-2294', 'lehratrrs@columbia.edu', 1),
+(1053, '', '', '', '', 0),
+(1054, '', '', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -1138,7 +1143,7 @@ INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_address`, `cu
 CREATE TABLE `inventory` (
   `product_id` int NOT NULL,
   `stock` decimal(10,2) DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -1149,33 +1154,38 @@ CREATE TABLE `inventory` (
 CREATE TABLE `products` (
   `product_id` int NOT NULL,
   `category_id` int DEFAULT NULL,
+  `sub_category_id` int NOT NULL,
   `brand_id` int DEFAULT NULL,
   `product_name` varchar(50) DEFAULT NULL,
   `description` text,
   `product_image` varchar(100) DEFAULT NULL,
   `unit_id` int DEFAULT NULL,
   `selling_price` decimal(10,2) DEFAULT NULL,
-  `sku` varchar(50)  DEFAULT NULL,
+  `sku` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `product_status` int DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `category_id`, `brand_id`, `product_name`, `description`, `product_image`, `unit_id`, `selling_price`, `sku`, `product_status`) VALUES
-(27, 25, 1, 'dfg', 'fdg', 'product_1686830292_60952360.jpg', 4, 546.00, 'df', 1),
-(28, 42, 2, 'df', 'hgjj', 'product_1686831036_93997623.png', 2, 45.00, 'df', 1),
-(29, 25, 3, 'gj', '456', 'product_1686831068_92104249.jpg', 2, 4566.00, 'hgjj', 1),
-(30, 4, 1, 'Hiena', 'fg', 'product_1686986198_49435360.jpg', 2, 456.00, 'hgj', 1),
-(31, 25, 1, 'Kaka', 'dfg', 'product_1686912240_65137869.png', 3, 66.00, 'dfg', 1),
-(32, 25, 1, 'sdg', 'dfgg', '', 3, 745.00, 'dg', 1),
-(33, 43, 3, 'Remote Control', 'This is product description.', 'product_1687008603_1360772.jpg', 2, 565.00, 'sdf', 1),
-(34, 43, 3, 'Remote Control', 'This is product description.', 'product_1687008603_92104463.jpg', 2, 565.00, 'sdf', 0),
-(35, 4, 1, 'wdgdfg', '455', '', 2, 455.00, 'dsg', 0),
-(36, 4, 1, 'wdgdfg', '455', '', 2, 455.00, 'dsg', 0),
-(37, 4, 2, 'sdg', 'dgg', '', 2, 45.00, 'sdg', 0),
-(38, 1, 20, 'mosharrof', 'sdfrwef', 'product_1687150578_53277753.jpg', 1, 5656.00, '56365', 1);
+INSERT INTO `products` (`product_id`, `category_id`, `sub_category_id`, `brand_id`, `product_name`, `description`, `product_image`, `unit_id`, `selling_price`, `sku`, `product_status`) VALUES
+(27, 25, 1, 1, 'dfg', 'fdg', 'product_1686830292_60952360.jpg', 4, 546.00, 'df', 1),
+(28, 42, 1, 2, 'df', 'hgjj', 'product_1686831036_93997623.png', 2, 45.00, 'df', 1),
+(29, 25, 1, 3, 'gj', '456', 'product_1686831068_92104249.jpg', 2, 4566.00, 'hgjj', 1),
+(30, 4, 1, 1, 'Hiena', 'fg', 'product_1686986198_49435360.jpg', 2, 456.00, 'hgj', 1),
+(31, 25, 1, 1, 'Kaka', 'dfg', 'product_1686912240_65137869.png', 3, 66.00, 'dfg', 1),
+(32, 25, 1, 1, 'sdg', 'dfgg', '', 3, 745.00, 'dg', 1),
+(33, 43, 1, 3, 'Remote Control', 'This is product description.', 'product_1687008603_1360772.jpg', 2, 565.00, 'sdf', 1),
+(34, 43, 1, 3, 'Remote Control', 'This is product description.', 'product_1687008603_92104463.jpg', 2, 565.00, 'sdf', 0),
+(35, 4, 1, 1, 'wdgdfg', '455', '', 2, 455.00, 'dsg', 0),
+(36, 4, 1, 1, 'wdgdfg', '455', '', 2, 455.00, 'dsg', 0),
+(37, 4, 1, 2, 'sdg', 'dgg', '', 2, 45.00, 'sdg', 0),
+(38, 1, 1, 20, 'mosharrof', 'sdfrwef', 'product_1687150578_53277753.jpg', 1, 5656.00, '56365', 1),
+(39, 1, 1, 21, 'iphone 6', '', 'product_1687324824_7653781.png', 3, 8000.00, '5555', 1),
+(40, 1, 1, 21, 'iphone 6', '', 'product_1687876991_93967479.jpg', 2, 8000.00, '123456', 1),
+(41, 1, 3, 21, '22 Inch Monitor', 'This is a monitor.', 'product_1687791994_67629988.jpeg', 1, 25000.00, '5465', 1),
+(42, 4, 8, 28, 'Fry Pan', 'This is Fry pan.', 'product_1687793912_67568174.jpeg', 1, 1100.00, '456', 1);
 
 -- --------------------------------------------------------
 
@@ -1184,19 +1194,25 @@ INSERT INTO `products` (`product_id`, `category_id`, `brand_id`, `product_name`,
 -- (See below for the actual view)
 --
 CREATE TABLE `product_information` (
-`product_id` int
-,`category_id` int
+`unit_id` int
 ,`brand_id` int
+,`category_id` int
+,`sub_category_id` int
+,`product_id` int
 ,`product_name` varchar(50)
 ,`description` text
 ,`product_image` varchar(100)
-,`unit_id` int
 ,`selling_price` decimal(10,2)
 ,`sku` varchar(50)
 ,`product_status` int
 ,`category_name` varchar(50)
+,`category_status` int
+,`sub_category_name` varchar(50)
+,`sub_category_status` int
 ,`brand_name` varchar(50)
-,`unit` varchar(50)
+,`brand_status` int
+,`unit_name` varchar(50)
+,`unit_status` int
 );
 
 -- --------------------------------------------------------
@@ -1208,8 +1224,8 @@ CREATE TABLE `product_information` (
 CREATE TABLE `purchase_order` (
   `purchase_order_id` int NOT NULL,
   `user_id` int DEFAULT NULL,
-  `time_stamp` datetime DEFAULT NULL
-) ;
+  `time_stamp` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -1220,7 +1236,7 @@ CREATE TABLE `purchase_order` (
 CREATE TABLE `roles` (
   `role_id` int NOT NULL,
   `role_name` varchar(50) DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `roles`
@@ -1237,10 +1253,10 @@ INSERT INTO `roles` (`role_id`, `role_name`) VALUES
 --
 
 CREATE TABLE `sales_order` (
-  `order_id` int NOT NULL,
+  `sales_order_id` int NOT NULL,
   `customer_id` int DEFAULT NULL,
-  `time_stamp` datetime DEFAULT NULL
-) ;
+  `time_stamp` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -1253,7 +1269,7 @@ CREATE TABLE `sub_categories` (
   `sub_category_name` varchar(50) DEFAULT NULL,
   `category_id` int DEFAULT NULL,
   `sub_category_status` int NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `sub_categories`
@@ -1261,7 +1277,12 @@ CREATE TABLE `sub_categories` (
 
 INSERT INTO `sub_categories` (`sub_category_id`, `sub_category_name`, `category_id`, `sub_category_status`) VALUES
 (1, 'Phone', 1, 1),
-(2, 'Tv', 1, 1);
+(2, 'Tv', 1, 1),
+(3, 'Mobile', 1, 1),
+(4, 'Akiz', 1, 1),
+(5, 'BingBong', 1, 1),
+(8, 'Cooking', 4, 1),
+(9, 'Furniture', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -1271,10 +1292,10 @@ INSERT INTO `sub_categories` (`sub_category_id`, `sub_category_name`, `category_
 
 CREATE TABLE `s_order_product` (
   `s_order_product_id` int NOT NULL,
-  `order_id` int DEFAULT NULL,
+  `sales_order_id` int DEFAULT NULL,
   `product_id` int DEFAULT NULL,
   `quantity` int DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -1284,18 +1305,19 @@ CREATE TABLE `s_order_product` (
 
 CREATE TABLE `units` (
   `unit_id` int NOT NULL,
-  `unit` varchar(50) DEFAULT NULL
-) ;
+  `unit_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `unit_status` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `units`
 --
 
-INSERT INTO `units` (`unit_id`, `unit`) VALUES
-(1, 'pc'),
-(2, 'kg'),
-(3, 'size'),
-(4, 'color');
+INSERT INTO `units` (`unit_id`, `unit_name`, `unit_status`) VALUES
+(1, 'pc', 1),
+(2, 'kg', 1),
+(3, 'size', 1),
+(4, 'color', 1);
 
 -- --------------------------------------------------------
 
@@ -1305,27 +1327,30 @@ INSERT INTO `units` (`unit_id`, `unit`) VALUES
 
 CREATE TABLE `users` (
   `user_id` int NOT NULL,
-  `user_name` varchar(30)  DEFAULT NULL,
-  `user_username` varchar(50)  DEFAULT NULL,
-  `user_email` varchar(50)  DEFAULT NULL,
-  `user_phone` varchar(20)  DEFAULT NULL,
-  `user_password` varchar(50)  DEFAULT NULL,
+  `user_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `user_username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `user_email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `user_phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `user_password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `role_id` int DEFAULT NULL,
-  `user_status` varchar(50)  DEFAULT NULL,
+  `user_status` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `user_image` varchar(100) DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_username`, `user_email`, `user_phone`, `user_password`, `role_id`, `user_status`, `user_image`) VALUES
-(20, 'Md Mosharof', 'Mosharof', 'info@gmail.com', '01723629080', '123', 1, NULL, 'images.jpeg'),
+(20, 'Md Mosharof', 'Md Mosharof', 'Md Mosharof', '465465', '123', 1, NULL, 'user_1687325732_8174664.png'),
 (22, 'Ali Hasan', 'dbhasan', 'info@gmail.com', '01723629080', '123', 1, NULL, 'images.jpeg'),
-(23, 'Miraj', 'skmiraj', 'info@gmail.com', '01723629080', '123', 1, NULL, 'images.jpeg'),
+(23, 'Miraj', 'Miraj', 'Miraj', '3241687854', '123', 1, NULL, 'user_1687428656_2708711.png'),
 (24, 'Alamin', 'alamin', 'info@gmail.com', '01723629080', '123', 1, NULL, 'images.jpeg'),
 (25, 'khaleda', 'khaleda', 'info@gmail.com', '01723629080', '123', 1, NULL, 'images.jpeg'),
-(28, 'ali Hasan', 'hasan', 'info.@yahoo.com', '1234656', '123', 6, NULL, 'user_1687144868_4653125.jpg');
+(28, 'Md Mosarof', 'Md Mosarof', 'Md Mosarof', '546854124', '123', 6, NULL, 'user_1687293882_3155576.png'),
+(29, 'Ali Hasan', 'Ali Hasan', 'Ali Hasan', '2315345154', '123', 1, NULL, 'user_1687324573_7040000.png'),
+(30, 'Hasan', 'Ali Hasan', 'Ali Hasan', '8546546314', '123', 1, NULL, 'user_1687324664_3108720.png'),
+(31, 'Ali Hasan', 'Ali Hasan', 'Ali Hasan', '8653453', '12', 6, NULL, 'user_1687325872_7142194.png');
 
 -- --------------------------------------------------------
 
@@ -1343,7 +1368,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`skmiraj`@`%` SQL SECURITY DEFINER VIEW `cate
 --
 DROP TABLE IF EXISTS `product_information`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`skmiraj`@`%` SQL SECURITY DEFINER VIEW `product_information`  AS SELECT `p`.`product_id` AS `product_id`, `p`.`category_id` AS `category_id`, `p`.`brand_id` AS `brand_id`, `p`.`product_name` AS `product_name`, `p`.`description` AS `description`, `p`.`product_image` AS `product_image`, `p`.`unit_id` AS `unit_id`, `p`.`selling_price` AS `selling_price`, `p`.`sku` AS `sku`, `p`.`product_status` AS `product_status`, `c`.`category_name` AS `category_name`, `b`.`brand_name` AS `brand_name`, `u`.`unit` AS `unit` FROM (((`products` `p` join `categories` `c` on((`p`.`category_id` = `c`.`category_id`))) join `brands` `b` on((`p`.`brand_id` = `b`.`brand_id`))) join `units` `u` on((`p`.`unit_id` = `u`.`unit_id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`skmiraj`@`%` SQL SECURITY DEFINER VIEW `product_information`  AS SELECT `products`.`unit_id` AS `unit_id`, `products`.`brand_id` AS `brand_id`, `products`.`category_id` AS `category_id`, `products`.`sub_category_id` AS `sub_category_id`, `products`.`product_id` AS `product_id`, `products`.`product_name` AS `product_name`, `products`.`description` AS `description`, `products`.`product_image` AS `product_image`, `products`.`selling_price` AS `selling_price`, `products`.`sku` AS `sku`, `products`.`product_status` AS `product_status`, `categories`.`category_name` AS `category_name`, `categories`.`category_status` AS `category_status`, `sub_categories`.`sub_category_name` AS `sub_category_name`, `sub_categories`.`sub_category_status` AS `sub_category_status`, `brands`.`brand_name` AS `brand_name`, `brands`.`brand_status` AS `brand_status`, `units`.`unit_name` AS `unit_name`, `units`.`unit_status` AS `unit_status` FROM ((((`products` join `categories` on((`products`.`category_id` = `categories`.`category_id`))) join `sub_categories` on(((`products`.`category_id` = `sub_categories`.`category_id`) and (`products`.`sub_category_id` = `sub_categories`.`sub_category_id`)))) join `brands` on((`products`.`brand_id` = `brands`.`brand_id`))) join `units` on((`products`.`unit_id` = `units`.`unit_id`))) ;
 
 --
 -- Indexes for dumped tables
@@ -1408,7 +1433,7 @@ ALTER TABLE `roles`
 -- Indexes for table `sales_order`
 --
 ALTER TABLE `sales_order`
-  ADD PRIMARY KEY (`order_id`),
+  ADD PRIMARY KEY (`sales_order_id`),
   ADD KEY `customer_id` (`customer_id`);
 
 --
@@ -1423,7 +1448,7 @@ ALTER TABLE `sub_categories`
 --
 ALTER TABLE `s_order_product`
   ADD PRIMARY KEY (`s_order_product_id`),
-  ADD KEY `order_id` (`order_id`),
+  ADD KEY `order_id` (`sales_order_id`),
   ADD KEY `product_id` (`product_id`);
 
 --
@@ -1447,7 +1472,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `brand_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `brand_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `b_order_purchase`
@@ -1459,13 +1484,13 @@ ALTER TABLE `b_order_purchase`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1053;
+  MODIFY `customer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1057;
 
 --
 -- AUTO_INCREMENT for table `inventory`
@@ -1477,7 +1502,7 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `purchase_order`
@@ -1495,13 +1520,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `sales_order`
 --
 ALTER TABLE `sales_order`
-  MODIFY `order_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `sales_order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
-  MODIFY `sub_category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sub_category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `s_order_product`
@@ -1519,7 +1544,7 @@ ALTER TABLE `units`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Constraints for dumped tables
@@ -1562,7 +1587,7 @@ ALTER TABLE `sub_categories`
 -- Constraints for table `s_order_product`
 --
 ALTER TABLE `s_order_product`
-  ADD CONSTRAINT `s_order_product_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `sales_order` (`order_id`),
+  ADD CONSTRAINT `s_order_product_ibfk_1` FOREIGN KEY (`sales_order_id`) REFERENCES `sales_order` (`sales_order_id`),
   ADD CONSTRAINT `s_order_product_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
 
 --
