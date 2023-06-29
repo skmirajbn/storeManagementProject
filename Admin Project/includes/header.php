@@ -33,7 +33,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">DashBoard</a>
+                <a class="nav-link active" aria-current="page" data-disabled="true" href="index.php">DashBoard</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="pages/create_order.php">Create Order</a>

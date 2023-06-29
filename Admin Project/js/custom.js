@@ -135,34 +135,34 @@ $(document).ready(function () {
 
   //Create order Section
 
-  // Add product
-  $(document).on("click", "#addProductBtn", function (event) {
-    event.preventDefault();
-    let productContainer = $(".product_container");
-    let index = productContainer.children().length + 1;
+  // // Add product
+  // $(document).on("click", "#addProductBtn", function (event) {
+  //   event.preventDefault();
+  //   let productContainer = $(".product_container");
+  //   let index = productContainer.children().length + 1;
 
-    let productEntry = $("<div>").addClass("product_entry");
+  //   let productEntry = $("<div>").addClass("product_entry");
 
-    productEntry.html(`
-    <label for="sku${index}">SKU:</label>
-    <input style="display: inline-block;width: 100px;" class="form-control sku-input" type="text"
-        placeholder="SKU" id="sku${index}" name="sku[${index}]">
-    <label for="product${index}">Name:</label>
-    <input style="display: inline-block;width: 250px;" class="form-control product-input" type="text"
-        placeholder="Enter Product Name" id="product${index}" name="product[${index}]">
-    <label for="quantity${index}">Quantity :</label>
-    <input style="display: inline-block;width: 100px;" class="form-control" type="text"
-        placeholder="Quantity" id="quantity${index}"> <span>&nbsp; &nbsp;</span>
-    <span style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">--</span>
-    <span style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">Per pc:
-        --</span>
-    <span style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">Total:
-        --</span>
-    <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-    `);
+  //   productEntry.html(`
+  //   <label for="sku${index}">SKU:</label>
+  //   <input style="display: inline-block;width: 100px;" class="form-control sku-input" type="text"
+  //       placeholder="SKU" id="sku${index}" name="sku[${index}]">
+  //   <label for="product${index}">Name:</label>
+  //   <input style="display: inline-block;width: 250px;" class="form-control product-input" type="text"
+  //       placeholder="Enter Product Name" id="product${index}" name="product[${index}]">
+  //   <label for="quantity${index}">Quantity :</label>
+  //   <input style="display: inline-block;width: 100px;" class="form-control" type="text"
+  //       placeholder="Quantity" id="quantity${index}"> <span>&nbsp; &nbsp;</span>
+  //   <span style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">--</span>
+  //   <span style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">Per pc:
+  //       --</span>
+  //   <span style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">Total:
+  //       --</span>
+  //   <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+  //   `);
 
-    productContainer.append(productEntry);
-  });
+  //   productContainer.append(productEntry);
+  // });
 
   // Remove product
   $(document).on("click", ".removeProduct", function () {
@@ -198,7 +198,7 @@ $(document).ready(function () {
                         <h5 class="card-title small">
                         ${p.product_name}
                         </h5>
-                        <button class="add_product btn d-block mx-auto w-100 mybtn-hightlight"
+                        <button class="add_product btn d-block mx-auto w-100 mybtn-hightlight" data-sku="${p.sku}" data-sellingPrice="${p.selling_price}"
                             value="${p.product_id}">ADD</button>
                     </div>
                 </div>
@@ -217,42 +217,62 @@ $(document).ready(function () {
 
   // Listening The Add prodcut Button and Add product to the Invoice
   $(document).on("click", ".add_product", function (e) {
+    let productName = e.target.parentNode.parentNode.querySelector(".card-title").innerText;
     let addButton = e.target;
     let productId = e.target.value;
-    $.ajax({
-      url: "pages/get_product_info.php",
-      method: "POST",
-      dataType: "json",
-      data: {
-        product_id: productId,
-      },
-      beforeSend: function () {
-        addButton.innerText = "Loading";
-      },
-      success: function (response) {
-        $("#sales_order_table").append(`
-        <tr>
-            <td>${response.sku}</td>
-            <td>${response.product_name}</td>
-            <td><img style="width: 30px" src="uploads/images/${response.product_image}">
-            </td>
-            <td>Stock</td>
-            <td class="quantity"><input class="form-control" style="width:60px" type="number" value="1"></td>
-            <td class="selling_price">${response.selling_price}</td>
-            <td class="total_price">${response.selling_price}</td>
-            <td><i class="delete_row fa-solid fa-x" style="color:red"></i></td>
-        </tr>
-        `);
-        addButton.innerText = "ADD";
-        calSubTotal();
-      },
-      error: function () {
-        console.log("error");
-      },
-      complete: function () {
-        console.log("completed");
-      },
-    });
+    let sku = e.target.getAttribute("data-sku");
+    console.log("sku");
+    let selling_price = e.target.getAttribute("data-sellingPrice");
+    let productImage = e.target.parentNode.parentNode.querySelector("img").getAttribute("src");
+    console.log(productImage);
+    $("#sales_order_table").append(`
+    <tr>
+             <td>${sku}</td>
+             <td>${productName}</td>
+             <td><img style="width: 30px" src="${productImage}">
+             </td>
+             <td>Stock</td>
+             <td class="quantity"><input class="form-control" style="width:60px" type="number" value="1"></td>
+             <td class="selling_price">${selling_price}</td>
+             <td class="total_price">${selling_price}</td>
+             <td><i class="delete_row fa-solid fa-x" style="color:red"></i></td>
+         </tr>
+       `);
+
+    // $.ajax({
+    //   url: "pages/get_product_info.php",
+    //   method: "POST",
+    //   dataType: "json",
+    //   data: {
+    //     product_id: productId,
+    //   },
+    //   beforeSend: function () {
+    //     addButton.innerText = "Loading";
+    //   },
+    //   success: function (response) {
+    //     $("#sales_order_table").append(`
+    //     <tr>
+    //         <td>${response.sku}</td>
+    //         <td>${response.product_name}</td>
+    //         <td><img style="width: 30px" src="uploads/images/${response.product_image}">
+    //         </td>
+    //         <td>Stock</td>
+    //         <td class="quantity"><input class="form-control" style="width:60px" type="number" value="1"></td>
+    //         <td class="selling_price">${response.selling_price}</td>
+    //         <td class="total_price">${response.selling_price}</td>
+    //         <td><i class="delete_row fa-solid fa-x" style="color:red"></i></td>
+    //     </tr>
+    //     `);
+    //     addButton.innerText = "ADD";
+    //     calSubTotal();
+    //   },
+    //   error: function () {
+    //     console.log("error");
+    //   },
+    //   complete: function () {
+    //     console.log("completed");
+    //   },
+    // });
   });
 
   //Listing Quantity and Total price Calculation
