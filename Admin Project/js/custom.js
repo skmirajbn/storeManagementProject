@@ -165,9 +165,9 @@ $(document).ready(function () {
   // });
 
   // Remove product
-  $(document).on("click", ".removeProduct", function () {
-    $(this).closest(".product_entry").remove();
-  });
+  // $(document).on("click", ".removeProduct", function () {
+  //   $(this).closest(".product_entry").remove();
+  // });
 
   //Listening the Product Search Field
   let debounceTimer;
@@ -188,7 +188,6 @@ $(document).ready(function () {
         success: function (response) {
           $(".products_group").empty();
           productObj = JSON.parse(response);
-          console.log(productObj);
           productObj.forEach(function (p) {
             $(".products_group").append(`
           <div class="card product d-inline-block p-1" style="width: 10rem">
@@ -198,6 +197,10 @@ $(document).ready(function () {
                         <h5 class="card-title small">
                         ${p.product_name}
                         </h5>
+                        <h6>
+                            <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                            ${p.selling_price}
+                        </h6>
                         <button class="add_product btn d-block mx-auto w-100 mybtn-hightlight" data-sku="${p.sku}" data-sellingPrice="${p.selling_price}"
                             value="${p.product_id}">ADD</button>
                     </div>
@@ -218,11 +221,10 @@ $(document).ready(function () {
   // Listening The Add prodcut Button and Add product to the Invoice
   $(document).on("click", ".add_product", function (e) {
     let productName = e.target.parentNode.parentNode.querySelector(".card-title").innerText;
-    let addButton = e.target;
     let productId = e.target.value;
     let sku = e.target.getAttribute("data-sku");
-    console.log("sku");
     let selling_price = e.target.getAttribute("data-sellingPrice");
+    selling_price = selling_price.toLocaleString("en-IN", { maximumFractionDigits: 2 });
     let productImage = e.target.parentNode.parentNode.querySelector("img").getAttribute("src");
     console.log(productImage);
     $("#sales_order_table").append(`
@@ -236,6 +238,7 @@ $(document).ready(function () {
              <td class="selling_price">${selling_price}</td>
              <td class="total_price">${selling_price}</td>
              <td><i class="delete_row fa-solid fa-x" style="color:red"></i></td>
+             <input type="hidden" value ="${productId}" name="productId[]">
          </tr>
        `);
     calSubTotal();
@@ -302,7 +305,7 @@ $(document).ready(function () {
       totalPrice = parseInt(totalPrice);
       sum += isNaN(totalPrice) ? 0 : totalPrice;
     });
-    let subTotal = sum.toFixed(2);
+    let subTotal = sum.toLocaleString("en-IN", { maximumFractionDigits: 2 });
     $("#sub_total").text("Sub Total: " + subTotal + " Tk.");
   }
 

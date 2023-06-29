@@ -205,6 +205,8 @@ a:hover {
 .content {
   margin: 0;
   padding: 0;
+  height: 90vh;
+  overflow: scroll;
 }
 
 /* content end */

@@ -97,6 +97,7 @@ $result = $con->query($sql);
                 </div><br>
                 <input type="submit" class="mybtn-hightlight btn" value="Create Order">
             </form>
+            <div class=".response"></div>
         </div>
     </div>
     <div class="col-md-6 p-4" style="background: #f1f1f1;">
@@ -111,6 +112,11 @@ $result = $con->query($sql);
                         <h5 class="card-title small">
                             <?= $data['product_name'] ?>
                         </h5>
+                        <h6>
+                            <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                            <?= $data['selling_price'] ?>
+                        </h6>
+
                         <button class="add_product btn d-block mx-auto w-100 mybtn-hightlight"
                             value="<?= $data['product_id'] ?>" data-sku="<?= $data['sku'] ?>"
                             data-sellingPrice="<?= $data['selling_price'] ?>">ADD</button>
