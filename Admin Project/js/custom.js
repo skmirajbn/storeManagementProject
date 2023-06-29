@@ -238,6 +238,7 @@ $(document).ready(function () {
              <td><i class="delete_row fa-solid fa-x" style="color:red"></i></td>
          </tr>
        `);
+    calSubTotal();
 
     // $.ajax({
     //   url: "pages/get_product_info.php",
