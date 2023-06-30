@@ -60,7 +60,9 @@ $(document).ready(function () {
     let loading = $("#loading");
     let responseContainer = $("#response");
     responseContainer.html("Submitting...");
-
+    for (const entry of formData.entries()) {
+      console.log(entry[0], entry[1]);
+    }
     $.ajax({
       url: "formServer.php",
       type: "POST",
@@ -234,7 +236,7 @@ $(document).ready(function () {
              <td><img style="width: 30px" src="${productImage}">
              </td>
              <td>Stock</td>
-             <td class="quantity"><input class="form-control" style="width:60px" type="number" value="1"></td>
+             <td class="quantity"><input class="form-control" style="width:60px" type="number" value="1" name="quantity[]"></td>
              <td class="selling_price">${selling_price}</td>
              <td class="total_price">${selling_price}</td>
              <td><i class="delete_row fa-solid fa-x" style="color:red"></i></td>
@@ -321,8 +323,13 @@ $(document).ready(function () {
           customer_search: phoneNumber,
         },
         dataType: "json",
-        beforeSend: function () {},
+        beforeSend: function () {
+          $("input[type='submit']").attr("disabled", "");
+        },
         success: function (response) {
+          //removing  Customer data from the form
+          $("input[name='existing_customer']").remove();
+
           let matchCount = response.length;
           if (matchCount === 1) {
             $("#customer_match_count").text("Customer Match Found");
@@ -334,6 +341,7 @@ $(document).ready(function () {
             $("input[name='customer_name'").val(response[0].customer_name);
             $("input[name='customer_email'").val(response[0].customer_email);
             $("input[name='customer_address'").val(response[0].customer_address);
+            $("form").prepend("<input type='hidden' name='existing_customer'>");
           } else if (matchCount === 10) {
             //remove green border style
             $("form").find(".form-control").removeAttr("style");
@@ -346,7 +354,6 @@ $(document).ready(function () {
             $("#customer_match_count").text("No match Enter Customer Data");
             //remove green border style
             $("form").find(".form-control").removeAttr("style");
-
             removeDisabledInput();
             changeEnterPlaceholderText();
             removeInputValue();
@@ -355,6 +362,8 @@ $(document).ready(function () {
             removeInputValue();
             changeDisabledPlaceholderText();
           }
+
+          $("input[type='submit']").removeAttr("disabled");
         },
         error: function () {},
       });

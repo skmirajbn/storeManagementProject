@@ -311,6 +311,14 @@ th {
 }
 
 /* Create order page Start */
+.card-title {
+  height: 45px;
+  text-overflow: ellipsis;
+}
+.card-body {
+  padding: 5px;
+}
+
 .product {
   margin-bottom: 10px;
 }

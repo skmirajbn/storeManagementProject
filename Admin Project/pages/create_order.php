@@ -91,13 +91,14 @@ $result = $con->query($sql);
                                 <h5 id="sub_total">Sub Total: 00.00 Tk.</h5>
                             </div>
                         </div>
-                    </div><br>
+                    </div>
                     <!-- <button style="text-align: right;" class="btn btn-success" id="addProductBtn"><i
                             class="fa-solid fa-plus"></i></button> -->
                 </div><br>
+                <input type="hidden" name="create_order">
                 <input type="submit" class="mybtn-hightlight btn" value="Create Order">
             </form>
-            <div class=".response"></div>
+            <div id="response"></div>
         </div>
     </div>
     <div class="col-md-6 p-4" style="background: #f1f1f1;">

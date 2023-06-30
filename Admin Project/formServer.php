@@ -376,39 +376,7 @@ if (isset($_POST['update_user'])) {
 }
 //Users Section  End <<================================>>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//Role Section  Start <<================================>>
 // role - Ali Hasan
 
 if (isset($_POST['add_role'])) {
@@ -423,6 +391,124 @@ if (isset($_POST['add_role'])) {
         echo "failed";
     }
 }
+//Role Section  End <<================================>>
+
+//Sales Order Section  Start <<================================>>
+if (isset($_POST['create_order'])) {
+    //function defination
+    function insertToSalesOrder($con, $customerId, $productIds, $quantities)
+    {
+        // Inserting the Data to Sales Order Table & s_order product table
+        $sql = "INSERT INTO sales_order(customer_id, sales_order_status) VALUES($customerId, 1)";
+
+        $query = $con->query($sql);
+        if ($query) {
+            //Insert Data to s_order_product
+            //get Sales order Id
+            $sql = "SELECT * FROM sales_order WHERE sales_order_id = LAST_INSERT_ID()";
+            $query = $con->query($sql);
+            $data = $query->fetch_assoc();
+            $salesOrderId = $data['sales_order_id'];
+            foreach ($productIds as $index => $productId) {
+                $quantity = $quantities[$index];
+                $sql = "INSERT INTO s_order_product(sales_order_id, product_id, quantity) VALUES ($salesOrderId, $productId, $quantity)";
+                $query = $con->query($sql);
+                if ($query) {
+                    echo "data Inserted";
+                }
+            }
+
+
+        }
+    }
+
+    //updating the Sales Order Table
+    if (!empty(($_POST['customer_phone'])) && isset($_POST['existing_customer'])) {
+        //retrive Customer ID
+        $customerPhone = $_POST['customer_phone'];
+        $productIds = $_POST['productId'];
+        $quantities = $_POST['quantity'];
+        $sql = "SELECT * FROM customers WHERE customer_phone = '$customerPhone'";
+        $query = $con->query($sql);
+        if ($query) {
+            if ($query->num_rows === 1) {
+                $data = $query->fetch_assoc();
+                $customerId = $data['customer_id'];
+                //function insert
+                insertToSalesOrder($con, $customerId, $productIds, $quantities);
+            }
+        }
+    } else if (!isset($_POST['productId'])) {
+        echo "No product is selected";
+
+    } else if (empty($_POST['customer_phone'])) {
+        echo "Enter Customer Info";
+    } else if (!empty($_POST['customer_name']) && !empty($_POST['customer_email'])) {
+        //New Customer Query and previous sales order and s_order product data insert
+        $customerPhone = $_POST['customer_phone'];
+        $customerName = $_POST['customer_name'];
+        $customerEmail = $_POST['customer_email'];
+        $customerAddress = $_POST['customer_address'] ?? null;
+
+        $sql = "INSERT INTO customers(customer_phone, customer_name, customer_email, customer_address, customer_status) VALUES ('$customerPhone', '$customerName', '$customerEmail', '$customerAddress',1)";
+        $query = $con->query($sql);
+        if ($query) {
+            //Retriving inserted customer id
+            $sql = "SELECT * FROM customers WHERE customer_id = LAST_INSERT_ID()";
+            $query = $con->query($sql);
+            $data = $query->fetch_assoc();
+            $customerId = $data['customer_id'];
+            $productIds = $_POST['productId'];
+            $quantities = $_POST['quantity'];
+            insertToSalesOrder($con, $customerId, $productIds, $quantities);
+
+
+        }
+
+    } else {
+        echo "Customer info is Incomplete";
+    }
+
+
+}
+//Sales Order Section  End <<================================>>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
