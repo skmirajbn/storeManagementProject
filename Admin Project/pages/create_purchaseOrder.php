@@ -95,7 +95,7 @@ $result = $con->query($sql);
                     <!-- <button style="text-align: right;" class="btn btn-success" id="addProductBtn"><i
                             class="fa-solid fa-plus"></i></button> -->
                 </div><br>
-                <input type="hidden" name="create_order">
+                <input type="hidden" name="create_sales_order">
                 <input type="submit" class="mybtn-hightlight btn" value="Create Order">
             </form>
             <div id="response"></div>

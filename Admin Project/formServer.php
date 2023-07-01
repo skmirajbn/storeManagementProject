@@ -481,7 +481,86 @@ if (isset($_POST['create_order'])) {
 //Sales Order Section  End <<================================>>
 
 
+//Purchase Order Section  Start <<================================>>
+if (isset($_POST['create_sales_order'])) {
+    //function defination
+    function insertToPurchaseOrder($con, $supplierId, $productIds, $quantities)
+    {
+        // Inserting the Data to Purchase Order Table & s_order product table
+        $userId = $_SESSION['user_id'];
+        $sql = "INSERT INTO purchase_order(supplier_id, purchase_order_status,user_id) VALUES($supplierId, 1, $userId)";
 
+        $query = $con->query($sql);
+        if ($query) {
+            //Insert Data to s_order_product
+            //get Sales order Id
+            $sql = "SELECT * FROM purchase_order WHERE purchase_order_id = LAST_INSERT_ID()";
+            $query = $con->query($sql);
+            $data = $query->fetch_assoc();
+            $purchaseOrderId = $data['purchase_order_id'];
+            foreach ($productIds as $index => $productId) {
+                $quantity = $quantities[$index];
+                $sql = "INSERT INTO b_order_product(purchase_order_id, product_id, quantity) VALUES ($purchaseOrderId, $productId, $quantity)";
+                $query = $con->query($sql);
+                if ($query) {
+                    echo "data Inserted";
+                }
+            }
+
+
+        }
+    }
+
+    //Inserting the Sales Order Table
+    if (!empty(($_POST['supplier_phone'])) && isset($_POST['existing_supplier'])) {
+        //retrive supplier ID
+        $supplierPhone = $_POST['supplier_phone'];
+        $productIds = $_POST['productId'];
+        $quantities = $_POST['quantity'];
+        $sql = "SELECT * FROM suppliers WHERE supplier_phone = '$supplierPhone'";
+        $query = $con->query($sql);
+        if ($query) {
+            if ($query->num_rows === 1) {
+                $data = $query->fetch_assoc();
+                $supplierId = $data['supplier_id'];
+                //function insert
+                insertToPurchaseOrder($con, $supplierId, $productIds, $quantities);
+            }
+        }
+    } else if (!isset($_POST['productId'])) {
+        echo "No product is selected";
+
+    } else if (empty($_POST['supplier_phone'])) {
+        echo "Enter supplier Info";
+    } else if (!empty($_POST['supplier_name']) && !empty($_POST['supplier_email'])) {
+        //New supplier Query and previous sales order and s_order product data insert
+        $supplierPhone = $_POST['supplier_phone'];
+        $supplierName = $_POST['supplier_name'];
+        $supplierEmail = $_POST['supplier_email'];
+        $supplierAddress = $_POST['supplier_address'] ?? null;
+
+        $sql = "INSERT INTO suppliers(supplier_phone, supplier_name, supplier_email, supplier_address, supplier_status) VALUES ('$supplierPhone', '$supplierName', '$supplierEmail', '$supplierAddress',1)";
+        $query = $con->query($sql);
+        if ($query) {
+            //Retriving inserted supplier id
+            $sql = "SELECT * FROM suppliers WHERE supplier_id = LAST_INSERT_ID()";
+            $query = $con->query($sql);
+            $data = $query->fetch_assoc();
+            $supplierId = $data['supplier_id'];
+            $productIds = $_POST['productId'];
+            $quantities = $_POST['quantity'];
+            insertToPurchaseOrder($con, $supplierId, $productIds, $quantities);
+
+
+        }
+
+    } else {
+        echo "supplier info is Incomplete";
+    }
+
+
+}
+//Sales Order Section  End <<================================>>
 
 
 
