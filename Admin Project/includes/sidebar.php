@@ -173,6 +173,22 @@
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseSuppliers" aria-expanded="false" aria-controls="collapseSuppliers">
+                <i class="fa-solid fa-truck-moving"></i>&nbsp; Suppliers
+              </button>
+            </h2>
+            <div id="collapseSuppliers" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <a class="btn btn-block" href=""><i class="fa-solid fa-truck-moving"></i>&nbsp; All Suppliers</a>
+              </div>
+              <div class="accordion-body">
+                <a class="btn btn-block" href=""><i class="fa-solid fa-truck-front"></i>&nbsp; Add Supplier</a>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                 <i class="fa-solid fa-warehouse"></i>&nbsp; Inventory
               </button>
