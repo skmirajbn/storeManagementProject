@@ -10,39 +10,39 @@ $result = $con->query($sql);
 <div class="row">
     <div class="col-md-6">
         <div class="form-body container">
-            <h4>Create Order</h4>
-            <h5 style="text-align:right; font-size: 16px" id="customer_match_count"></h5>
+            <h4>Create Purchase Order</h4>
+            <h5 style="text-align:right; font-size: 16px" id="supplier_match_count"></h5>
             <form action="">
                 <div class=" row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="">Search by Customer Phone:</label>
-                            <input class="form-control customer_phone" type="text" placeholder="Enter Customer Phone"
-                                name="customer_phone">
+                            <label for="">Search by Supplier's Phone:</label>
+                            <input class="form-control supplier_phone" type="text" placeholder="Enter supplier Phone"
+                                name="supplier_phone">
                         </div>
                         <div class="form-group">
-                            <label for="">Customer ID:</label>
+                            <label for="">Supplier ID:</label>
                             <input class="form-control" type="text" placeholder="ID will be loaded" disabled
-                                name="customer_id">
+                                name="supplier_id">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="">Customer Name:</label>
+                            <label for="">supplier Name:</label>
                             <input class="form-control" type="text" placeholder="Name will be loaded" disabled
-                                name="customer_name">
+                                name="supplier_name">
                         </div>
                         <div class="form-group">
-                            <label for="">Customer Email:</label>
+                            <label for="">supplier Email:</label>
                             <input class="form-control" type="text" placeholder="Email will be loaded" disabled
-                                name="customer_email">
+                                name="supplier_email">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="">Customer Address:</label>
+                    <label for="">Supplier Address:</label>
                     <input class="form-control" type="text" placeholder="Address will be loaded" disabled
-                        name="customer_address">
+                        name="supplier_address">
                 </div>
                 <div class="form-group">
                     <label for="">Sales Order</label><br>

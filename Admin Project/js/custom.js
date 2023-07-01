@@ -406,4 +406,103 @@ $(document).ready(function () {
     $("input[name='customer_email'").val("");
     $("input[name='customer_address'").val("");
   }
+
+  //listening the supplier phone for retriving supplier data ==============================
+  $(document).on("keyup", ".supplier_phone", function () {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function () {
+      let phoneNumber = $(".supplier_phone").val();
+      $.ajax({
+        url: "pages/get_supplierInfo.php",
+        method: "POST",
+        data: {
+          supplier_search: phoneNumber,
+        },
+        dataType: "json",
+        beforeSend: function () {
+          $("input[type='submit']").attr("disabled", "");
+        },
+        success: function (response) {
+          console.log(response);
+          //removing  supplier data from the form
+          $("input[name='existing_supplier']").remove();
+
+          let matchCount = response.length;
+          if (matchCount === 1) {
+            $("#supplier_match_count").text("supplier Match Found");
+            supplieraddDisabledAttr();
+
+            $("form").find(".form-control").attr("style", "border: 1px solid green");
+            $("input[name='supplier_phone']").eq(0).val(response[0].supplier_phone);
+            $("input[name='supplier_id'").val(response[0].supplier_id);
+            $("input[name='supplier_name'").val(response[0].supplier_name);
+            $("input[name='supplier_email'").val(response[0].supplier_email);
+            $("input[name='supplier_address'").val(response[0].supplier_address);
+            $("form").prepend("<input type='hidden' name='existing_supplier'>");
+          } else if (matchCount === 10) {
+            //remove green border style
+            $("form").find(".form-control").removeAttr("style");
+            supplieraddDisabledAttr();
+            supplierremoveInputValue();
+            supplierchangeDisabledPlaceholderText();
+            //Writing matched data
+            $("#supplier_match_count").text("More than 10 Matches Found");
+          } else if (matchCount === 0) {
+            $("#supplier_match_count").text("No match Enter supplier Data");
+            //remove green border style
+            $("form").find(".form-control").removeAttr("style");
+            supplierremoveDisabledInput();
+            supplierchangeEnterPlaceholderText();
+            supplierremoveInputValue();
+          } else {
+            $("#supplier_match_count").text(matchCount + " Matches Found");
+            supplierremoveInputValue();
+            supplierchangeDisabledPlaceholderText();
+          }
+
+          $("input[type='submit']").removeAttr("disabled");
+        },
+        error: function () {
+          console.log("error");
+        },
+      });
+    }, 300);
+  });
+
+  //fucntion defination for supplier data retriving
+
+  function supplierremoveDisabledInput() {
+    // removing disabled input
+    $("form").find(".form-control").not(":eq(1)").removeAttr("disabled");
+  }
+  function supplierchangeEnterPlaceholderText() {
+    // Changing placeholder text
+    $("input[name='supplier_phone'").attr("placeholder", "Enter supplier Phone");
+    $("input[name='supplier_id'").attr("placeholder", "supplier ID will be generated");
+    $("input[name='supplier_name'").attr("placeholder", "Enter supplier Name");
+    $("input[name='supplier_email'").attr("placeholder", "Enter supplier Email");
+    $("input[name='supplier_address'").attr("placeholder", "Enter supplier Address");
+  }
+  function supplierchangeDisabledPlaceholderText() {
+    // Changing placeholder text
+    $("input[name='supplier_phone'").attr("placeholder", "Enter supplier Phone");
+    $("input[name='supplier_id'").attr("placeholder", "ID will be loaded");
+    $("input[name='supplier_name'").attr("placeholder", "Name will be loaded");
+    $("input[name='supplier_email'").attr("placeholder", "Email will be loaded");
+    $("input[name='supplier_address'").attr("placeholder", "Address will be loaded");
+  }
+  function supplieraddDisabledAttr() {
+    //Adding disabled attribute
+    $("input[name='supplier_id']").attr("disabled", "");
+    $("input[name='supplier_name']").attr("disabled", "");
+    $("input[name='supplier_email']").attr("disabled", "");
+    $("input[name='supplier_address']").attr("disabled", "");
+  }
+  function supplierremoveInputValue() {
+    //removing input value
+    $("input[name='supplier_id'").val("");
+    $("input[name='supplier_name'").val("");
+    $("input[name='supplier_email'").val("");
+    $("input[name='supplier_address'").val("");
+  }
 });
