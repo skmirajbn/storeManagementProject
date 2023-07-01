@@ -2,7 +2,9 @@
   <section class="sidebar col-md-4 col-xl-3 col-xxl-2">
     <div class="sidebar_container">
       <div class="user_part">
-        <img class="" src="uploads/images/<?= $_SESSION['user_image'] ?>" alt="avatar" />
+        <div>
+          <img class="img-fluid" src="uploads/images/<?= $_SESSION['user_image'] ?>" alt="avatar" />
+        </div>
         <h5>
           <?= $_SESSION['user_name'] ?>
         </h5>

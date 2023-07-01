@@ -85,8 +85,14 @@
               </li>
             </ul>
             <div class="user_part">
-              <img style="width: 40px;" class="" src="uploads/images/<?= $_SESSION['user_image'] ?>" alt="avatar" />
+              <div>
+                <img class="img-fluid" src="uploads/images/<?= $_SESSION['user_image'] ?>" alt="avatar" />
+              </div>
             </div>
+            <!-- <div class="user_part">
+              <img class="" src="uploads/images/<?= $_SESSION['user_image'] ?>" alt="avatar" />
+            </div> -->
+
             <!-- <form class="d-flex" role="search">
                 <input
                   class="form-control me-2"

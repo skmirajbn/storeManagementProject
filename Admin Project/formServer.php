@@ -359,12 +359,16 @@ if (isset($_POST['update_user'])) {
     $user_image = $_FILES['i_user_photo']["name"];
     $user_tmpname = $_FILES['i_user_photo']["tmp_name"];
 
+    $imageName = 'user_' . time() . '_' . rand(100000, 10000000) . '.' . pathinfo($user_image, PATHINFO_EXTENSION);
     if ($user_image !== '') {
-        $imageName = 'user_' . time() . '_' . rand(100000, 10000000) . '.' . pathinfo($user_image, PATHINFO_EXTENSION);
-    }
-    $sql = "UPDATE users set
+        $sql = "UPDATE users set
         user_name='$user_name',user_username='$user_username',user_email='$user_email',user_phone='$user_phone',role_id='$user_role',user_image='$imageName'
         Where user_id=$id";
+    } else {
+        $sql = "UPDATE users set
+        user_name='$user_name',user_username='$user_username',user_email='$user_email',user_phone='$user_phone',role_id='$user_role'  Where user_id=$id";
+    }
+
     $query = $con->query($sql);
     if ($query) {
         if (!empty($user_image)) {

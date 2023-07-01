@@ -144,11 +144,19 @@ a:hover {
   color: var(--body-color);
 }
 
-.user_part img {
+/* .user_part img {
   margin: 0 auto;
   display: block;
   border-radius: 50%;
   width: 50px;
+  height: 50px;
+} */
+.user_part div {
+  margin: 0 auto;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
 }
 
 .user_part h5 {
