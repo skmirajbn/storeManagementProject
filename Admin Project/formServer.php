@@ -1,5 +1,6 @@
 <?php
 require_once("includes/db_connection.php");
+require_once("includes/functions.php");
 
 //Customers Section  Start <<================================>>
 
@@ -85,6 +86,7 @@ if (isset($_POST["addProduct"])) {
     $product_unit = $_POST["product_unit"];
     $product_sku = $_POST["product_sku"];
     $product_price = $_POST["product_price"];
+    $product_buying_price = $_POST["buying_price"];
     $product_desc = $_POST["product_desc"];
     $pd_img_name = $_FILES["product_image"]["name"];
     $pd_img_tmpname = $_FILES["product_image"]["tmp_name"];
@@ -94,7 +96,7 @@ if (isset($_POST["addProduct"])) {
         $imageName = 'product_' . time() . '_' . rand(100000, 100000000) . '.' . pathinfo($pd_img_name, PATHINFO_EXTENSION);
     }
 
-    $sql = "INSERT INTO products(product_name,brand_id,category_id,sub_category_id,unit_id,sku,selling_price,product_image,description, product_status) VALUES('$product_name','$product_brand','$product_category','$product_sub_category','$product_unit','$product_sku','$product_price','$imageName','$product_desc', 1)";
+    $sql = "INSERT INTO products(product_name,brand_id,category_id,sub_category_id,unit_id,sku,selling_price,buying_price,product_image,description, product_status) VALUES('$product_name','$product_brand','$product_category','$product_sub_category','$product_unit','$product_sku','$product_price','$product_buying_price','$imageName','$product_desc', 1)";
     $query = $con->query($sql);
     if ($query) {
         move_uploaded_file($pd_img_tmpname, 'uploads/images/' . $imageName);
@@ -399,7 +401,8 @@ if (isset($_POST['create_order'])) {
     function insertToSalesOrder($con, $customerId, $productIds, $quantities)
     {
         // Inserting the Data to Sales Order Table & s_order product table
-        $sql = "INSERT INTO sales_order(customer_id, sales_order_status) VALUES($customerId, 1)";
+        $userId = $_SESSION['user_id'];
+        $sql = "INSERT INTO sales_order(customer_id, sales_order_status,user_id) VALUES($customerId, 1, $userId)";
 
         $query = $con->query($sql);
         if ($query) {
@@ -422,7 +425,7 @@ if (isset($_POST['create_order'])) {
         }
     }
 
-    //updating the Sales Order Table
+    //Inserting the Sales Order Table
     if (!empty(($_POST['customer_phone'])) && isset($_POST['existing_customer'])) {
         //retrive Customer ID
         $customerPhone = $_POST['customer_phone'];

@@ -163,7 +163,8 @@
                 <a class="btn btn-block" href=""><i class="fa-solid fa-layer-group"></i>&nbsp; All Orders</a>
               </div>
               <div class="accordion-body">
-                <a class="btn btn-block" href=""><i class="fa-solid fa-cart-plus"></i>&nbsp; Create Order</a>
+                <a class="btn btn-block" href="pages/create_purchaseOrder.php"><i
+                    class="fa-solid fa-cart-plus"></i>&nbsp; Create Purchase Order</a>
               </div>
             </div>
           </div>

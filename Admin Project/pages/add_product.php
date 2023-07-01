@@ -59,20 +59,24 @@ require_once("../includes/db_connection.php")
       </div>
       <div class="form-group">
         <label for="">SKU:</label>
-        <input class="form-control" name="product_sku" type="text" placeholder="Enter Product SKU">
+        <input class="form-control" name="product_sku" type="number" placeholder="Enter Product SKU">
       </div>
       <div class="form-group">
-        <label for="">Price:</label>
-        <input class="form-control" name="product_price" type="text" placeholder="Enter Customer Name">
+        <label for="">Product Price:</label>
+        <input class="form-control" name="product_price" type="number" placeholder="Enter Product Selling Price">
+      </div>
+      <div class="form-group">
+        <label for="">Product Buying Price:</label>
+        <input class="form-control" name="buying_price" type="number" placeholder="Enter Product Buying Price">
       </div>
       <div class="form-group">
         <label for="">Product Image:</label>
-        <input class="form-control" name="product_image" type="file" placeholder="Enter Customer Name">
+        <input class="form-control" name="product_image" type="file">
       </div>
       <div class="form-group">
         <label for="">Description:</label>
-        <textarea class="form-control" placeholder="Enter Customer Name" name="product_desc" id="" cols=""
-          rows=""></textarea>
+        <textarea class="form-control" placeholder="Enter Product Description" name="product_desc" cols=""
+          rows="4"></textarea>
       </div>
       <br>
       <input type="hidden" name="addProduct">
