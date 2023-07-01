@@ -96,7 +96,7 @@ $result = $con->query($sql);
                             class="fa-solid fa-plus"></i></button> -->
                 </div><br>
                 <input type="hidden" name="create_sales_order">
-                <input type="submit" class="mybtn-hightlight btn" value="Create Order">
+                <input type="submit" class="mybtn-hightlight btn" value="Create Purchase Order">
             </form>
             <div id="response"></div>
         </div>
@@ -115,12 +115,12 @@ $result = $con->query($sql);
                         </h5>
                         <h6>
                             <i class="fa-solid fa-bangladeshi-taka-sign"></i>
-                            <?= $data['selling_price'] ?>
+                            <?= $data['buying_price'] ?>
                         </h6>
 
                         <button class="add_product btn d-block mx-auto w-100 mybtn-hightlight"
                             value="<?= $data['product_id'] ?>" data-sku="<?= $data['sku'] ?>"
-                            data-sellingPrice="<?= $data['selling_price'] ?>">ADD</button>
+                            data-sellingPrice="<?= $data['buying_price'] ?>">ADD</button>
                     </div>
                 </div>
             <?php } ?>

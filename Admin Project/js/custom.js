@@ -190,7 +190,17 @@ $(document).ready(function () {
         success: function (response) {
           $(".products_group").empty();
           productObj = JSON.parse(response);
+          console.log(productObj);
+
           productObj.forEach(function (p) {
+            // Defining Selling or Buying price
+            let price;
+            if ($("input[type=submit]").val() == "Create Purchase Order") {
+              price = p.buying_price;
+            } else {
+              price = p.selling_price;
+            }
+
             $(".products_group").append(`
           <div class="card product d-inline-block p-1" style="width: 10rem">
                     <div class="img_container"><img src="uploads/images/${p.product_image}"
@@ -201,9 +211,9 @@ $(document).ready(function () {
                         </h5>
                         <h6>
                             <i class="fa-solid fa-bangladeshi-taka-sign"></i>
-                            ${p.selling_price}
+                            ${price}
                         </h6>
-                        <button class="add_product btn d-block mx-auto w-100 mybtn-hightlight" data-sku="${p.sku}" data-sellingPrice="${p.selling_price}"
+                        <button class="add_product btn d-block mx-auto w-100 mybtn-hightlight" data-sku="${p.sku}" data-sellingPrice="${price}"
                             value="${p.product_id}">ADD</button>
                     </div>
                 </div>
