@@ -47,7 +47,9 @@ $result = $con->query($sql);
                         <?= $data['time_stamp'] ?>
                     </td>
                     <td>
-                        <a href="pages/sales_orderInvoice.php?sales_order_id=<?= $data['sales_order_id'] ?>">View Invoice
+                        <a class="btn mybtn-hightlight d-block p-0"
+                            href="pages/sales_orderInvoice.php?sales_order_id=<?= $data['sales_order_id'] ?>">View
+                            Invoice
                             <i class="fa-solid fa-file-invoice"></i></a>
                     </td>
                 </tr>
