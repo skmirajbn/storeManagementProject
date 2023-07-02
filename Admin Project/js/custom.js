@@ -1,4 +1,18 @@
+// Disable all links on the page
+$(document).on("click", "a", function (e) {
+  e.preventDefault();
+});
+
+// Event handler to prevent link clicks and Enable
+function preventLinkClick(event) {
+  event.preventDefault();
+}
+function enableLinks() {
+  $("a").off("click", preventLinkClick);
+}
+
 $(document).ready(function () {
+  enableLinks();
   // Toggle theme
   $(document).on("click", "#themeToggleBtn", function () {
     $("body").toggleClass("dark-mode");
