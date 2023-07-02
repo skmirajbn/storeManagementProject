@@ -521,11 +521,9 @@ $(document).ready(function () {
   // Create a MutationObserver instance
   const observer = new MutationObserver(function (mutationsList) {
     mutationsList.forEach(function (mutation) {
-      // Check if the added nodes include the dynamically loaded element
       if (mutation.addedNodes) {
         mutation.addedNodes.forEach(function (node) {
           if (node.matches && node.matches(".split")) {
-            // Trigger your custom event or call the desired function
             document.dispatchEvent(new Event("splitElementAdded"));
           }
         });
@@ -533,23 +531,11 @@ $(document).ready(function () {
     });
   });
 
-  // Start observing changes in the document
   observer.observe(document, { childList: true, subtree: true });
 
-  // Event listener for the dynamically loaded element
   document.addEventListener("splitElementAdded", function () {
-    // Event handler code for the dynamically loaded element
-    console.log('Dynamically loaded element with class "split" added!');
     Split(["#split-0", "#split-1"], {
       gutterSize: 9,
     });
   });
-
-  // Example of adding a dynamically loaded element to the document
-  setTimeout(function () {
-    var dynamicElement = document.createElement("div");
-    dynamicElement.classList.add("split");
-    dynamicElement.textContent = "Dynamically added element";
-    document.body.appendChild(dynamicElement);
-  }, 3000);
 });
