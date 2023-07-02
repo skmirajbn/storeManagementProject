@@ -240,6 +240,26 @@ a:hover {
   width: 50px;
 }
 
+/* Split start */
+.split {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.gutter {
+  background-color: #eee;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
+  cursor: col-resize;
+}
+
+/* Split End */
+
 /* Hide colums of Product table */
 #product_information_table tr th:nth-child(7),
 #product_information_table tr td:nth-child(7),

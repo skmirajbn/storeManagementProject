@@ -7,8 +7,8 @@ $result = $con->query($sql);
 
 ?>
 
-<div class="row">
-    <div class="col-md-6">
+<div class="split">
+    <div class="" id="split-0">
         <div class="form-body container">
             <h4>Create Purchase Order</h4>
             <h5 style="text-align:right; font-size: 16px" id="supplier_match_count"></h5>
@@ -101,7 +101,7 @@ $result = $con->query($sql);
             <div id="response"></div>
         </div>
     </div>
-    <div class="col-md-6 p-4" style="background: #f1f1f1;">
+    <div class=" p-4" id="split-1" style="background: #f1f1f1;">
         <input class="form-control" type="text" id="product_search" placeholder="Search Products">
         <h3 class="text-center m-3">All Products</h3>
         <div class="products_group text-center" style="overflow: scroll; height: 71vh">
