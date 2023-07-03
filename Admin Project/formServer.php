@@ -14,9 +14,9 @@ if (isset($_POST['addCustomer'])) {
     $query = $con->query($sql);
     if ($query) {
 
-        echo "Upload SuccessFul";
+        echo "Customer Added";
     } else {
-        echo "Data Upload Failed";
+        echo "Customer Add Failed";
     }
 }
 
@@ -30,9 +30,9 @@ if (isset($_POST['updateCustomer'])) {
     $sql = "UPDATE customers SET customer_name='$name', customer_address='$address', customer_phone='$phone', customer_email='$email' WHERE customer_id = $id";
     $query = $con->query($sql);
     if ($query) {
-        echo "Updated <a style='display:inline-block; margin:20px' href='pages/all_customers.php' class='btn mybtn-hightlight'>See All Customers</a>";
+        echo "Customer Updated";
     } else {
-        echo "Note Update";
+        echo "Failed";
     }
 }
 
@@ -100,9 +100,9 @@ if (isset($_POST["addProduct"])) {
     $query = $con->query($sql);
     if ($query) {
         move_uploaded_file($pd_img_tmpname, 'uploads/images/' . $imageName);
-        echo "Upload Successfull";
+        echo "Product Added";
     } else {
-        echo "Upload Faild";
+        echo "Product Add Faild";
     }
 }
 
@@ -134,9 +134,9 @@ if (isset($_POST["updateProduct"])) {
         if (!empty($pd_img_name)) {
             move_uploaded_file($pd_img_tmpname, 'uploads/images/' . $imageName);
         }
-        echo "Update Successfull";
+        echo "Product Updated";
     } else {
-        echo "Update Faild";
+        echo "Update Product Failed";
     }
 }
 
@@ -185,7 +185,7 @@ if (isset($_POST["addCategory"])) {
     $sql = "INSERT INTO categories(category_name, category_status) VALUES('$categoryName',1)";
     $query = $con->query($sql);
     if ($query) {
-        echo "Data Inserted Successfully";
+        echo "Category Added";
     }
 }
 
@@ -198,7 +198,7 @@ if (isset($_POST['updateCategory'])) {
     $sql = "UPDATE categories SET category_name = '$categoryName' WHERE category_id = $id ";
     $query = $con->query($sql);
     if ($query) {
-        echo "Updated Category <a style='display:inline-block; margin:20px' href='pages/all_categories.php' class='btn mybtn-hightlight'>See All Category</a>";
+        echo "Category Updated";
     } else {
         echo "Failed";
     }
@@ -223,7 +223,7 @@ if (isset($_POST['addSubCategory'])) {
     $sql = "INSERT INTO sub_categories(sub_category_name,category_id,sub_category_status) VALUES('$subCategoryName', $categoryId, 1)";
     $insert = $con->query($sql);
     if ($insert) {
-        echo "Sub Category Inserted";
+        echo "Sub Category Added";
     } else {
         echo "Sub Category Insertion Failed";
     }
@@ -257,7 +257,7 @@ if (isset($_POST['addbrand'])) {
     $sql = "INSERT INTO brands(brand_name,brand_status) VALUES('$brandName',1)";
     $query = $con->query($sql);
     if ($query) {
-        echo "Brand Add Successfull";
+        echo "Brand Added";
     } else {
         echo "Data Upload Failed";
     }
@@ -270,7 +270,7 @@ if (isset($_POST['editBrand'])) {
     $sql = "UPDATE brands SET brand_name='$brandName', brand_status=1 WHERE brand_id = $id";
     $query = $con->query($sql);
     if ($query) {
-        echo "Data Upload Successful";
+        echo "Brand Updated";
     } else {
         echo "Data Upload Failed";
     }
@@ -342,7 +342,7 @@ if (isset($_POST['add_user'])) {
     $query = $con->query($insest);
     if ($query) {
         move_uploaded_file($user_tmpname, 'uploads/images/' . $imageName);
-        echo "Success";
+        echo "User Added";
     } else {
         echo "failed";
     }
@@ -374,7 +374,7 @@ if (isset($_POST['update_user'])) {
         if (!empty($user_image)) {
             move_uploaded_file($user_tmpname, 'uploads/images/' . $imageName);
         }
-        echo "Update Successfull";
+        echo "User Updated";
     } else {
         echo "Update Faild";
     }
@@ -392,7 +392,7 @@ if (isset($_POST['add_role'])) {
     VALUES('$role_name')";
     $query = $con->query($insests);
     if ($query) {
-        echo "Success";
+        echo "Role Added";
     } else {
         echo "failed";
     }
@@ -420,10 +420,8 @@ if (isset($_POST['create_order'])) {
                 $quantity = $quantities[$index];
                 $sql = "INSERT INTO s_order_product(sales_order_id, product_id, quantity) VALUES ($salesOrderId, $productId, $quantity)";
                 $query = $con->query($sql);
-                if ($query) {
-                    echo "data Inserted";
-                }
             }
+            echo "Order Created";
 
 
         }

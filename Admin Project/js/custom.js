@@ -1,18 +1,4 @@
-// Disable all links on the page
-$(document).on("click", "a", function (e) {
-  e.preventDefault();
-});
-
-// Event handler to prevent link clicks and Enable
-function preventLinkClick(event) {
-  event.preventDefault();
-}
-function enableLinks() {
-  $("a").off("click", preventLinkClick);
-}
-
 $(document).ready(function () {
-  enableLinks();
   // Toggle theme
   $(document).on("click", "#themeToggleBtn", function () {
     $("body").toggleClass("dark-mode");
@@ -87,9 +73,9 @@ $(document).ready(function () {
     let loading = $("#loading");
     let responseContainer = $("#response");
     responseContainer.html("Submitting...");
-    for (const entry of formData.entries()) {
-      console.log(entry[0], entry[1]);
-    }
+    // for (const entry of formData.entries()) {
+    //   console.log(entry[0], entry[1]);
+    // }
     $.ajax({
       url: "formServer.php",
       type: "POST",
@@ -99,7 +85,7 @@ $(document).ready(function () {
       success: function (response) {
         swal({
           title: "Congratulations!",
-          text: "Data is submitted",
+          text: response,
           icon: "success",
           button: "Ok!",
         });

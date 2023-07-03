@@ -48,19 +48,16 @@
                 <a class="nav-link" aria-current="page" href="pages/create_order.php">Create Order</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="pages/sales_orderInvoice.php">test invoice</a>
+                <a class="nav-link" aria-current="page" href="pages/add_user.php">Add User</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="pages/">Add User</a>
+                <a class="nav-link" aria-current="page" href="pages/add_category.php">Add Category</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Add Category</a>
+                <a class="nav-link" aria-current="page" href="pages/add_brand.php">Add Brand</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Add Brands</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Add Products</a>
+                <a class="nav-link" aria-current="page" href="pages/add_product.php">Add Product</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
