@@ -84,7 +84,13 @@ $(document).ready(function () {
       processData: false,
       contentType: false,
       success: function (response) {
-        responseContainer.html(response);
+        swal({
+          title: "Congratulations!",
+          text: "Data is submitted",
+          icon: "success",
+          button: "Ok!",
+        });
+        responseContainer.html("");
       },
       error: function () {
         console.error("AJAX request failed.");

@@ -260,6 +260,24 @@ a:hover {
 
 /* Split End */
 
+/* Sweet Alert  Design Start*/
+/* Change the button background color */
+swal-title {
+  color: var(--secondary-color);
+}
+.swal-button {
+  background-color: var(--secondary-color);
+  color: var(--body-color); /* Your desired color */
+}
+.swal-button:not([disabled]):hover {
+  background-color: var(--highlight-color);
+  color: var(--body-color);
+}
+.swal-footer {
+  text-align: center;
+}
+/* Sweet Alert  Design end*/
+
 /* Hide colums of Product table */
 #product_information_table tr th:nth-child(7),
 #product_information_table tr td:nth-child(7),
