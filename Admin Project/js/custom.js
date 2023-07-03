@@ -32,7 +32,6 @@ $(document).ready(function () {
     let target = $(this);
     if (target.closest("a") && target.attr("data-disabled") !== "true") {
       let loading = $("#loading");
-      loading.text("Processing...");
 
       let url = target.attr("href");
       include(event, url);
@@ -45,6 +44,16 @@ $(document).ready(function () {
     let breadcrumb = $("#lastBreadCrumb");
     let container = $(".main_content");
     let loading = $("#loading");
+    let loadingAnimation = `
+    <div class="sk-chase">
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+      <div class="sk-chase-dot"></div>
+    </div>
+`;
     let breadCrumbValue = url
       .split("/")
       .pop()
@@ -57,8 +66,12 @@ $(document).ready(function () {
     $.ajax({
       url: url,
       type: "POST",
+      beforeSend: function () {
+        container.html("");
+        loading.html(loadingAnimation);
+      },
       success: function (response) {
-        loading.text("");
+        loading.html("");
         container.html(response);
         breadcrumb.text(breadCrumbValue);
       },

@@ -24,7 +24,14 @@
   outline: 0;
   box-sizing: border-box;
 }
-
+/* Loading Start */
+#loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+/* Loading End */
 /* Common start */
 .mybtn-hightlight {
   display: block;
@@ -89,6 +96,7 @@ body {
 
 .sidebar,
 .content {
+  position: relative;
   padding: 0;
   margin: 0;
   overflow: hidden;
