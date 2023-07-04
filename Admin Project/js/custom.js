@@ -82,6 +82,9 @@ $(document).ready(function () {
       data: formData,
       processData: false,
       contentType: false,
+      beforeSend: function () {
+        form.querySelector('[type ="submit"]').setAttribute("disabled", "");
+      },
       success: function (response) {
         swal({
           title: "Congratulations!",
@@ -90,6 +93,7 @@ $(document).ready(function () {
           button: "Ok!",
         });
         responseContainer.html("");
+        form.querySelector('[type ="submit"]').removeAttribute("disabled");
       },
       error: function () {
         console.error("AJAX request failed.");
@@ -341,7 +345,7 @@ $(document).ready(function () {
   }
 
   //listening the customer phone for retriving customer data
-  $(document).on("keyup", ".customer_phone", function () {
+  $(document).on("keypress", ".customer_phone", function () {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(function () {
       let phoneNumber = $(".customer_phone").val();
@@ -396,7 +400,7 @@ $(document).ready(function () {
         },
         error: function () {},
       });
-    }, 300);
+    }, 1000);
   });
 
   //fucntion defination for customer data retriving
@@ -556,5 +560,53 @@ $(document).ready(function () {
     Split(["#split-0", "#split-1"], {
       gutterSize: 9,
     });
+  });
+
+  //ChartJS
+  const reportChart = document.getElementById("reportChart");
+
+  new Chart(reportChart, {
+    type: "bar",
+    data: {
+      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      datasets: [
+        {
+          label: "# of Votes",
+          data: [12, 19, 3, 5, 2, 3],
+          backgroundColor: "#F39C12",
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+
+  const reportChart2 = document.getElementById("reportChart-2");
+  new Chart(reportChart2, {
+    type: "pie",
+    data: {
+      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      datasets: [
+        {
+          label: "# of Votes",
+          data: [12, 19, 3, 5, 2, 3],
+          backgroundColor: "#5DA9FF",
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
   });
 });
