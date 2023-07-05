@@ -126,11 +126,11 @@
                   Units</a>
               </div>
               <div class="accordion-body">
-                <a class="btn btn-block" href="pages/add_brand.php"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add
+                <a class="btn btn-block" href="pages/add_units.php"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add
                   Unit</a>
               </div>
               <div class="accordion-body">
-                <a class="btn btn-block" href="pages/restore_brand.php"><i class="fa-solid fa-trash"></i>&nbsp; Restore
+                <a class="btn btn-block" href="pages/restore_unit.php"><i class="fa-solid fa-trash"></i>&nbsp; Restore
                   Units</a>
               </div>
             </div>
