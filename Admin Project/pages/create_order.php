@@ -1,7 +1,7 @@
 <?php
 require_once("./../includes/db_connection.php");
 require_once("./../includes/functions.php");
-$limit = 10;
+$limit = 50;
 $sql = "SELECT * FROM product_information WHERE product_status = 1 ORDER BY product_id DESC LIMIT $limit";
 
 $result = $con->query($sql);

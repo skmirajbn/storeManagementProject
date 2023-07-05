@@ -100,7 +100,7 @@
             </h2>
             <div id="collapseBrands" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <a class="btn btn-block" href="pages/all_brand.php"><i class="fa-solid fa-sitemap"></i>&nbsp; All
+                <a class="btn btn-block" href="pages/all_brands.php"><i class="fa-solid fa-sitemap"></i>&nbsp; All
                   Brands</a>
               </div>
               <div class="accordion-body">

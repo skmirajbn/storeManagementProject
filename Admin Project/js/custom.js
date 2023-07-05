@@ -158,42 +158,6 @@ $(document).ready(function () {
     });
   });
 
-  //Create order Section
-
-  // // Add product
-  // $(document).on("click", "#addProductBtn", function (event) {
-  //   event.preventDefault();
-  //   let productContainer = $(".product_container");
-  //   let index = productContainer.children().length + 1;
-
-  //   let productEntry = $("<div>").addClass("product_entry");
-
-  //   productEntry.html(`
-  //   <label for="sku${index}">SKU:</label>
-  //   <input style="display: inline-block;width: 100px;" class="form-control sku-input" type="text"
-  //       placeholder="SKU" id="sku${index}" name="sku[${index}]">
-  //   <label for="product${index}">Name:</label>
-  //   <input style="display: inline-block;width: 250px;" class="form-control product-input" type="text"
-  //       placeholder="Enter Product Name" id="product${index}" name="product[${index}]">
-  //   <label for="quantity${index}">Quantity :</label>
-  //   <input style="display: inline-block;width: 100px;" class="form-control" type="text"
-  //       placeholder="Quantity" id="quantity${index}"> <span>&nbsp; &nbsp;</span>
-  //   <span style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">--</span>
-  //   <span style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">Per pc:
-  //       --</span>
-  //   <span style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">Total:
-  //       --</span>
-  //   <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-  //   `);
-
-  //   productContainer.append(productEntry);
-  // });
-
-  // Remove product
-  // $(document).on("click", ".removeProduct", function () {
-  //   $(this).closest(".product_entry").remove();
-  // });
-
   //Listening the Product Search Field
   let debounceTimer;
   $(document).on("input", "#product_search", function (e) {
