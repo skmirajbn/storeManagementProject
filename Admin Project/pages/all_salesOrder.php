@@ -5,7 +5,7 @@ require_once("../includes/db_connection.php");
 $limit = 13;
 $currentPage = $_GET['page'] ?? 1;
 
-$countSql = "SELECT COUNT(*) AS TOTAL FROM products";
+$countSql = "SELECT COUNT(*) AS TOTAL FROM sales_order_information";
 $result = $con->query($countSql);
 $totalRows = $result->fetch_assoc()['TOTAL'];
 $totalPage = ceil($totalRows / $limit);
