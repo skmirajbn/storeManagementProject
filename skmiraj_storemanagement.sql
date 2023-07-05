@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 28, 2023 at 08:14 AM
+-- Generation Time: Jul 05, 2023 at 10:27 AM
 -- Server version: 8.0.33
 -- PHP Version: 8.2.6
 
@@ -43,21 +43,68 @@ INSERT INTO `brands` (`brand_id`, `brand_name`, `brand_status`) VALUES
 (22, 'Tecno', 1),
 (26, 'Apple2', 0),
 (27, 'Hatil', 1),
-(28, 'Miayako', 1);
+(28, 'Miayako', 1),
+(29, 'Xiaomi', 1),
+(30, 'Walton', 1),
+(31, 'Symphony', 1),
+(32, 'Black Berry', 1),
+(33, 'Sony', 1),
+(34, 'BMW', 1),
+(35, 'Bugati', 1),
+(36, 'Ferari', 1),
+(37, 'BMW', 1),
+(38, 'Bugati', 1),
+(39, 'Bugati', 1),
+(40, 'Walton', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `b_order_purchase`
+-- Table structure for table `b_order_product`
 --
 
-CREATE TABLE `b_order_purchase` (
+CREATE TABLE `b_order_product` (
   `b_order_product_id` int NOT NULL,
   `purchase_order_id` int DEFAULT NULL,
   `product_id` int DEFAULT NULL,
-  `quantity` int DEFAULT NULL,
-  `buying_price` decimal(10,2) DEFAULT NULL
+  `quantity` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `b_order_product`
+--
+
+INSERT INTO `b_order_product` (`b_order_product_id`, `purchase_order_id`, `product_id`, `quantity`) VALUES
+(22, 10, 46, 5),
+(23, 11, 46, 2),
+(24, 12, 46, 3),
+(25, 13, 43, 100),
+(26, 14, 43, 5),
+(27, 15, 45, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `b_order_product_information`
+-- (See below for the actual view)
+--
+CREATE TABLE `b_order_product_information` (
+`b_order_product_id` int
+,`purchase_order_id` int
+,`product_id` int
+,`quantity` int
+,`category_id` int
+,`sub_category_id` int
+,`brand_id` int
+,`product_name` varchar(50)
+,`description` text
+,`product_image` varchar(100)
+,`unit_id` int
+,`selling_price` decimal(10,2)
+,`buying_price` decimal(10,2)
+,`sku` varchar(50)
+,`product_status` int
+);
 
 -- --------------------------------------------------------
 
@@ -77,7 +124,8 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`category_id`, `category_name`, `category_status`) VALUES
 (1, 'Electronics', 1),
-(4, 'House Hold', 1);
+(4, 'House Hold', 1),
+(5, 'Grocery', 1);
 
 -- --------------------------------------------------------
 
@@ -114,25 +162,6 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_address`, `customer_phone`, `customer_email`, `customer_status`) VALUES
-(35, 'Mosharrof', 'Dhaka', '45642', 'fydrg@gmail.com', 1),
-(37, '', '', '', '', 1),
-(38, 'uio', 'sdfgdfg', '8696', 'dfhhh', 1),
-(39, 'uio', 'sdfgdfg', '8696', 'dfhhh', 1),
-(40, 'uio', 'sdfgdfg', '8696', 'dfhhh', 1),
-(41, 'uio', 'sdfgdfg', '8696', 'dfhhh', 1),
-(42, 'uio', 'sdfgdfg', '8696', 'dfhhh', 1),
-(43, 'uio', 'sdfgdfg', '8696', 'dfhhh', 1),
-(44, 'uio', 'sdfgdfg', '8696', 'dfhhh', 1),
-(45, 'uio', 'sdfgdfg', '8696', 'dfhhh', 1),
-(46, 'sf', 'dsf', 'sdf', 'sdf', 1),
-(47, 'bristy', 'Dhaka', '012468425', 'bristy1254@gmail.com', 1),
-(48, 'Rakib', 'Dhaka', '012468425', 'rakib1254@gmail.com', 1),
-(49, 'sheuly', 'Dhaka', '012468425', 'sheuly1254@gmail.com', 1),
-(50, 'Sk Miraj', 'Dhaka', '0156455', 'sdksd@gmail.com', 1),
-(51, 'Hasan', 'Behar hat, Shibgonj-Bogura', '01723629080', 'info@gmail.com', 1),
-(52, 'Yulma Aldie', '8954 2nd Road', '667-405-8800', 'yaldie0@bbc.co.uk', 1),
-(53, 'Frasier Toderbrugge', '8 Rigney Avenue', '191-615-1433', 'ftoderbrugge1@ebay.com', 1),
-(54, 'Urson Pindred', '08 Artisan Park', '856-382-2999', 'upindred2@newsvine.com', 1),
 (55, 'Aldus Korting', '5 Kipling Pass', '693-525-8593', 'akorting3@nature.com', 1),
 (56, 'Elias Simak', '338 Farwell Park', '122-703-9675', 'esimak4@wikia.com', 1),
 (57, 'Torr Guidetti', '5535 Grim Park', '891-576-1184', 'tguidetti5@telegraph.co.uk', 1),
@@ -677,8 +706,7 @@ INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_address`, `cu
 (596, 'Pammi Siuda', '8 Mandrake Pass', '435-279-4606', 'psiudaf4@elegantthemes.com', 1),
 (597, 'Maddi Grebert', '896 Ramsey Way', '316-320-5847', 'mgrebertf5@hao123.com', 1),
 (598, 'Lindon Spiring', '77746 Elmside Place', '162-568-9298', 'lspiringf6@histats.com', 1),
-(599, 'Dru Tamlett', '1 Morningstar Avenue', '133-644-3564', 'dtamlettf7@ted.com', 1);
-INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_address`, `customer_phone`, `customer_email`, `customer_status`) VALUES
+(599, 'Dru Tamlett', '1 Morningstar Avenue', '133-644-3564', 'dtamlettf7@ted.com', 1),
 (600, 'Kizzee Matignon', '39 Waxwing Street', '373-194-2350', 'kmatignonf8@paginegialle.it', 1),
 (601, 'Nedda Cureton', '438 American Ash Circle', '455-988-7616', 'ncuretonf9@nba.com', 1),
 (602, 'Gar Iannini', '27670 Sage Alley', '178-560-3721', 'gianninifa@berkeley.edu', 1),
@@ -689,7 +717,8 @@ INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_address`, `cu
 (607, 'Flori Washtell', '6857 Memorial Parkway', '956-789-1617', 'fwashtellff@edublogs.org', 1),
 (608, 'Meg Broadey', '2 Shopko Plaza', '920-739-5311', 'mbroadeyfg@engadget.com', 1),
 (609, 'Natassia Noseworthy', '18 Prentice Junction', '607-893-6667', 'nnoseworthyfh@drupal.org', 1),
-(610, 'Donelle Rubinchik', '0435 Novick Trail', '752-905-8291', 'drubinchikfi@google.com.hk', 1),
+(610, 'Donelle Rubinchik', '0435 Novick Trail', '752-905-8291', 'drubinchikfi@google.com.hk', 1);
+INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_address`, `customer_phone`, `customer_email`, `customer_status`) VALUES
 (611, 'Micky Munroe', '09427 Morrow Hill', '403-734-4091', 'mmunroefj@paypal.com', 1),
 (612, 'Shelli Kaesmakers', '6136 North Avenue', '367-135-7824', 'skaesmakersfk@noaa.gov', 1),
 (613, 'Orelia Sawdon', '3 Walton Parkway', '717-699-2153', 'osawdonfl@typepad.com', 1),
@@ -1131,8 +1160,24 @@ INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_address`, `cu
 (1049, 'Beckie Maharg', '43296 Brentwood Pass', '784-841-9043', 'bmahargrp@netlog.com', 0),
 (1050, 'Conni Hegel', '0 Hanson Court', '173-706-4171', 'chegelrq@bigcartel.com', 0),
 (1051, 'lehratrrs', '79956 Talmadge Point', '627-509-2294', 'lehratrrs@columbia.edu', 1),
-(1053, '', '', '', '', 0),
-(1054, '', '', '', '', 0);
+(1054, '', '', '', '', 0),
+(1057, 'Miraj', '', '01957244070', 'skmiraj@gmail.com', 1),
+(1058, 'Faria', '', '01879249106', 'Faria@gmail.com', 1),
+(1059, 'Shawon', 'Mirpur', '01980128349', 'shawon@gmail.com', 1),
+(1060, 'sdgg', 'sdfgg', '65465465454564654', 'sdgg', 1),
+(1061, 'Ali Hasan', 'Mirpur', '0163532436464', 'ali@gmail.com', 1),
+(1062, 'Parvin', 'Keranigan', '01937717207', 'parvin@gmail.com', 1),
+(1063, 'Mosharraf', 'Mirpur', '216351324534', 'mosharaf@gmail.com', 1),
+(1064, 'Md Rabiul Alam Roby', 'Dhaka', '0165456465', 'roby@gmail.com', 1),
+(1065, 'Dbd', 'Dbd cj', '3411233', 'Dhdnc@gdb.co', 1),
+(1066, 'Khaleda', 'Mirpur,Dhaka', '01957244070465', 'khaleda@gmail.com', 1),
+(1069, 'Alamin', 'Mirpur, Dhaka', '01957244070165', 'alamin@gmail.com', 1),
+(1070, 'Jahangir Alam', 'Mirpur', '01724280318', 'jahangir@gmail.com', 1),
+(1071, 'Shawon', 'Mirpur', '0179644652', 'shawon@gmail.com', 1),
+(1072, 'Mosharaf', 'Mirpur', '01774656830', 'mosharaf@gmail.com', 1),
+(1073, 'Rakib', 'Mirpur', '01546545645', 'rakib@gmail.com', 1),
+(1074, 'Rabiul Alam', 'Mirpur', '035451', 'rabiul@gmail.com', 1),
+(1075, 'Khaleda', 'Cantonment', '01685682778', 'khaleda@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -1161,6 +1206,7 @@ CREATE TABLE `products` (
   `product_image` varchar(100) DEFAULT NULL,
   `unit_id` int DEFAULT NULL,
   `selling_price` decimal(10,2) DEFAULT NULL,
+  `buying_price` decimal(10,2) NOT NULL,
   `sku` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `product_status` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -1169,23 +1215,28 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`product_id`, `category_id`, `sub_category_id`, `brand_id`, `product_name`, `description`, `product_image`, `unit_id`, `selling_price`, `sku`, `product_status`) VALUES
-(27, 25, 1, 1, 'dfg', 'fdg', 'product_1686830292_60952360.jpg', 4, 546.00, 'df', 1),
-(28, 42, 1, 2, 'df', 'hgjj', 'product_1686831036_93997623.png', 2, 45.00, 'df', 1),
-(29, 25, 1, 3, 'gj', '456', 'product_1686831068_92104249.jpg', 2, 4566.00, 'hgjj', 1),
-(30, 4, 1, 1, 'Hiena', 'fg', 'product_1686986198_49435360.jpg', 2, 456.00, 'hgj', 1),
-(31, 25, 1, 1, 'Kaka', 'dfg', 'product_1686912240_65137869.png', 3, 66.00, 'dfg', 1),
-(32, 25, 1, 1, 'sdg', 'dfgg', '', 3, 745.00, 'dg', 1),
-(33, 43, 1, 3, 'Remote Control', 'This is product description.', 'product_1687008603_1360772.jpg', 2, 565.00, 'sdf', 1),
-(34, 43, 1, 3, 'Remote Control', 'This is product description.', 'product_1687008603_92104463.jpg', 2, 565.00, 'sdf', 0),
-(35, 4, 1, 1, 'wdgdfg', '455', '', 2, 455.00, 'dsg', 0),
-(36, 4, 1, 1, 'wdgdfg', '455', '', 2, 455.00, 'dsg', 0),
-(37, 4, 1, 2, 'sdg', 'dgg', '', 2, 45.00, 'sdg', 0),
-(38, 1, 1, 20, 'mosharrof', 'sdfrwef', 'product_1687150578_53277753.jpg', 1, 5656.00, '56365', 1),
-(39, 1, 1, 21, 'iphone 6', '', 'product_1687324824_7653781.png', 3, 8000.00, '5555', 1),
-(40, 1, 1, 21, 'iphone 6', '', 'product_1687876991_93967479.jpg', 2, 8000.00, '123456', 1),
-(41, 1, 3, 21, '22 Inch Monitor', 'This is a monitor.', 'product_1687791994_67629988.jpeg', 1, 25000.00, '5465', 1),
-(42, 4, 8, 28, 'Fry Pan', 'This is Fry pan.', 'product_1687793912_67568174.jpeg', 1, 1100.00, '456', 1);
+INSERT INTO `products` (`product_id`, `category_id`, `sub_category_id`, `brand_id`, `product_name`, `description`, `product_image`, `unit_id`, `selling_price`, `buying_price`, `sku`, `product_status`) VALUES
+(27, 25, 1, 1, 'dfg', 'fdg', 'product_1686830292_60952360.jpg', 4, 546.00, 500.00, 'df', 1),
+(28, 42, 1, 2, 'df', 'hgjj', 'product_1686831036_93997623.png', 2, 45.00, 500.00, 'df', 1),
+(29, 25, 1, 3, 'gj', '456', 'product_1686831068_92104249.jpg', 2, 4566.00, 500.00, 'hgjj', 1),
+(30, 4, 1, 1, 'Hiena', 'fg', 'product_1686986198_49435360.jpg', 2, 456.00, 500.00, 'hgj', 1),
+(31, 25, 1, 1, 'Kaka', 'dfg', 'product_1686912240_65137869.png', 3, 66.00, 500.00, 'dfg', 1),
+(32, 25, 1, 1, 'sdg', 'dfgg', '', 3, 745.00, 500.00, 'dg', 1),
+(33, 43, 1, 3, 'Remote Control', 'This is product description.', 'product_1687008603_1360772.jpg', 2, 565.00, 500.00, 'sdf', 1),
+(34, 43, 1, 3, 'Remote Control', 'This is product description.', 'product_1687008603_92104463.jpg', 2, 565.00, 500.00, 'sdf', 0),
+(35, 4, 1, 1, 'wdgdfg', '455', '', 2, 455.00, 500.00, 'dsg', 0),
+(36, 4, 1, 1, 'wdgdfg', '455', '', 2, 455.00, 500.00, 'dsg', 0),
+(37, 4, 1, 2, 'sdg', 'dgg', '', 2, 45.00, 500.00, 'sdg', 0),
+(38, 1, 1, 20, 'mosharrof', 'sdfrwef', 'product_1687150578_53277753.jpg', 1, 5656.00, 500.00, '56365', 1),
+(39, 1, 1, 21, 'iphone 6', '', 'product_1687324824_7653781.png', 3, 8000.00, 500.00, '5555', 1),
+(40, 1, 1, 21, 'iphone 6', '', 'product_1687876991_93967479.jpg', 2, 8000.00, 500.00, '123456', 1),
+(41, 1, 3, 21, '22 Inch Monitor', 'This is a monitor.', 'product_1687791994_67629988.jpeg', 1, 25000.00, 500.00, '5465', 1),
+(42, 4, 8, 28, 'Fry Pan', 'This is Fry pan.', 'product_1687793912_67568174.jpeg', 1, 1100.00, 500.00, '456', 1),
+(43, 4, 8, 28, 'Topper Nonstick Deep Karai with Glass Lid - 22cm', 'Three Layers Nonstick Coating. Strong and Convenient Handle. Robust Joint. Friendly Knob. Uniform Heat Conductive Spiral Bottom. Topper Economy Nonstick Karai with Glass Lid 22 cm High-Quality Nonstick Coating Up-to 60% oil saver Health Friendly Cooking Maximum Life Heat Resistance Strong Joint Pfoa, nickel, lead, & cadmium free Made from food-grade aluminum', 'product_1688029398_81030149.jpeg', 1, 980.00, 500.00, 'SM014', 1),
+(44, 1, 1, 29, 'Redmi Note 7 pro', 'This is Redmi note 7 pro phone', 'product_1688121083_61463701.jpeg', 1, 20000.00, 500.00, 'SKU0545', 1),
+(45, 1, 1, 21, 'Iphone 14 Pro Max', 'This is Iphone', 'product_1688199318_4224775.jpeg', 1, 150000.00, 500.00, '545', 1),
+(46, 1, 5, 21, 'Iphone 8', 'This descriptions', 'product_1688539446_89086245.jpg', 2, 5456.00, 154.00, '854', 1),
+(47, 1, 5, 33, 'Yellow Notebook', 'This is a Description.', 'product_1688566884_26493104.jpg', 1, 150.00, 100.00, '46814', 1);
 
 -- --------------------------------------------------------
 
@@ -1194,7 +1245,10 @@ INSERT INTO `products` (`product_id`, `category_id`, `sub_category_id`, `brand_i
 -- (See below for the actual view)
 --
 CREATE TABLE `product_information` (
-`unit_id` int
+`total_sold_quantity` decimal(32,0)
+,`total_buy_quantity` decimal(32,0)
+,`total_stock` decimal(36,2)
+,`unit_id` int
 ,`brand_id` int
 ,`category_id` int
 ,`sub_category_id` int
@@ -1203,6 +1257,7 @@ CREATE TABLE `product_information` (
 ,`description` text
 ,`product_image` varchar(100)
 ,`selling_price` decimal(10,2)
+,`buying_price` decimal(10,2)
 ,`sku` varchar(50)
 ,`product_status` int
 ,`category_name` varchar(50)
@@ -1218,14 +1273,83 @@ CREATE TABLE `product_information` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `product_stock_information`
+-- (See below for the actual view)
+--
+CREATE TABLE `product_stock_information` (
+`product_id` int
+,`product_name` varchar(50)
+,`total_sold_quantity` decimal(32,0)
+,`total_buy_quantity` decimal(32,0)
+,`total_stock` decimal(36,2)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `product_summary`
+-- (See below for the actual view)
+--
+CREATE TABLE `product_summary` (
+`product_id` int
+,`product_name` varchar(50)
+,`total_sold_quantity` decimal(32,0)
+,`total_buy_quantity` decimal(32,0)
+,`total_stock` decimal(36,2)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `purchase_order`
 --
 
 CREATE TABLE `purchase_order` (
   `purchase_order_id` int NOT NULL,
   `user_id` int DEFAULT NULL,
-  `time_stamp` datetime DEFAULT CURRENT_TIMESTAMP
+  `supplier_id` int NOT NULL,
+  `time_stamp` datetime DEFAULT CURRENT_TIMESTAMP,
+  `purchase_order_status` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `purchase_order`
+--
+
+INSERT INTO `purchase_order` (`purchase_order_id`, `user_id`, `supplier_id`, `time_stamp`, `purchase_order_status`) VALUES
+(10, 23, 2, '2023-07-05 08:40:15', 1),
+(11, 23, 2, '2023-07-05 08:40:52', 1),
+(12, 23, 2, '2023-07-05 08:45:10', 1),
+(13, 23, 2, '2023-07-05 09:44:32', 1),
+(14, 23, 2, '2023-07-05 09:46:23', 1),
+(15, 23, 2, '2023-07-05 10:09:51', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `purchase_order_information`
+-- (See below for the actual view)
+--
+CREATE TABLE `purchase_order_information` (
+`purchase_order_id` int
+,`user_id` int
+,`supplier_id` int
+,`time_stamp` datetime
+,`purchase_order_status` int
+,`user_name` varchar(30)
+,`user_username` varchar(50)
+,`user_email` varchar(50)
+,`user_phone` varchar(20)
+,`user_password` varchar(50)
+,`role_id` int
+,`user_status` varchar(50)
+,`user_image` varchar(100)
+,`supplier_name` varchar(50)
+,`supplier_address` text
+,`supplier_phone` varchar(50)
+,`supplier_email` varchar(50)
+,`supplier_status` int
+);
 
 -- --------------------------------------------------------
 
@@ -1255,8 +1379,48 @@ INSERT INTO `roles` (`role_id`, `role_name`) VALUES
 CREATE TABLE `sales_order` (
   `sales_order_id` int NOT NULL,
   `customer_id` int DEFAULT NULL,
-  `time_stamp` datetime DEFAULT CURRENT_TIMESTAMP
+  `user_id` int NOT NULL,
+  `time_stamp` datetime DEFAULT CURRENT_TIMESTAMP,
+  `sales_order_status` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `sales_order`
+--
+
+INSERT INTO `sales_order` (`sales_order_id`, `customer_id`, `user_id`, `time_stamp`, `sales_order_status`) VALUES
+(56, 1058, 23, '2023-07-05 08:40:29', 1),
+(57, 1058, 23, '2023-07-05 08:45:25', 1),
+(58, 1075, 23, '2023-07-05 09:45:49', 1),
+(59, 1058, 23, '2023-07-05 09:52:59', 1),
+(60, 1058, 23, '2023-07-05 10:00:13', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `sales_order_information`
+-- (See below for the actual view)
+--
+CREATE TABLE `sales_order_information` (
+`sales_order_id` int
+,`customer_id` int
+,`user_id` int
+,`time_stamp` datetime
+,`sales_order_status` int
+,`customer_name` varchar(200)
+,`customer_address` varchar(200)
+,`customer_phone` varchar(20)
+,`customer_email` varchar(100)
+,`customer_status` int
+,`user_name` varchar(30)
+,`user_username` varchar(50)
+,`user_email` varchar(50)
+,`user_phone` varchar(20)
+,`user_password` varchar(50)
+,`role_id` int
+,`user_status` varchar(50)
+,`user_image` varchar(100)
+);
 
 -- --------------------------------------------------------
 
@@ -1282,7 +1446,35 @@ INSERT INTO `sub_categories` (`sub_category_id`, `sub_category_name`, `category_
 (4, 'Akiz', 1, 1),
 (5, 'BingBong', 1, 1),
 (8, 'Cooking', 4, 1),
-(9, 'Furniture', 4, 1);
+(9, 'Furniture', 4, 1),
+(10, 'Laptop', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `suppliers`
+--
+
+CREATE TABLE `suppliers` (
+  `supplier_id` int NOT NULL,
+  `supplier_name` varchar(50) NOT NULL,
+  `supplier_address` text NOT NULL,
+  `supplier_phone` varchar(50) NOT NULL,
+  `supplier_email` varchar(50) NOT NULL,
+  `supplier_status` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `suppliers`
+--
+
+INSERT INTO `suppliers` (`supplier_id`, `supplier_name`, `supplier_address`, `supplier_phone`, `supplier_email`, `supplier_status`) VALUES
+(2, 'Sk Miraj', 'Mirpur', '01957244070', 'skmirajbn@gmail.com', 1),
+(3, 'John Doe', '123 Main Street', '555-1234', 'johndoe@example.com', 1),
+(4, 'Jane Smith', '456 Elm Avenue', '555-5678', 'janesmith@example.com', 1),
+(5, 'Robert Johnson', '789 Oak Road', '555-9012', 'robertjohnson@example.com', 0),
+(6, 'Ali Hasan Limited', 'Mirpur', '01234567', 'ali@gmail.com', 1),
+(7, 'Roby', 'Mirpur', '03543515', 'roby@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -1296,6 +1488,46 @@ CREATE TABLE `s_order_product` (
   `product_id` int DEFAULT NULL,
   `quantity` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `s_order_product`
+--
+
+INSERT INTO `s_order_product` (`s_order_product_id`, `sales_order_id`, `product_id`, `quantity`) VALUES
+(108, 56, 46, 2),
+(109, 57, 46, 2),
+(110, 58, 43, 3),
+(111, 59, 45, 1),
+(112, 59, 43, 2),
+(113, 59, 40, 1),
+(114, 59, 41, 3),
+(115, 59, 42, 1),
+(116, 59, 45, 1),
+(117, 60, 43, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `s_order_product_information`
+-- (See below for the actual view)
+--
+CREATE TABLE `s_order_product_information` (
+`s_order_product_id` int
+,`sales_order_id` int
+,`product_id` int
+,`quantity` int
+,`category_id` int
+,`sub_category_id` int
+,`brand_id` int
+,`product_name` varchar(50)
+,`description` text
+,`product_image` varchar(100)
+,`unit_id` int
+,`selling_price` decimal(10,2)
+,`buying_price` decimal(10,2)
+,`sku` varchar(50)
+,`product_status` int
+);
 
 -- --------------------------------------------------------
 
@@ -1342,15 +1574,21 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_username`, `user_email`, `user_phone`, `user_password`, `role_id`, `user_status`, `user_image`) VALUES
-(20, 'Md Mosharof', 'Md Mosharof', 'Md Mosharof', '465465', '123', 1, NULL, 'user_1687325732_8174664.png'),
-(22, 'Ali Hasan', 'dbhasan', 'info@gmail.com', '01723629080', '123', 1, NULL, 'images.jpeg'),
-(23, 'Miraj', 'Miraj', 'Miraj', '3241687854', '123', 1, NULL, 'user_1687428656_2708711.png'),
+(20, 'Mosharof', 'Mosharof', 'info@gmail.com', '017289429479', '123', 1, NULL, 'user_1688493946_1983586.jpeg'),
+(22, 'Ali Hasan', 'dbhasan', 'info@gmail.com', '01723629080', '123', 1, NULL, 'user_1688139907_2684197.jpg'),
+(23, 'Miraj', 'skmiraj', 'skmirajbn@gmail.com', '01957244070', '123', 1, NULL, 'user_1688216572_6458194.png'),
 (24, 'Alamin', 'alamin', 'info@gmail.com', '01723629080', '123', 1, NULL, 'images.jpeg'),
 (25, 'khaleda', 'khaleda', 'info@gmail.com', '01723629080', '123', 1, NULL, 'images.jpeg'),
-(28, 'Md Mosarof', 'Md Mosarof', 'Md Mosarof', '546854124', '123', 6, NULL, 'user_1687293882_3155576.png'),
-(29, 'Ali Hasan', 'Ali Hasan', 'Ali Hasan', '2315345154', '123', 1, NULL, 'user_1687324573_7040000.png'),
-(30, 'Hasan', 'Ali Hasan', 'Ali Hasan', '8546546314', '123', 1, NULL, 'user_1687324664_3108720.png'),
-(31, 'Ali Hasan', 'Ali Hasan', 'Ali Hasan', '8653453', '12', 6, NULL, 'user_1687325872_7142194.png');
+(32, '', '', '', '', '', 1, NULL, 'avatar.png');
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `b_order_product_information`
+--
+DROP TABLE IF EXISTS `b_order_product_information`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`skmiraj`@`%` SQL SECURITY DEFINER VIEW `b_order_product_information`  AS SELECT `b_order_product`.`b_order_product_id` AS `b_order_product_id`, `b_order_product`.`purchase_order_id` AS `purchase_order_id`, `b_order_product`.`product_id` AS `product_id`, `b_order_product`.`quantity` AS `quantity`, `products`.`category_id` AS `category_id`, `products`.`sub_category_id` AS `sub_category_id`, `products`.`brand_id` AS `brand_id`, `products`.`product_name` AS `product_name`, `products`.`description` AS `description`, `products`.`product_image` AS `product_image`, `products`.`unit_id` AS `unit_id`, `products`.`selling_price` AS `selling_price`, `products`.`buying_price` AS `buying_price`, `products`.`sku` AS `sku`, `products`.`product_status` AS `product_status` FROM (`b_order_product` join `products` on((`b_order_product`.`product_id` = `products`.`product_id`))) ;
 
 -- --------------------------------------------------------
 
@@ -1368,7 +1606,52 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`skmiraj`@`%` SQL SECURITY DEFINER VIEW `cate
 --
 DROP TABLE IF EXISTS `product_information`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`skmiraj`@`%` SQL SECURITY DEFINER VIEW `product_information`  AS SELECT `products`.`unit_id` AS `unit_id`, `products`.`brand_id` AS `brand_id`, `products`.`category_id` AS `category_id`, `products`.`sub_category_id` AS `sub_category_id`, `products`.`product_id` AS `product_id`, `products`.`product_name` AS `product_name`, `products`.`description` AS `description`, `products`.`product_image` AS `product_image`, `products`.`selling_price` AS `selling_price`, `products`.`sku` AS `sku`, `products`.`product_status` AS `product_status`, `categories`.`category_name` AS `category_name`, `categories`.`category_status` AS `category_status`, `sub_categories`.`sub_category_name` AS `sub_category_name`, `sub_categories`.`sub_category_status` AS `sub_category_status`, `brands`.`brand_name` AS `brand_name`, `brands`.`brand_status` AS `brand_status`, `units`.`unit_name` AS `unit_name`, `units`.`unit_status` AS `unit_status` FROM ((((`products` join `categories` on((`products`.`category_id` = `categories`.`category_id`))) join `sub_categories` on(((`products`.`category_id` = `sub_categories`.`category_id`) and (`products`.`sub_category_id` = `sub_categories`.`sub_category_id`)))) join `brands` on((`products`.`brand_id` = `brands`.`brand_id`))) join `units` on((`products`.`unit_id` = `units`.`unit_id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`skmiraj`@`%` SQL SECURITY DEFINER VIEW `product_information`  AS SELECT `psi`.`total_sold_quantity` AS `total_sold_quantity`, `psi`.`total_buy_quantity` AS `total_buy_quantity`, `psi`.`total_stock` AS `total_stock`, `p`.`unit_id` AS `unit_id`, `p`.`brand_id` AS `brand_id`, `p`.`category_id` AS `category_id`, `p`.`sub_category_id` AS `sub_category_id`, `p`.`product_id` AS `product_id`, `p`.`product_name` AS `product_name`, `p`.`description` AS `description`, `p`.`product_image` AS `product_image`, `p`.`selling_price` AS `selling_price`, `p`.`buying_price` AS `buying_price`, `p`.`sku` AS `sku`, `p`.`product_status` AS `product_status`, `c`.`category_name` AS `category_name`, `c`.`category_status` AS `category_status`, `sc`.`sub_category_name` AS `sub_category_name`, `sc`.`sub_category_status` AS `sub_category_status`, `b`.`brand_name` AS `brand_name`, `b`.`brand_status` AS `brand_status`, `u`.`unit_name` AS `unit_name`, `u`.`unit_status` AS `unit_status` FROM (((((`products` `p` join `categories` `c` on((`p`.`category_id` = `c`.`category_id`))) join `sub_categories` `sc` on(((`p`.`category_id` = `sc`.`category_id`) and (`p`.`sub_category_id` = `sc`.`sub_category_id`)))) join `brands` `b` on((`p`.`brand_id` = `b`.`brand_id`))) join `units` `u` on((`p`.`unit_id` = `u`.`unit_id`))) join `product_stock_information` `psi` on((`p`.`product_id` = `psi`.`product_id`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `product_stock_information`
+--
+DROP TABLE IF EXISTS `product_stock_information`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`skmiraj`@`%` SQL SECURITY DEFINER VIEW `product_stock_information`  AS SELECT `p`.`product_id` AS `product_id`, `p`.`product_name` AS `product_name`, coalesce(`sold`.`quantity`,0) AS `total_sold_quantity`, coalesce(`bought`.`quantity`,0) AS `total_buy_quantity`, ((ifnull(`i`.`stock`,0) + coalesce(`bought`.`quantity`,0)) - coalesce(`sold`.`quantity`,0)) AS `total_stock` FROM (((`products` `p` left join (select `s_order_product`.`product_id` AS `product_id`,sum(`s_order_product`.`quantity`) AS `quantity` from `s_order_product` group by `s_order_product`.`product_id`) `sold` on((`p`.`product_id` = `sold`.`product_id`))) left join (select `b_order_product`.`product_id` AS `product_id`,sum(`b_order_product`.`quantity`) AS `quantity` from `b_order_product` group by `b_order_product`.`product_id`) `bought` on((`p`.`product_id` = `bought`.`product_id`))) left join `inventory` `i` on((`p`.`product_id` = `i`.`product_id`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `product_summary`
+--
+DROP TABLE IF EXISTS `product_summary`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`skmiraj`@`%` SQL SECURITY DEFINER VIEW `product_summary`  AS SELECT `p`.`product_id` AS `product_id`, `p`.`product_name` AS `product_name`, coalesce(sum(`sop`.`quantity`),0) AS `total_sold_quantity`, sum(`bop`.`quantity`) AS `total_buy_quantity`, ((ifnull(`i`.`stock`,0) + sum(`bop`.`quantity`)) - coalesce(sum(`sop`.`quantity`),0)) AS `total_stock` FROM (((`products` `p` left join `s_order_product` `sop` on((`sop`.`product_id` = `p`.`product_id`))) left join `b_order_product` `bop` on((`bop`.`product_id` = `p`.`product_id`))) left join `inventory` `i` on((`i`.`product_id` = `p`.`product_id`))) GROUP BY `p`.`product_id`, `p`.`product_name` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `purchase_order_information`
+--
+DROP TABLE IF EXISTS `purchase_order_information`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`skmiraj`@`%` SQL SECURITY DEFINER VIEW `purchase_order_information`  AS SELECT `purchase_order`.`purchase_order_id` AS `purchase_order_id`, `purchase_order`.`user_id` AS `user_id`, `purchase_order`.`supplier_id` AS `supplier_id`, `purchase_order`.`time_stamp` AS `time_stamp`, `purchase_order`.`purchase_order_status` AS `purchase_order_status`, `users`.`user_name` AS `user_name`, `users`.`user_username` AS `user_username`, `users`.`user_email` AS `user_email`, `users`.`user_phone` AS `user_phone`, `users`.`user_password` AS `user_password`, `users`.`role_id` AS `role_id`, `users`.`user_status` AS `user_status`, `users`.`user_image` AS `user_image`, `suppliers`.`supplier_name` AS `supplier_name`, `suppliers`.`supplier_address` AS `supplier_address`, `suppliers`.`supplier_phone` AS `supplier_phone`, `suppliers`.`supplier_email` AS `supplier_email`, `suppliers`.`supplier_status` AS `supplier_status` FROM ((`purchase_order` join `users` on((`purchase_order`.`user_id` = `users`.`user_id`))) join `suppliers` on((`purchase_order`.`supplier_id` = `suppliers`.`supplier_id`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `sales_order_information`
+--
+DROP TABLE IF EXISTS `sales_order_information`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sales_order_information`  AS SELECT `sales_order`.`sales_order_id` AS `sales_order_id`, `sales_order`.`customer_id` AS `customer_id`, `sales_order`.`user_id` AS `user_id`, `sales_order`.`time_stamp` AS `time_stamp`, `sales_order`.`sales_order_status` AS `sales_order_status`, `customers`.`customer_name` AS `customer_name`, `customers`.`customer_address` AS `customer_address`, `customers`.`customer_phone` AS `customer_phone`, `customers`.`customer_email` AS `customer_email`, `customers`.`customer_status` AS `customer_status`, `users`.`user_name` AS `user_name`, `users`.`user_username` AS `user_username`, `users`.`user_email` AS `user_email`, `users`.`user_phone` AS `user_phone`, `users`.`user_password` AS `user_password`, `users`.`role_id` AS `role_id`, `users`.`user_status` AS `user_status`, `users`.`user_image` AS `user_image` FROM ((`sales_order` join `customers` on((`sales_order`.`customer_id` = `customers`.`customer_id`))) join `users` on((`sales_order`.`user_id` = `users`.`user_id`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `s_order_product_information`
+--
+DROP TABLE IF EXISTS `s_order_product_information`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`skmiraj`@`%` SQL SECURITY DEFINER VIEW `s_order_product_information`  AS SELECT `s_order_product`.`s_order_product_id` AS `s_order_product_id`, `s_order_product`.`sales_order_id` AS `sales_order_id`, `s_order_product`.`product_id` AS `product_id`, `s_order_product`.`quantity` AS `quantity`, `products`.`category_id` AS `category_id`, `products`.`sub_category_id` AS `sub_category_id`, `products`.`brand_id` AS `brand_id`, `products`.`product_name` AS `product_name`, `products`.`description` AS `description`, `products`.`product_image` AS `product_image`, `products`.`unit_id` AS `unit_id`, `products`.`selling_price` AS `selling_price`, `products`.`buying_price` AS `buying_price`, `products`.`sku` AS `sku`, `products`.`product_status` AS `product_status` FROM (`s_order_product` join `products` on((`s_order_product`.`product_id` = `products`.`product_id`))) ;
 
 --
 -- Indexes for dumped tables
@@ -1381,13 +1664,13 @@ ALTER TABLE `brands`
   ADD PRIMARY KEY (`brand_id`);
 
 --
--- Indexes for table `b_order_purchase`
+-- Indexes for table `b_order_product`
 --
-ALTER TABLE `b_order_purchase`
+ALTER TABLE `b_order_product`
   ADD PRIMARY KEY (`b_order_product_id`),
   ADD KEY `purchase_order_id` (`purchase_order_id`),
   ADD KEY `product_id` (`product_id`),
-  ADD KEY `Key` (`quantity`,`buying_price`);
+  ADD KEY `Key` (`quantity`);
 
 --
 -- Indexes for table `categories`
@@ -1399,7 +1682,8 @@ ALTER TABLE `categories`
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
-  ADD PRIMARY KEY (`customer_id`);
+  ADD PRIMARY KEY (`customer_id`),
+  ADD UNIQUE KEY `customer_phone` (`customer_phone`);
 
 --
 -- Indexes for table `inventory`
@@ -1444,6 +1728,12 @@ ALTER TABLE `sub_categories`
   ADD KEY `category_id` (`category_id`);
 
 --
+-- Indexes for table `suppliers`
+--
+ALTER TABLE `suppliers`
+  ADD PRIMARY KEY (`supplier_id`);
+
+--
 -- Indexes for table `s_order_product`
 --
 ALTER TABLE `s_order_product`
@@ -1472,25 +1762,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `brand_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `brand_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
--- AUTO_INCREMENT for table `b_order_purchase`
+-- AUTO_INCREMENT for table `b_order_product`
 --
-ALTER TABLE `b_order_purchase`
-  MODIFY `b_order_product_id` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `b_order_product`
+  MODIFY `b_order_product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1057;
+  MODIFY `customer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1076;
 
 --
 -- AUTO_INCREMENT for table `inventory`
@@ -1502,13 +1792,13 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `purchase_order`
 --
 ALTER TABLE `purchase_order`
-  MODIFY `purchase_order_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `purchase_order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -1520,19 +1810,25 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `sales_order`
 --
 ALTER TABLE `sales_order`
-  MODIFY `sales_order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `sales_order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
-  MODIFY `sub_category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `sub_category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `suppliers`
+--
+ALTER TABLE `suppliers`
+  MODIFY `supplier_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `s_order_product`
 --
 ALTER TABLE `s_order_product`
-  MODIFY `s_order_product_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `s_order_product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- AUTO_INCREMENT for table `units`
@@ -1544,18 +1840,18 @@ ALTER TABLE `units`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `b_order_purchase`
+-- Constraints for table `b_order_product`
 --
-ALTER TABLE `b_order_purchase`
-  ADD CONSTRAINT `b_order_purchase_ibfk_1` FOREIGN KEY (`purchase_order_id`) REFERENCES `purchase_order` (`purchase_order_id`),
-  ADD CONSTRAINT `b_order_purchase_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
+ALTER TABLE `b_order_product`
+  ADD CONSTRAINT `b_order_product_ibfk_1` FOREIGN KEY (`purchase_order_id`) REFERENCES `purchase_order` (`purchase_order_id`),
+  ADD CONSTRAINT `b_order_product_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
 
 --
 -- Constraints for table `products`
