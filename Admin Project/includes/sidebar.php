@@ -209,10 +209,8 @@
             </h2>
             <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <a class="btn btn-block" href=""><i class="fa-solid fa-cubes"></i>&nbsp; Current Stock</a>
-              </div>
-              <div class="accordion-body">
-                <a class="btn btn-block" href=""><i class="fa-solid fa-file-pen"></i>&nbsp; Update Stock</a>
+                <a class="btn btn-block" href="pages/all_inventory_stock.php"><i class="fa-solid fa-cubes"></i>&nbsp;
+                  Current Stock</a>
               </div>
             </div>
           </div>
