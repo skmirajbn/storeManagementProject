@@ -315,6 +315,43 @@ if (isset($_GET['par_brandDelete'])) {
 
 //Units Section  Start <<================================>>
 
+//Add Unit - Mosharrof
+if (isset($_POST['addunit'])) {
+    $unitName = $_POST['unitName'];
+    $sql = "INSERT INTO units(unit_name,unit_status) VALUES('$unitName',1)";
+    $query = $con->query($sql);
+    if ($query) {
+        echo "Unit Added";
+    } else {
+        echo "Data Upload Failed";
+    }
+}
+
+// Update Unit -Mosharrof
+if (isset($_POST['editBrand'])) {
+    $id = $_POST['editBrand'];
+    $brandName = $_POST['brandName'];
+    $sql = "UPDATE brands SET brand_name='$brandName', brand_status=1 WHERE brand_id = $id";
+    $query = $con->query($sql);
+    if ($query) {
+        echo "Brand Updated";
+    } else {
+        echo "Data Upload Failed";
+    }
+}
+
+//Delete Unit - Mosharrof
+if (isset($_GET['brandDelete'])) {
+    $id = $_GET['brandDelete'];
+    $sql = "UPDATE brands SET brand_status=0 WHERE brand_id= $id";
+    $query = $con->query($sql);
+    if ($query) {
+        header("location: pages/all_brand.php");
+    } else {
+        echo "Data Not Deleted ";
+    }
+}
+
 //Units Section  End <<================================>>
 
 //Users Section  Start <<================================>>

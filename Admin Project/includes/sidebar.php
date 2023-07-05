@@ -126,7 +126,7 @@
                   Units</a>
               </div>
               <div class="accordion-body">
-                <a class="btn btn-block" href="pages/add_brand.php"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add
+                <a class="btn btn-block" href="pages/add_units.php"><i class="fa-solid fa-circle-plus"></i>&nbsp; Add
                   Unit</a>
               </div>
               <div class="accordion-body">
