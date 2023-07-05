@@ -261,9 +261,8 @@ $(document).ready(function () {
     let selling_price = e.target.getAttribute("data-sellingPrice");
     selling_price = selling_price.toLocaleString("en-IN", { maximumFractionDigits: 2 });
     let productImage = e.target.parentNode.parentNode.querySelector("img").getAttribute("src");
-    console.log(productImage);
     $("#sales_order_table").append(`
-    <tr>
+          <tr>
              <td>${sku}</td>
              <td>${productName}</td>
              <td><img style="width: 30px" src="${productImage}">
@@ -277,41 +276,6 @@ $(document).ready(function () {
          </tr>
        `);
     calSubTotal();
-
-    // $.ajax({
-    //   url: "pages/get_product_info.php",
-    //   method: "POST",
-    //   dataType: "json",
-    //   data: {
-    //     product_id: productId,
-    //   },
-    //   beforeSend: function () {
-    //     addButton.innerText = "Loading";
-    //   },
-    //   success: function (response) {
-    //     $("#sales_order_table").append(`
-    //     <tr>
-    //         <td>${response.sku}</td>
-    //         <td>${response.product_name}</td>
-    //         <td><img style="width: 30px" src="uploads/images/${response.product_image}">
-    //         </td>
-    //         <td>Stock</td>
-    //         <td class="quantity"><input class="form-control" style="width:60px" type="number" value="1"></td>
-    //         <td class="selling_price">${response.selling_price}</td>
-    //         <td class="total_price">${response.selling_price}</td>
-    //         <td><i class="delete_row fa-solid fa-x" style="color:red"></i></td>
-    //     </tr>
-    //     `);
-    //     addButton.innerText = "ADD";
-    //     calSubTotal();
-    //   },
-    //   error: function () {
-    //     console.log("error");
-    //   },
-    //   complete: function () {
-    //     console.log("completed");
-    //   },
-    // });
   });
 
   //Listing Quantity and Total price Calculation

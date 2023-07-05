@@ -48,29 +48,6 @@ $result = $con->query($sql);
                 <div class="form-group">
                     <label for="">Sales Order</label><br>
                     <div class="product_container">
-                        <!-- <div class="product_entry">
-                            <label for="sku1">SKU:</label>
-                            <input style="display: inline-block;width: 100px;" class="form-control sku-input"
-                                type="text" placeholder="SKU" id="sku1" name="sku[1]">
-                            <label for="product1">Name:</label>
-                            <input style="display: inline-block;width: 250px;" class="form-control product-input"
-                                type="text" placeholder="Enter Product Name" id="product1" name="product[1]">
-                            <label for="quantity1">Quantity :</label>
-                            <input style="display: inline-block;width: 100px;" class="form-control" type="text"
-                                placeholder="Quantity" id="quantity1"> <span>&nbsp; &nbsp;</span>
-                            <span
-                                style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">Stock:
-                                --</span>
-                            <span
-                                style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">--</span>
-                            <span style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">Per
-                                pc:
-                                --</span>
-                            <span
-                                style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">Total:
-                                --</span>
-                            <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                        </div> -->
 
                         <div class="table-responsive">
                             <table id="sales_order_table">
@@ -84,8 +61,7 @@ $result = $con->query($sql);
                                     <th>Total</th>
                                     <th>X</th>
                                 </tr>
-
-
+                                <!-- Will add products via Javascript -->
                             </table>
                             <div
                                 style="text-align: right;background-color: var(--secondary-color); color:white; padding: 2px 10px">

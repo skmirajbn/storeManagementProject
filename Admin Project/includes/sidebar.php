@@ -180,10 +180,12 @@
             </h2>
             <div id="collapseSuppliers" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <a class="btn btn-block" href=""><i class="fa-solid fa-truck-moving"></i>&nbsp; All Suppliers</a>
+                <a class="btn btn-block" href="pages/all_suppliers.php"><i class="fa-solid fa-truck-moving"></i>&nbsp;
+                  All Suppliers</a>
               </div>
               <div class="accordion-body">
-                <a class="btn btn-block" href=""><i class="fa-solid fa-truck-front"></i>&nbsp; Add Supplier</a>
+                <a class="btn btn-block" href="pages/add_supplier.php"><i class="fa-solid fa-truck-front"></i>&nbsp; Add
+                  Supplier</a>
               </div>
             </div>
           </div>

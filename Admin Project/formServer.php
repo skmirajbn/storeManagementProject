@@ -398,6 +398,23 @@ if (isset($_POST['add_role'])) {
     }
 }
 //Role Section  End <<================================>>
+//Supplier Section  Start <<================================>>
+//Add supplier
+if (isset($_POST['addSupplier'])) {
+    $name = $_POST["supplier_name"];
+    $address = $_POST["supplier_address"];
+    $phone = $_POST["supplier_phone"];
+    $email = $_POST["supplier_email"];
+    $sql = "INSERT INTO suppliers(supplier_name,supplier_address,supplier_phone,supplier_email,supplier_status) VALUES('$name','$address','$phone','$email',1)";
+    $query = $con->query($sql);
+    if ($query) {
+
+        echo "Supplier Added";
+    } else {
+        echo "Supplier Add Failed";
+    }
+}
+//Supplier Section  End <<================================>>
 
 //Sales Order Section  Start <<================================>>
 if (isset($_POST['create_order'])) {
@@ -558,7 +575,7 @@ if (isset($_POST['create_sales_order'])) {
 
 
 }
-//Sales Order Section  End <<================================>>
+//Purchase Order Section  End <<================================>>
 
 
 
