@@ -506,7 +506,7 @@ $(document).ready(function () {
     url: "pages/get_last_7days_sales.php",
     dataType: "json",
     method: "POST",
-    data: {},
+    data: { sevenDaysData: "" },
     success: function (response) {
       response.forEach(function (each) {
         sevenDaysData.push(each.total_sales);
@@ -535,27 +535,63 @@ $(document).ready(function () {
       });
     },
   });
-
+  // Categories Product
+  let CategoriesName = [];
+  let CategorisProducts = [];
   const reportChart2 = document.getElementById("reportChart-2");
-  new Chart(reportChart2, {
-    type: "pie",
-    data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-      datasets: [
-        {
-          label: "# of Votes",
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: "#5DA9FF",
-          borderWidth: 1,
+  $.ajax({
+    url: "pages/get_last_7days_sales.php",
+    dataType: "json",
+    method: "POST",
+    data: { categoriesProduct: "" },
+    success: function (response) {
+      response.forEach(function (each) {
+        CategoriesName.push(each.category_name);
+        CategorisProducts.push(each.total_products);
+      });
+      new Chart(reportChart2, {
+        type: "pie",
+        data: {
+          labels: CategoriesName,
+          datasets: [
+            {
+              label: "Last 7 Days Sales Data",
+              data: CategorisProducts,
+              backgroundColor: ["#66ADFF", "#4CDEC1", "#FFC169", "#FF758C", "#F39C12"],
+              borderWidth: 1,
+            },
+          ],
         },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
         },
-      },
+      });
     },
   });
+
+  // const reportChart2 = document.getElementById("reportChart-2");
+  // new Chart(reportChart2, {
+  //   type: "pie",
+  //   data: {
+  //     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+  //     datasets: [
+  //       {
+  //         data: [12, 19, 3, 5, 2, 3],
+  //         backgroundColor: ["#66ADFF", "#4CDEC1", "#FFC169", "#FF758C", "#F39C12"],
+  //         borderWidth: 1,
+  //       },
+  //     ],
+  //   },
+  //   options: {
+  //     scales: {
+  //       y: {
+  //         beginAtZero: true,
+  //       },
+  //     },
+  //   },
+  // });
 });
