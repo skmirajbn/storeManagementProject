@@ -130,7 +130,7 @@
                   Unit</a>
               </div>
               <div class="accordion-body">
-                <a class="btn btn-block" href="pages/restore_brand.php"><i class="fa-solid fa-trash"></i>&nbsp; Restore
+                <a class="btn btn-block" href="pages/restore_unit.php"><i class="fa-solid fa-trash"></i>&nbsp; Restore
                   Units</a>
               </div>
             </div>

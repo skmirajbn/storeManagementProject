@@ -328,25 +328,49 @@ if (isset($_POST['addunit'])) {
 }
 
 // Update Unit -Mosharrof
-if (isset($_POST['editBrand'])) {
-    $id = $_POST['editBrand'];
-    $brandName = $_POST['brandName'];
-    $sql = "UPDATE brands SET brand_name='$brandName', brand_status=1 WHERE brand_id = $id";
+if (isset($_POST['editUnit'])) {
+    $id = $_POST['editUnit'];
+    $brandName = $_POST['UnitName'];
+    $sql = "UPDATE units SET unit_name='$brandName', unit_status=1 WHERE unit_id = $id";
     $query = $con->query($sql);
     if ($query) {
-        echo "Brand Updated";
+        echo "Unit Updated";
     } else {
         echo "Data Upload Failed";
     }
 }
 
 //Delete Unit - Mosharrof
-if (isset($_GET['brandDelete'])) {
-    $id = $_GET['brandDelete'];
-    $sql = "UPDATE brands SET brand_status=0 WHERE brand_id= $id";
+if (isset($_GET['unitDelete'])) {
+    $id = $_GET['unitDelete'];
+    $sql = "UPDATE units SET unit_status=0 WHERE unit_id= $id";
     $query = $con->query($sql);
     if ($query) {
-        header("location: pages/all_brand.php");
+        header("location: pages/all_units.php");
+    } else {
+        echo "Data Not Deleted ";
+    }
+}
+
+//Restore Unit -Mosharrof 
+if (isset($_GET['restore_unit'])) {
+    $id = $_GET['restore_unit'];
+    $sql = "UPDATE units SET unit_status=1 WHERE unit_id= $id";
+    $query = $con->query($sql);
+    if ($query) {
+        header("location: pages/restore_unit.php");
+    } else {
+        echo "Data Not Restored ";
+    }
+}
+
+//Parmanently Delete Unit - Mosharrof
+if (isset($_GET['par_unitDelete'])) {
+    $id = $_GET['par_unitDelete'];
+    $sql = "DELETE FROM units WHERE unit_id = $id";
+    $query = $con->query($sql);
+    if ($query) {
+        header("location: pages/restore_unit.php");
     } else {
         echo "Data Not Deleted ";
     }

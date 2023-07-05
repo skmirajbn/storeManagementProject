@@ -336,7 +336,6 @@
                       <th>ID</th>
                       <th>Name</th>
                       <th>Brand</th>
-                      <th>Category</th>
                       <th>Unit</th>
                       <th>SKU</th>
                       <th>Price</th>
