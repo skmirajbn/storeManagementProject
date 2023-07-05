@@ -499,25 +499,40 @@ $(document).ready(function () {
   //ChartJS
   const reportChart = document.getElementById("reportChart");
 
-  new Chart(reportChart, {
-    type: "bar",
-    data: {
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-      datasets: [
-        {
-          label: "# of Votes",
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: "#F39C12",
-          borderWidth: 1,
+  //get Last 7 days Sales Data
+  let sevenDaysData = [];
+  let sevenDaysDate = [];
+  $.ajax({
+    url: "pages/get_last_7days_sales.php",
+    dataType: "json",
+    method: "POST",
+    data: {},
+    success: function (response) {
+      response.forEach(function (each) {
+        sevenDaysData.push(each.total_sales);
+        sevenDaysDate.push(each.sales_date);
+      });
+      new Chart(reportChart, {
+        type: "bar",
+        data: {
+          labels: sevenDaysDate,
+          datasets: [
+            {
+              label: "Last 7 Days Sales Data",
+              data: sevenDaysData,
+              backgroundColor: "#F39C12",
+              borderWidth: 1,
+            },
+          ],
         },
-      ],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
         },
-      },
+      });
     },
   });
 

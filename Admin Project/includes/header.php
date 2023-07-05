@@ -49,32 +49,34 @@
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="pages/create_order.php">Create Order</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="pages/add_user.php">Add User</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="pages/add_category.php">Add Category</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="pages/add_brand.php">Add Brand</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="pages/add_product.php">Add Product</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">Other</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">About</a></li>
-                  <li><a class="dropdown-item" href="#">Store</a></li>
-                  <li>
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">Trash</a>
-                  </li>
-                </ul>
-              </li>
+              <?php if ($_SESSION['role_id'] < 2) { ?>
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="pages/add_user.php">Add User</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="pages/add_category.php">Add Category</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="pages/add_brand.php">Add Brand</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="pages/add_product.php">Add Product</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">Other</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">About</a></li>
+                    <li><a class="dropdown-item" href="#">Store</a></li>
+                    <li>
+                      <hr class="dropdown-divider" />
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Trash</a>
+                    </li>
+                  </ul>
+                </li>
+              <?php } ?>
             </ul>
             <i style="color: white; font-size: 20px;" id="themeToggleBtn" class="fa-solid fa-droplet"></i>
             <ul class="nav_profile">

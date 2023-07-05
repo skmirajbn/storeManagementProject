@@ -87,6 +87,7 @@
     </thead>
     <tbody>
       <?php
+      require_once("./../includes/authentication.php");
       require_once("../includes/db_connection.php");
 
       //pagination
@@ -143,10 +144,12 @@
           <td>
             <button class=" btn edit-btn view" data-bs-toggle="modal" data-bs-target="#product_view_modal"><i
                 class="fa-solid fa-eye"></i></button>
-            <a href="pages/update_product.php?product_id=<?= $data["product_id"] ?>" class=" btn edit-btn "><i
-                class="fa-solid fa-pen-to-square"></i></a>
-            <a href="formServer.php?product_id=<?= $data["product_id"] ?>" class=" btn delete-btn "><i
-                class="fa-solid fa-trash"></i></a>
+            <?php if ($_SESSION['role_id'] < 2) { ?>
+              <a href="pages/update_product.php?product_id=<?= $data["product_id"] ?>" class=" btn edit-btn "><i
+                  class="fa-solid fa-pen-to-square"></i></a>
+              <a href="formServer.php?product_id=<?= $data["product_id"] ?>" class=" btn delete-btn "><i
+                  class="fa-solid fa-trash"></i></a>
+            <?php } ?>
           </td>
         </tr>
       <?php } ?>

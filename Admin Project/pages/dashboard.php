@@ -1,6 +1,7 @@
 <?php
 require_once('includes/db_connection.php');
 require_once('includes/functions.php');
+$formatter = new NumberFormatter('en_IN', NumberFormatter::CURRENCY);
 $sql = "SELECT COUNT(*) AS total_orders from sales_order";
 $result = $con->query($sql);
 $data = $result->fetch_assoc();
@@ -33,6 +34,17 @@ $result = $con->query($sql);
 $data = $result->fetch_assoc();
 $total_categories = $data['total_categories'];
 
+$sql = "SELECT SUM(selling_price * quantity) AS total_sales FROM s_order_product_information";
+$result = $con->query($sql);
+$data = $result->fetch_assoc();
+$total_sales = $data['total_sales'];
+$total_sales = $formatter->formatCurrency($total_sales, 'BDT');
+
+$sql = "SELECT COUNT(*) AS total_sub_categories from sub_categories";
+$result = $con->query($sql);
+$data = $result->fetch_assoc();
+$total_sub_categories = $data['total_sub_categories'];
+
 $sql = "SELECT COUNT(*) AS total_customers from customers";
 $result = $con->query($sql);
 $data = $result->fetch_assoc();
@@ -42,6 +54,9 @@ $sql = "SELECT SUM(selling_price - buying_price) AS total_profit FROM products";
 $result = $con->query($sql);
 $data = $result->fetch_assoc();
 $total_profit = $data['total_profit'];
+
+
+$total_profit = $formatter->formatCurrency($total_profit, 'BDT');
 
 
 ?>
@@ -70,7 +85,9 @@ $total_profit = $data['total_profit'];
           <h2 class="text-right"><i class="fa-solid fa-cart-flatbed-suitcase"></i><span>
               <?= $total_products ?>
             </span></h2>
-          <p class="m-b-0">Completed Orders<span class="f-right">351</span></p>
+          <p class="m-b-0">Total Sales<span class="f-right">
+              <?= $total_sales ?>
+            </span></p>
         </div>
       </div>
     </div>

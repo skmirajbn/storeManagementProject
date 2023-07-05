@@ -1,5 +1,6 @@
 <?php
 require_once("../includes/db_connection.php");
+require_once("../includes/functions.php");
 //pagination
 $limit = 13;
 $currentPage = $_GET['page'] ?? 1;
@@ -24,7 +25,9 @@ $query = $con->query($sql);
                 <th>Phone</th>
                 <th>Email</th>
                 <th>Address</th>
-                <th>Actions</th>
+                <?php if ($_SESSION['role_id'] < 2) { ?>
+                    <th>Actions</th>
+                <?php } ?>
             </tr>
         </thead>
         <tbody>
@@ -48,12 +51,14 @@ $query = $con->query($sql);
                     <td>
                         <?= $data["customer_address"] ?>
                     </td>
-                    <td>
-                        <a href="pages/update_customer.php?customer_id=<?= $data["customer_id"] ?>"
-                            data-form="updateCustomer" class=" btn edit-btn "><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="formServer.php?customer_id=<?= $data["customer_id"] ?>" class=" btn delete-btn "><i
-                                class="fa-solid fa-trash"></i></a>
-                    </td>
+                    <?php if ($_SESSION['role_id'] < 2) { ?>
+                        <td>
+                            <a href="pages/update_customer.php?customer_id=<?= $data["customer_id"] ?>"
+                                data-form="updateCustomer" class=" btn edit-btn "><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="formServer.php?customer_id=<?= $data["customer_id"] ?>" class=" btn delete-btn "><i
+                                    class="fa-solid fa-trash"></i></a>
+                        </td>
+                    <?php } ?>
                 </tr>
             <?php } ?>
 
