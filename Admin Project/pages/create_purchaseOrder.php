@@ -47,29 +47,7 @@ $result = $con->query($sql);
                 <div class="form-group">
                     <label for="">Sales Order</label><br>
                     <div class="product_container">
-                        <!-- <div class="product_entry">
-                            <label for="sku1">SKU:</label>
-                            <input style="display: inline-block;width: 100px;" class="form-control sku-input"
-                                type="text" placeholder="SKU" id="sku1" name="sku[1]">
-                            <label for="product1">Name:</label>
-                            <input style="display: inline-block;width: 250px;" class="form-control product-input"
-                                type="text" placeholder="Enter Product Name" id="product1" name="product[1]">
-                            <label for="quantity1">Quantity :</label>
-                            <input style="display: inline-block;width: 100px;" class="form-control" type="text"
-                                placeholder="Quantity" id="quantity1"> <span>&nbsp; &nbsp;</span>
-                            <span
-                                style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">Stock:
-                                --</span>
-                            <span
-                                style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">--</span>
-                            <span style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">Per
-                                pc:
-                                --</span>
-                            <span
-                                style="display:inline-block; background: #f1f1f1;margin-right:10px; padding:7px">Total:
-                                --</span>
-                            <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                        </div> -->
+
 
                         <div class="table-responsive">
                             <table id="sales_order_table">
@@ -105,7 +83,9 @@ $result = $con->query($sql);
         <input class="form-control" type="text" id="product_search" placeholder="Search Products">
         <h3 class="text-center m-3">All Products</h3>
         <div class="products_group text-center" style="overflow: scroll; height: 71vh">
-            <?php while ($data = $result->fetch_assoc()) { ?>
+            <?php while ($data = $result->fetch_assoc()) {
+                $stock = intval($data['total_stock']);
+                ?>
                 <div class="card product d-inline-block p-1" style="width: 10rem">
                     <div class="img_container"><img src="uploads/images/<?= $data['product_image'] ?>"
                             class="card-img-top img-fluid" alt="..."></div>
@@ -117,7 +97,11 @@ $result = $con->query($sql);
                             <i class="fa-solid fa-bangladeshi-taka-sign"></i>
                             <?= $data['buying_price'] ?>
                         </h6>
-
+                        <h6 style="font-size:14px; color:grey">
+                            Stock:
+                            <?= $stock ?>
+                            <?= $data['unit_name'] ?>
+                        </h6>
                         <button class="add_product btn d-block mx-auto w-100 mybtn-hightlight"
                             value="<?= $data['product_id'] ?>" data-sku="<?= $data['sku'] ?>"
                             data-sellingPrice="<?= $data['buying_price'] ?>">ADD</button>

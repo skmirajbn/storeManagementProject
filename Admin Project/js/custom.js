@@ -210,13 +210,16 @@ $(document).ready(function () {
         beforeSend: function () {
           console.log("sending");
         },
+        dataType: "json",
         success: function (response) {
+          console.log(response);
           $(".products_group").empty();
-          productObj = JSON.parse(response);
+          productObj = response;
           console.log(productObj);
 
           productObj.forEach(function (p) {
             // Defining Selling or Buying price
+            let stock = parseInt(p.total_stock);
             let price;
             if ($("input[type=submit]").val() == "Create Purchase Order") {
               price = p.buying_price;
@@ -235,6 +238,9 @@ $(document).ready(function () {
                         <h6>
                             <i class="fa-solid fa-bangladeshi-taka-sign"></i>
                             ${price}
+                        </h6>
+                        <h6 style="font-size:14px; color:grey">
+                        Stock: ${stock} ${p.unit_name}
                         </h6>
                         <button class="add_product btn d-block mx-auto w-100 mybtn-hightlight" data-sku="${p.sku}" data-sellingPrice="${price}"
                             value="${p.product_id}">ADD</button>

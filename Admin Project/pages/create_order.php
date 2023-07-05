@@ -82,7 +82,9 @@ $result = $con->query($sql);
         <input class="form-control" type="text" id="product_search" placeholder="Search Products">
         <h3 class="text-center m-3">All Products</h3>
         <div class="products_group text-center" style="overflow: scroll; height: 71vh">
-            <?php while ($data = $result->fetch_assoc()) { ?>
+            <?php while ($data = $result->fetch_assoc()) {
+                $stock = intval($data['total_stock']);
+                ?>
                 <div class="card product d-inline-block p-1" style="width: 10rem">
                     <div class="img_container"><img src="uploads/images/<?= $data['product_image'] ?>"
                             class="card-img-top img-fluid" alt="..."></div>
@@ -93,6 +95,11 @@ $result = $con->query($sql);
                         <h6>
                             <i class="fa-solid fa-bangladeshi-taka-sign"></i>
                             <?= $data['selling_price'] ?>
+                        </h6>
+                        <h6 style="font-size:14px; color:grey">
+                            Stock:
+                            <?= $stock ?>
+                            <?= $data['unit_name'] ?>
                         </h6>
 
                         <button class="add_product btn d-block mx-auto w-100 mybtn-hightlight"
