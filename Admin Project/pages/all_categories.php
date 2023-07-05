@@ -1,8 +1,8 @@
-<?php 
+<?php
 require_once("../includes/db_connection.php");
 
 //pagination
-$limit = 5;
+$limit = 13;
 $currentPage = $_GET['page'] ?? 1;
 
 $countSql = "SELECT COUNT(*) AS TOTAL FROM categories";
@@ -27,20 +27,24 @@ $result = $con->query($sql);
       </tr>
     </thead>
     <tbody>
-      <?php 
-                    while($data = $result->fetch_assoc()){
-                    ?>
-      <tr>
-        <td><input type="checkbox" class="select"></td>
-        <td><?=$data['category_id']?></td>
-        <td><?=$data['category_name']?></td>
-        <td>
-          <a href="pages/edit_category.php?category_id=<?=$data['category_id']?>" class="edit-btn btn"><i
-              class="fa-solid fa-pen-to-square"></i></a>
-          <a href="formServer.php?categoryDelete=<?=$data['category_id']?>" class="delete-btn btn"><i
-              class="fa-solid fa-trash"></i></a>
-        </td>
-      </tr>
+      <?php
+      while ($data = $result->fetch_assoc()) {
+        ?>
+        <tr>
+          <td><input type="checkbox" class="select"></td>
+          <td>
+            <?= $data['category_id'] ?>
+          </td>
+          <td>
+            <?= $data['category_name'] ?>
+          </td>
+          <td>
+            <a href="pages/edit_category.php?category_id=<?= $data['category_id'] ?>" class="edit-btn btn"><i
+                class="fa-solid fa-pen-to-square"></i></a>
+            <a href="formServer.php?categoryDelete=<?= $data['category_id'] ?>" class="delete-btn btn"><i
+                class="fa-solid fa-trash"></i></a>
+          </td>
+        </tr>
       <?php } ?>
       <!-- Add more rows for each user -->
     </tbody>
@@ -49,23 +53,23 @@ $result = $con->query($sql);
 
 <div class="pagination">
   <a href="pages/all_categories.php?page=1">&laquo;</a>
-  <a href="pages/all_categories.php?page=<?=$currentPage-1?>">&lt;</a>
-  <?php 
-                if($currentPage>2){
-                  $page = $currentPage - 2;
-                  $lastPage = $currentPage + 2;
-                }else{
-                  $page = 1;
-                  $lastPage = 5;
-                }
-                if($lastPage>=$totalPage){
-                  $lastPage = $totalPage;
-                }
-                for($page; $page<=$lastPage; $page++){ 
-                  ?>
-  <a href="pages/all_categories.php?page=<?=$page?>" class="<?=$currentPage == $page ? 'active' : '' ?>"><?=$page?></a>
+  <a href="pages/all_categories.php?page=<?= $currentPage - 1 ?>">&lt;</a>
+  <?php
+  if ($currentPage > 2) {
+    $page = $currentPage - 2;
+    $lastPage = $currentPage + 2;
+  } else {
+    $page = 1;
+    $lastPage = 5;
+  }
+  if ($lastPage >= $totalPage) {
+    $lastPage = $totalPage;
+  }
+  for ($page; $page <= $lastPage; $page++) {
+    ?>
+    <a href="pages/all_categories.php?page=<?= $page ?>" class="<?= $currentPage == $page ? 'active' : '' ?>"><?= $page ?></a>
   <?php } ?>
-  <a href="pages/all_categories.php?page=<?=$currentPage + 1?>">&gt;</a>
-  <a href="pages/all_categories.php?page=<?=$totalPage?>">&raquo;</a>
+  <a href="pages/all_categories.php?page=<?= $currentPage + 1 ?>">&gt;</a>
+  <a href="pages/all_categories.php?page=<?= $totalPage ?>">&raquo;</a>
 </div>
 </div>
