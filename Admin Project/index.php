@@ -16,7 +16,7 @@ getSidebar();
   <!-- Content Start -->
   <div class="main_content">
     <?php
-    require_once('pages/dashboard.html');
+    require_once('pages/dashboard.php');
     ?>
   </div>
   <!-- Content End -->
