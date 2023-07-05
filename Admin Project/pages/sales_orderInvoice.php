@@ -42,7 +42,7 @@ if (isset($_GET['sales_order_id'])) {
             </div>
             <div class="col-md-6 text-end">
                 <h4>Customer Information:</h4>
-                <p>Customer Name:
+                <p>
                     <?= $salesOrderInformation['customer_name'] ?>
                     <?= $salesOrderInformation['customer_address'] ?><br>Phone:
                     <?= $salesOrderInformation['customer_phone'] ?><br> Email:

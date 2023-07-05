@@ -162,7 +162,8 @@
             </h2>
             <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
               <div class="accordion-body">
-                <a class="btn btn-block" href=""><i class="fa-solid fa-layer-group"></i>&nbsp; All Orders</a>
+                <a class="btn btn-block" href="pages/all_purchase_order.php"><i
+                    class="fa-solid fa-layer-group"></i>&nbsp; All Purchase Orders</a>
               </div>
               <div class="accordion-body">
                 <a class="btn btn-block" href="pages/create_purchaseOrder.php"><i
