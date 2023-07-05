@@ -22,6 +22,27 @@ $data = $result->fetch_assoc();
 $total_stocks = $data['total_stocks'];
 $total_stocks = intVal($total_stocks);
 
+$sql = "SELECT SUM(total_sold_quantity) AS total_sold FROM product_stock_information";
+$result = $con->query($sql);
+$data = $result->fetch_assoc();
+$total_sold = $data['total_sold'];
+$total_sold = intVal($total_sold);
+
+$sql = "SELECT COUNT(*) AS total_categories from categories";
+$result = $con->query($sql);
+$data = $result->fetch_assoc();
+$total_categories = $data['total_categories'];
+
+$sql = "SELECT COUNT(*) AS total_customers from customers";
+$result = $con->query($sql);
+$data = $result->fetch_assoc();
+$total_customers = $data['total_customers'];
+
+$sql = "SELECT SUM(selling_price - buying_price) AS total_profit FROM products";
+$result = $con->query($sql);
+$data = $result->fetch_assoc();
+$total_profit = $data['total_profit'];
+
 
 ?>
 
@@ -35,7 +56,9 @@ $total_stocks = intVal($total_stocks);
           <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>
               <?= $total_orders ?>
             </span></h2>
-          <p class="m-b-0">Completed Orders<span class="f-right">351</span></p>
+          <p class="m-b-0">Total Profit<span class="f-right">
+              <?= $total_profit ?>
+            </span></p>
         </div>
       </div>
     </div>
@@ -59,7 +82,9 @@ $total_stocks = intVal($total_stocks);
           <h2 class="text-right"><i class="fa-solid fa-tags"></i><span>
               <?= $total_brands ?>
             </span></h2>
-          <p class="m-b-0">All Categories<span class="f-right">351</span></p>
+          <p class="m-b-0">All Categories<span class="f-right">
+              <?= $total_categories ?>
+            </span></p>
         </div>
       </div>
     </div>
@@ -68,10 +93,12 @@ $total_stocks = intVal($total_stocks);
       <div class="card bg-c-pink order-card">
         <div class="card-block">
           <h6 class="m-b-20">Total Stock</h6>
-          <h2 class="text-right"><i class="fa-solid fa-user-group"></i><span>
+          <h2 class="text-right"><i class="fa-solid fa-cart-flatbed-suitcase"></i><span>
               <?= $total_stocks ?>
             </span></h2>
-          <p class="m-b-0">Sold Item<span class="f-right">351</span></p>
+          <p class="m-b-0">Sold Item<span class="f-right">
+              <?= $total_sold ?>
+            </span></p>
         </div>
       </div>
     </div>
