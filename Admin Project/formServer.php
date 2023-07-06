@@ -459,7 +459,22 @@ if (isset($_POST['add_role'])) {
         echo "failed";
     }
 }
+//Delete Role - Mosharrof 
+
+if (isset($_GET['roleDelete'])) {
+    $id = $_GET['roleDelete'];
+    $sql = "DELETE FROM roles WHERE role_id = $id";
+    $query = $con->query($sql);
+    if ($query) {
+        header("location: pages/all_role.php");
+    } else {
+        echo "Data Not Deleted ";
+    }
+}
+
+
 //Role Section  End <<================================>>
+
 //Supplier Section  Start <<================================>>
 //Add supplier
 if (isset($_POST['addSupplier'])) {
