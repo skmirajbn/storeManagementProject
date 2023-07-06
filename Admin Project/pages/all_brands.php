@@ -71,6 +71,6 @@ $offset = ($currentPage - 1) * $limit;
     <a href="pages/all_brands.php?page=<?= $page ?>" class="<?= $currentPage == $page ? 'active' : '' ?>"><?= $page ?></a>
   <?php } ?>
   <a href="pages/all_brands.php?page=<?= $currentPage + 1 ?>">&gt;</a>
-  <a href="pages/all_brand.php?page=<?= $totalPage ?>">&raquo;</a>
+  <a href="pages/all_brands.php?page=<?= $totalPage ?>">&raquo;</a>
 </div>
 </div>
