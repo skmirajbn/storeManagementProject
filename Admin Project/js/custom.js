@@ -203,7 +203,7 @@ $(document).ready(function () {
                             <i class="fa-solid fa-bangladeshi-taka-sign"></i>
                             ${price}
                         </h6>
-                        <h6 style="font-size:14px; color:grey">
+                        <h6 "id="prodcut_stock" style="font-size:14px; color:grey">
                         Stock: ${stock} ${p.unit_name}
                         </h6>
                         <button class="add_product btn d-block mx-auto w-100 mybtn-hightlight" data-sku="${p.sku}" data-sellingPrice="${price}"
@@ -225,6 +225,8 @@ $(document).ready(function () {
 
   // Listening The Add prodcut Button and Add product to the Invoice
   $(document).on("click", ".add_product", function (e) {
+    let stock = e.target.parentNode.parentNode.querySelector("#prodcut_stock").innerText;
+    stock = stock.replace("Stock: ", "");
     let productName = e.target.parentNode.parentNode.querySelector(".card-title").innerText;
     let productId = e.target.value;
     let sku = e.target.getAttribute("data-sku");
@@ -237,7 +239,7 @@ $(document).ready(function () {
              <td>${productName}</td>
              <td><img style="width: 30px" src="${productImage}">
              </td>
-             <td>Stock</td>
+             <td>${stock}</td>
              <td class="quantity"><input class="form-control" style="width:60px" type="number" value="1" name="quantity[]"></td>
              <td class="selling_price">${selling_price}</td>
              <td class="total_price">${selling_price}</td>

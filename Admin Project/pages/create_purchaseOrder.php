@@ -97,7 +97,7 @@ $result = $con->query($sql);
                             <i class="fa-solid fa-bangladeshi-taka-sign"></i>
                             <?= $data['buying_price'] ?>
                         </h6>
-                        <h6 style="font-size:14px; color:grey">
+                        <h6 id="prodcut_stock" style="font-size:14px; color:grey">
                             Stock:
                             <?= $stock ?>
                             <?= $data['unit_name'] ?>
