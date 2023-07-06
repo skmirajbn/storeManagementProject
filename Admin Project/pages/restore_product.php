@@ -93,7 +93,7 @@
       $limit = 5;
       $currentPage = $_GET['page'] ?? 1;
 
-      $countSql = "SELECT COUNT(*) AS TOTAL FROM products";
+      $countSql = "SELECT COUNT(*) AS TOTAL FROM products WHERE product_status = 0";
       $result = $con->query($countSql);
       $totalRows = $result->fetch_assoc()['TOTAL'];
       $totalPage = ceil($totalRows / $limit);
