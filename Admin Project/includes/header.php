@@ -35,7 +35,7 @@
     <header>
       <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Code Scientist</a>
+          <a class="navbar-brand" href="index.php" data-disabled="true">Code Scientist</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">

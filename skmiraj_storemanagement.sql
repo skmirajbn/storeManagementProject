@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 05, 2023 at 11:25 PM
+-- Generation Time: Jul 06, 2023 at 02:42 AM
 -- Server version: 8.0.33
 -- PHP Version: 8.2.6
 
@@ -52,8 +52,9 @@ INSERT INTO `brands` (`brand_id`, `brand_name`, `brand_status`) VALUES
 (56, 'Loreal', 1),
 (57, 'Golden Rose', 1),
 (58, 'Bashundhara group', 1),
-(59, 'ltr', 1),
-(60, 'ltr', 1);
+(59, 'ltr', 0),
+(60, 'ltr', 0),
+(61, 'Kawyasaki', 0);
 
 -- --------------------------------------------------------
 
@@ -118,7 +119,16 @@ INSERT INTO `b_order_product` (`b_order_product_id`, `purchase_order_id`, `produ
 (70, 34, 87, 10),
 (71, 35, 88, 10),
 (72, 36, 90, 10),
-(73, 36, 89, 10);
+(73, 36, 89, 10),
+(74, 37, 97, 13),
+(75, 37, 97, 26),
+(76, 37, 97, 17),
+(77, 37, 96, 18),
+(78, 38, 86, 5),
+(79, 39, 100, 15),
+(80, 39, 99, 20),
+(81, 39, 98, 15),
+(82, 40, 95, 20);
 
 -- --------------------------------------------------------
 
@@ -171,7 +181,10 @@ INSERT INTO `categories` (`category_id`, `category_name`, `category_status`) VAL
 (13, 'Electronic Accessories', 1),
 (14, 'Groceries', 1),
 (15, 'Home & Lifestyle', 1),
-(16, 'Sports & Outdoors', 1);
+(16, 'Sports & Outdoors', 1),
+(17, 'Fish & Meat', 1),
+(18, 'Mother & Baby', 1),
+(19, 'Vegetable', 1);
 
 -- --------------------------------------------------------
 
@@ -237,7 +250,10 @@ INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_address`, `cu
 (1090, 'SM Jahangir Alam', 'Kakrail, Dhaka', '01564813541', 'jahangir@gmail.com', 1),
 (1091, 'Rehena Parvin', 'Keraniganj, Dhaka', '016548152314', 'rehena@gmail.com', 1),
 (1092, '01654841256', 'Dhanmondi, Dhaka', 'Rokea Begum', 'rokea@gmail.com', 1),
-(1093, 'Shathi akter Bristy', 'Puran Dhaka', '01723659482', 'shathi@gmail.com', 1);
+(1093, 'Shathi akter Bristy', 'Puran Dhaka', '01723659482', 'shathi@gmail.com', 1),
+(1094, 'Miraj', 'Keraniganj', '01957244070', 'miraj@gmail.com', 1),
+(1095, 'alamin', 'Mohammadpur', '01710034643', 'alaminamin958@gmail.com', 1),
+(1096, 'jahid pagla', 'Dhanmondi', '0152546453', 'jahid@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -329,7 +345,17 @@ INSERT INTO `products` (`product_id`, `category_id`, `sub_category_id`, `brand_i
 (88, 10, 51, 55, 'Shirts', 'so comfortable', 'product_1688587405_54126489.jpg', 8, 1500.00, 1350.00, '0045', 1),
 (89, 7, 11, 47, 'Apple iPhone 14 Plus', 'Apple iPhone 14 Plus', 'product_1688612934_39737649.jpg', 8, 80000.00, 74000.00, '12316', 1),
 (90, 7, 11, 47, ' iPhone 11 Plus', 'Apple iPhone 14 Plus', 'product_1688613040_13059006.jpg', 8, 70000.00, 68000.00, '12316', 1),
-(91, 11, 59, 48, 'Interchangeable Lens Cameras', 'Product List - Interchangeable Lens Cameras - Canon South & Southeast Asia', 'product_1688613674_62625821.jpg', 8, 55000.00, 50000.00, '12318', 1);
+(91, 11, 59, 48, 'Interchangeable Lens Cameras', 'Product List - Interchangeable Lens Cameras - Canon South & Southeast Asia', 'product_1688613674_62625821.jpg', 8, 55000.00, 50000.00, '12318', 1),
+(92, 8, 34, 57, 'HEGRUS Hair Natural', 'HEGRUS Round Comb Bristle Hair B-rushes Natural Round B-rushes W-4', 'product_1688614140_16019382.jpg', 8, 320.00, 300.00, '12318', 1),
+(93, 13, 72, 41, ' 500 S&W Magnum', ' 500 S&W Magnum short gun', 'product_1688614916_39136355.jpg', 8, 44000.00, 41000.00, '12320', 1),
+(94, 14, 85, 54, 'green chili', '', 'product_1688615657_6634331.jpg', 7, 1200.00, 200.00, '12321', 1),
+(95, 6, 23, 61, 'Nasirah Turkish Hijab', 'Nasirah Turkish Hijab', 'product_1688617949_2543511.jpg', 8, 12000.00, 9000.00, '12322', 1),
+(96, 10, 51, 61, 'Shoes', 'Design & Print Custom Shirts | Make Your Own T-Shirt Design', 'product_1688619163_86857036.jpg', 8, 4500.00, 3400.00, '12323', 1),
+(97, 9, 44, 57, ' School Bags for Kids ', 'Asge Backpacks for Boys School Bags for Kids Luminous Bookbag and Sling Bag Set', 'product_1688620940_27808540.jpg', 8, 3000.00, 2400.00, '12326', 1),
+(98, 9, 50, 57, ' Maharashtrian  Set', 'Golden Alloy Maharashtrian Jewellery Set', 'product_1688621146_48988552.jpg', 8, 150000.00, 123000.00, '12326', 1),
+(99, 8, 33, 56, ' facial skincare ', 'The 30 best facial skincare products for under £20 | Skincare | The Guardian', 'product_1688621369_42520951.jpg', 8, 4500.00, 3700.00, '12328', 1),
+(100, 8, 37, 56, ' Clean Makeup Brushes', 'How To Clean Makeup Brushes, Beauty Blenders, and More - The Maids', 'product_1688621535_24175535.jpg', 8, 500.00, 360.00, '12328', 1),
+(101, 14, 78, 54, 'strawberries ', 'Once strawberries warm up, no practical way to cool them back down', 'product_1688622084_61084281.jpg', 7, 800.00, 650.00, '12330', 0);
 
 -- --------------------------------------------------------
 
@@ -430,7 +456,11 @@ INSERT INTO `purchase_order` (`purchase_order_id`, `user_id`, `supplier_id`, `ti
 (33, 22, 11, '2023-07-05 23:03:03', 1),
 (34, 22, 13, '2023-07-05 23:03:47', 1),
 (35, 22, 10, '2023-07-05 23:04:29', 1),
-(36, 22, 13, '2023-07-05 23:19:35', 1);
+(36, 22, 13, '2023-07-05 23:19:35', 1),
+(37, 20, 18, '2023-07-06 01:24:10', 1),
+(38, 23, 19, '2023-07-06 01:25:29', 1),
+(39, 22, 13, '2023-07-06 02:40:07', 1),
+(40, 22, 10, '2023-07-06 02:40:53', 1);
 
 -- --------------------------------------------------------
 
@@ -510,7 +540,13 @@ INSERT INTO `sales_order` (`sales_order_id`, `customer_id`, `user_id`, `time_sta
 (70, 1090, 23, '2023-07-05 16:02:27', 1),
 (71, 1091, 23, '2023-06-29 16:05:29', 1),
 (72, 1092, 23, '2023-06-28 16:06:59', 1),
-(73, 1093, 22, '2023-07-05 23:16:25', 1);
+(73, 1093, 22, '2023-07-05 23:16:25', 1),
+(74, 1093, 25, '2023-07-05 23:32:18', 1),
+(75, 1093, 25, '2023-07-05 23:34:45', 1),
+(76, 1094, 23, '2023-07-06 01:19:30', 1),
+(77, 1094, 23, '2023-07-06 02:10:48', 1),
+(78, 1095, 24, '2023-07-06 02:26:52', 1),
+(79, 1096, 24, '2023-07-06 02:33:26', 1);
 
 -- --------------------------------------------------------
 
@@ -649,7 +685,10 @@ INSERT INTO `sub_categories` (`sub_category_id`, `sub_category_name`, `category_
 (100, 'Shoes & Clothing', 16, 1),
 (101, 'Fan Shop', 16, 1),
 (102, 'Team Sports', 16, 1),
-(103, 'Shoe', 16, 1);
+(103, 'Shoe', 16, 1),
+(104, 'Sea  fish', 17, 1),
+(105, 'River  fish', 17, 1),
+(106, 'Pond  fish', 17, 1);
 
 -- --------------------------------------------------------
 
@@ -676,7 +715,9 @@ INSERT INTO `suppliers` (`supplier_id`, `supplier_name`, `supplier_address`, `su
 (11, 'Panda Mart', 'Laila Tower, 8 Bir Uttam Mir Shawkat Sarak, Gulshan', '01568177617', 'info@pandamart.com', 1),
 (13, 'Ali Express', 'Hangzhou, China', '01726598745', 'info@aliexpress.com', 1),
 (15, 'Lotto Sport Italia', '5/7, 31040 Trevignano (TV) - Italy', '01723658475', 'info@lotto.com', 1),
-(16, 'Unilever Bangladesh', 'Dhaka Bangladesh', '01457621020', 'info@unilever.com', 1);
+(16, 'Unilever Bangladesh LTD', 'Dhaka Bangladesh', '01457621020', 'info@unilever.com', 1),
+(18, 'RFL', 'Dhaka', '01774656830', 'rfl@gmail.com', 1),
+(19, 'Meat Bangladesh', 'Dhanmondi', '01657945124', 'meatbd@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -756,7 +797,22 @@ INSERT INTO `s_order_product` (`s_order_product_id`, `sales_order_id`, `product_
 (175, 73, 74, 1),
 (176, 73, 71, 1),
 (177, 73, 67, 1),
-(178, 73, 58, 1);
+(178, 73, 58, 1),
+(179, 74, 91, 1),
+(180, 75, 89, 3),
+(181, 75, 87, 1),
+(182, 75, 88, 3),
+(183, 75, 86, 4),
+(184, 75, 83, 1),
+(185, 76, 86, 1),
+(186, 77, 93, 2),
+(187, 78, 98, 1),
+(188, 78, 90, 1),
+(189, 78, 85, 1),
+(190, 79, 95, 1),
+(191, 79, 92, 1),
+(192, 79, 79, 1),
+(193, 79, 58, 1);
 
 -- --------------------------------------------------------
 
@@ -803,7 +859,7 @@ INSERT INTO `units` (`unit_id`, `unit_name`, `unit_status`) VALUES
 (8, 'pc', 1),
 (10, 'Meter', 1),
 (11, 'gm', 1),
-(12, 'Liter', 1);
+(13, 'Liter', 1);
 
 -- --------------------------------------------------------
 
@@ -828,11 +884,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_username`, `user_email`, `user_phone`, `user_password`, `role_id`, `user_status`, `user_image`) VALUES
-(20, 'Mosharof', 'Mosharof', 'info@gmail.com', '017289429479', '123', 1, NULL, 'user_1688493946_1983586.jpeg'),
-(22, 'Ali Hasan', 'dbhasan', 'info@gmail.com', '01723629080', '123', 1, NULL, 'user_1688139907_2684197.jpg'),
+(20, 'Mosharof', 'mosharof', 'info@gmail.com', '017289429479', '123', 1, NULL, 'user_1688624012_9058884.jpeg'),
+(22, 'Ali Hasan', 'dbhasan', 'infoalihasanbd@gmail.com', '01723629080', '123', 1, NULL, 'user_1688139907_2684197.jpg'),
 (23, 'Miraj', 'skmiraj', 'skmirajbn@gmail.com', '01957244070', '123', 1, NULL, 'user_1688216572_6458194.png'),
-(24, 'Alamin', 'alamin', 'info@gmail.com', '01723629080', '123', 1, NULL, 'images.jpeg'),
-(25, 'khaleda', 'khaleda', 'info@gmail.com', '01723629080', '123', 1, NULL, 'images.jpeg'),
+(24, 'Alamin', 'alamin', 'info@gmail.com', '01723629080', '123', 1, NULL, 'user_1688620008_7115230.jpg'),
+(25, 'khaleda', 'khaleda', 'info@gmail.com', '01723629080', '123', 1, NULL, 'user_1688619677_4118138.jpg'),
 (33, 'Md Rabiul Alam', 'roby', 'roby@gmail.com', '01954712564', '123', 2, NULL, 'user_1688582184_2538704.jpg'),
 (34, 'Jahirul Islam', 'jahirul', 'jahirul@gmail.com', '01564846242', '123', 3, NULL, 'user_1688582294_9848104.jpg');
 
@@ -1063,25 +1119,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `brand_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `brand_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `b_order_product`
 --
 ALTER TABLE `b_order_product`
-  MODIFY `b_order_product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `b_order_product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1094;
+  MODIFY `customer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1097;
 
 --
 -- AUTO_INCREMENT for table `inventory`
@@ -1093,49 +1149,49 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `purchase_order`
 --
 ALTER TABLE `purchase_order`
-  MODIFY `purchase_order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `purchase_order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `role_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `role_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `sales_order`
 --
 ALTER TABLE `sales_order`
-  MODIFY `sales_order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `sales_order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
-  MODIFY `sub_category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `sub_category_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `supplier_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `supplier_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `s_order_product`
 --
 ALTER TABLE `s_order_product`
-  MODIFY `s_order_product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+  MODIFY `s_order_product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
 
 --
 -- AUTO_INCREMENT for table `units`
 --
 ALTER TABLE `units`
-  MODIFY `unit_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `unit_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
