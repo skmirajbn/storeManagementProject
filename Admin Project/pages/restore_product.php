@@ -158,8 +158,8 @@
 </div>
 
 <div class="pagination">
-  <a href="pages/all_products.php?page=1">&laquo;</a>
-  <a href="pages/all_products.php?page=<?= $currentPage - 1 ?>">&lt;</a>
+  <a href="pages/restore_product.php?page=1">&laquo;</a>
+  <a href="pages/restore_product.php?page=<?= $currentPage - 1 ?>">&lt;</a>
   <?php
   if ($currentPage > 2) {
     $page = $currentPage - 2;
@@ -173,8 +173,8 @@
   }
   for ($page; $page <= $lastPage; $page++) {
     ?>
-    <a href="pages/all_products.php?page=<?= $page ?>" class="<?= $currentPage == $page ? 'active' : '' ?>"><?= $page ?></a>
+    <a href="pages/restore_product.php?page=<?= $page ?>" class="<?= $currentPage == $page ? 'active' : '' ?>"><?= $page ?></a>
   <?php } ?>
-  <a href="pages/all_products.php?page=<?= $currentPage + 1 ?>">&gt;</a>
-  <a href="pages/all_products.php?page=<?= $totalPage ?>">&raquo;</a>
+  <a href="pages/restore_product.php?page=<?= $currentPage + 1 ?>">&gt;</a>
+  <a href="pages/restore_product.php?page=<?= $totalPage ?>">&raquo;</a>
 </div>
