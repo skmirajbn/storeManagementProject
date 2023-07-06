@@ -116,6 +116,7 @@ if (isset($_POST["updateProduct"])) {
     $product_unit = $_POST["product_unit"];
     $product_sku = $_POST["product_sku"];
     $product_price = $_POST["product_price"];
+    $product_buying_price = $_POST["buying_price"];
     $product_desc = $_POST["product_desc"];
     // $product_img_name=$_POST["image_name"];
     $pd_img_name = $_FILES["product_image"]["name"];
@@ -124,9 +125,9 @@ if (isset($_POST["updateProduct"])) {
     $imageName = 'product_' . time() . '_' . rand(100000, 100000000) . '.' . pathinfo($pd_img_name, PATHINFO_EXTENSION);
 
     if (!empty($pd_img_name)) {
-        $sql = "UPDATE products SET product_name='$product_name',brand_id='$product_brand',category_id='$product_category',unit_id='$product_unit',sku='$product_sku',selling_price='$product_price', product_image= '$imageName',description='$product_desc' WHERE product_id =  $product_id";
+        $sql = "UPDATE products SET product_name='$product_name',brand_id='$product_brand',category_id='$product_category',unit_id='$product_unit',sku='$product_sku',selling_price='$product_price', buying_price = '$product_buying_price',product_image= '$imageName',description='$product_desc' WHERE product_id =  $product_id";
     } else {
-        $sql = "UPDATE products SET product_name='$product_name',brand_id='$product_brand',category_id='$product_category',unit_id='$product_unit',sku='$product_sku',selling_price='$product_price',description='$product_desc' WHERE product_id =  $product_id";
+        $sql = "UPDATE products SET product_name='$product_name',brand_id='$product_brand',category_id='$product_category',unit_id='$product_unit',sku='$product_sku',selling_price='$product_price',buying_price = '$product_buying_price' ,description='$product_desc' WHERE product_id =  $product_id";
     }
 
     $query = $con->query($sql);
@@ -282,7 +283,7 @@ if (isset($_GET['brandDelete'])) {
     $sql = "UPDATE brands SET brand_status=0 WHERE brand_id= $id";
     $query = $con->query($sql);
     if ($query) {
-        header("location: pages/all_brand.php");
+        header("location: pages/all_brands.php");
     } else {
         echo "Data Not Deleted ";
     }
@@ -473,6 +474,57 @@ if (isset($_POST['addSupplier'])) {
         echo "Supplier Added";
     } else {
         echo "Supplier Add Failed";
+    }
+}
+//Update Supplier
+if (isset($_POST['updateSupplier'])) {
+    $id = $_POST['updateSupplier'];
+    $name = $_POST["supplier_name"];
+    $address = $_POST["supplier_address"];
+    $phone = $_POST["supplier_phone"];
+    $email = $_POST["supplier_email"];
+    $sql = "UPDATE suppliers SET supplier_name='$name', supplier_address='$address', supplier_phone='$phone', supplier_email='$email' WHERE supplier_id = $id";
+    $query = $con->query($sql);
+    if ($query) {
+        echo "Supplier Updated";
+    } else {
+        echo "Failed";
+    }
+}
+
+//Delete supplier
+if (isset($_GET['supplier_id'])) {
+    $id = $_GET['supplier_id'];
+    $sql = "UPDATE suppliers SET supplier_status=0 WHERE supplier_id= $id";
+    $query = $con->query($sql);
+    if ($query) {
+        header("location: pages/all_suppliers.php");
+    } else {
+        echo "Data Not Deleted ";
+    }
+}
+
+//Restore supplier
+if (isset($_GET['restore_supplier_id'])) {
+    $id = $_GET['restore_supplier_id'];
+    $sql = "UPDATE suppliers SET supplier_status = 1 WHERE supplier_id= $id";
+    $query = $con->query($sql);
+    if ($query) {
+        header("location: pages/restore_suppliers.php");
+    } else {
+        echo "Data Not Deleted ";
+    }
+}
+
+//Parmanently Delete supplier
+if (isset($_GET['par_delete_supplier_id'])) {
+    $id = $_GET['par_delete_supplier_id'];
+    $sql = "DELETE FROM suppliers WHERE supplier_id= $id";
+    $query = $con->query($sql);
+    if ($query) {
+        header("location: pages/restore_suppliers.php");
+    } else {
+        echo "Data Not Deleted ";
     }
 }
 //Supplier Section  End <<================================>>

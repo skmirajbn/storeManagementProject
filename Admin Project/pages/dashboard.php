@@ -50,7 +50,7 @@ $result = $con->query($sql);
 $data = $result->fetch_assoc();
 $total_customers = $data['total_customers'];
 
-$sql = "SELECT SUM(selling_price - buying_price) AS total_profit FROM products";
+$sql = "SELECT SUM((selling_price - buying_price) * quantity) AS total_profit FROM s_order_product_information";
 $result = $con->query($sql);
 $data = $result->fetch_assoc();
 $total_profit = $data['total_profit'];

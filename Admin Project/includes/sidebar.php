@@ -197,6 +197,10 @@
                   <a class="btn btn-block" href="pages/add_supplier.php"><i class="fa-solid fa-truck-front"></i>&nbsp; Add
                     Supplier</a>
                 </div>
+                <div class="accordion-body">
+                  <a class="btn btn-block" href="pages/restore_suppliers.php"><i class="fa-solid fa-trash"></i>&nbsp;
+                    Restore Supplier</a>
+                </div>
               </div>
             </div>
           <?php } ?>

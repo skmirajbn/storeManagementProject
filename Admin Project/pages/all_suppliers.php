@@ -49,8 +49,8 @@ $query = $con->query($sql);
                         <?= $data["supplier_address"] ?>
                     </td>
                     <td>
-                        <a href="pages/update_supplier.php?supplier_id=<?= $data["supplier_id"] ?>"
-                            data-form="updatesupplier" class=" btn edit-btn "><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="pages/edit_supplier.php?supplier_id=<?= $data["supplier_id"] ?>" data-form="updatesupplier"
+                            class=" btn edit-btn "><i class="fa-solid fa-pen-to-square"></i></a>
                         <a href="formServer.php?supplier_id=<?= $data["supplier_id"] ?>" class=" btn delete-btn "><i
                                 class="fa-solid fa-trash"></i></a>
                     </td>
