@@ -203,7 +203,7 @@ $(document).ready(function () {
                             <i class="fa-solid fa-bangladeshi-taka-sign"></i>
                             ${price}
                         </h6>
-                        <h6 "id="prodcut_stock" style="font-size:14px; color:grey">
+                        <h6 id="prodcut_stock" style="font-size:14px; color:grey">
                         Stock: ${stock} ${p.unit_name}
                         </h6>
                         <button class="add_product btn d-block mx-auto w-100 mybtn-hightlight" data-sku="${p.sku}" data-sellingPrice="${price}"
@@ -245,7 +245,7 @@ $(document).ready(function () {
              <td class="total_price">${selling_price}</td>
              <td><i class="delete_row fa-solid fa-x" style="color:red"></i></td>
              <input type="hidden" value ="${productId}" name="productId[]">
-         </tr>
+          </tr>
        `);
     calSubTotal();
   });
@@ -574,26 +574,4 @@ $(document).ready(function () {
       });
     },
   });
-
-  // const reportChart2 = document.getElementById("reportChart-2");
-  // new Chart(reportChart2, {
-  //   type: "pie",
-  //   data: {
-  //     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-  //     datasets: [
-  //       {
-  //         data: [12, 19, 3, 5, 2, 3],
-  //         backgroundColor: ["#66ADFF", "#4CDEC1", "#FFC169", "#FF758C", "#F39C12"],
-  //         borderWidth: 1,
-  //       },
-  //     ],
-  //   },
-  //   options: {
-  //     scales: {
-  //       y: {
-  //         beginAtZero: true,
-  //       },
-  //     },
-  //   },
-  // });
 });
