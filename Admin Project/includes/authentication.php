@@ -9,7 +9,7 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'];
 
 
-    $query = "SELECT * FROM users WHERE user_username = '$username'";
+    $query = "SELECT * FROM users_information WHERE user_username = '$username'";
     $result = $con->query($query);
 
 
@@ -22,6 +22,8 @@ if (isset($_POST['login'])) {
             $_SESSION['user_name'] = $user['user_name'];
             $_SESSION['user_username'] = $user['user_username'];
             $_SESSION['user_image'] = $user['user_image'];
+            $_SESSION['role_id'] = $user['role_id'];
+            $_SESSION['role_name'] = $user['role_name'];
 
 
             header('Location: ../index.php');

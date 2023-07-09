@@ -1,0 +1,27 @@
+CREATE VIEW sales_order_information AS
+SELECT sales_order.sales_order_id, sales_order.customer_id, sales_order.user_id , sales_order.time_stamp, sales_order.sales_order_status, customers.customer_name, customers.customer_address, customers.customer_phone, customers.customer_email, customers.customer_status, users.user_name, users.user_username, users.user_email, users.user_phone, users.user_password, users.role_id, users.user_status, users.user_image FROM sales_order JOIN customers ON sales_order.customer_id = customers.customer_id JOIN users ON sales_order.user_id = users.user_id ;
+
+
+//Stock VIEW
+-- Drop the existing view if it exists
+DROP VIEW IF EXISTS product_summary;
+
+-- Recreate the view with updated code
+CREATE VIEW product_summary AS
+SELECT
+    `p`.`product_id` AS `product_id`,
+    `p`.`product_name` AS `product_name`,
+    COALESCE(SUM(`sop`.`quantity`), 0) AS `total_sold_quantity`,
+    SUM(`bop`.`quantity`) AS `total_buy_quantity`,
+    ((IFNULL(`i`.`stock`, 0) + SUM(`bop`.`quantity`)) - COALESCE(SUM(`sop`.`quantity`), 0)) AS `total_stock`
+FROM
+    (((`skmiraj_storemanagement`.`products` `p`
+    LEFT JOIN `skmiraj_storemanagement`.`s_order_product` `sop` ON (`sop`.`product_id` = `p`.`product_id`))
+    LEFT JOIN `skmiraj_storemanagement`.`b_order_product` `bop` ON (`bop`.`product_id` = `p`.`product_id`))
+    LEFT JOIN `skmiraj_storemanagement`.`inventory` `i` ON (`i`.`product_id` = `p`.`product_id`))
+GROUP BY
+    `p`.`product_id`, `p`.`product_name`;
+
+
+
+

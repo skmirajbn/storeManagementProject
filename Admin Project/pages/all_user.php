@@ -20,29 +20,43 @@ require_once("../includes/db_connection.php");
     </thead>
     <tbody>
       <?php
-        $sel="SELECT * FROM users NATURAL JOIN roles";
-        $query=$con->query($sel);
-        while($data=$query->fetch_assoc()){
-      ?>
-      <tr>
-        <td><input type="checkbox" class="select"></td>
-        <td><?= $data['user_id'] ; ?></td>
-        <td><?= $data['user_name'] ; ?></td>
-        <td><?= $data['user_username'] ; ?></td>
-        <td><?= $data['user_email'] ; ?></td>
-        <td><?= $data['user_phone'] ; ?></td>
-        <td><?= $data['user_password'] ; ?></td>
-        <td><?= $data['role_name'] ; ?></td>
-        <td>
-          <img class="user_img" src="uploads/images/<?= $data['user_image'];?>" alt="">
-        </td>
-        <td>
-          <a href="pages/view_user.php" class=" btn edit-btn "><i class="fa-solid fa-eye"></i></a>
-          <a href="pages/edit_user.php ? e=<?= $data['user_id']; ?>" class=" btn edit-btn "><i
-              class="fa-solid fa-pen-to-square"></i></a>
-          <a href="pages/delet_user.php" class=" btn delete-btn "><i class="fa-solid fa-trash"></i></a>
-        </td>
-      </tr>
+      $sel = "SELECT * FROM users NATURAL JOIN roles";
+      $query = $con->query($sel);
+      while ($data = $query->fetch_assoc()) {
+        ?>
+        <tr>
+          <td><input type="checkbox" class="select"></td>
+          <td>
+            <?= $data['user_id']; ?>
+          </td>
+          <td>
+            <?= $data['user_name']; ?>
+          </td>
+          <td>
+            <?= $data['user_username']; ?>
+          </td>
+          <td>
+            <?= $data['user_email']; ?>
+          </td>
+          <td>
+            <?= $data['user_phone']; ?>
+          </td>
+          <td>
+            <?= $data['user_password']; ?>
+          </td>
+          <td>
+            <?= $data['role_name']; ?>
+          </td>
+          <td>
+            <img class="user_img" src="uploads/images/<?= $data['user_image']; ?>" alt="">
+          </td>
+          <td>
+            <a href="pages/view_user.php" class=" btn edit-btn "><i class="fa-solid fa-eye"></i></a>
+            <a href="pages/edit_user.php?e=<?= $data['user_id']; ?>" class=" btn edit-btn "><i
+                class="fa-solid fa-pen-to-square"></i></a>
+            <a href="pages/delet_user.php" class=" btn delete-btn "><i class="fa-solid fa-trash"></i></a>
+          </td>
+        </tr>
       <?php } ?>
     </tbody>
   </table>

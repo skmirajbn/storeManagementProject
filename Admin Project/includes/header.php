@@ -16,7 +16,18 @@
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-  <script defer src="js/custom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.6.2/split.min.js"
+    integrity="sha512-to2k78YjoNUq8+hnJS8AwFg/nrLRFLdYYalb18SlcsFRXavCOTfBF3lNyplKkLJeB8YjKVTb1FPHGSy9sXfSdg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spinkit/2.0.1/spinkit.min.css"
+    integrity="sha512-kRYkjiYH/VXxoiaDK2oGNMKIi8VQVfie1lkYGX3kmfzWNR2kfaF5ze0885W3/eE6lIiURBsZA91M/WNvCajHMw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+    integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/custom.js"></script>
 </head>
 
 <body>
@@ -24,7 +35,7 @@
     <header>
       <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Code Scientist</a>
+          <a class="navbar-brand" href="index.php" data-disabled="true">Code Scientist</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -33,34 +44,39 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">DashBoard</a>
+                <a class="nav-link active" aria-current="page" data-disabled="true" href="index.php">DashBoard</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="pages/">Add Users</a>
+                <a class="nav-link" aria-current="page" href="pages/create_order.php">Create Order</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Add Category</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Add Brands</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Add Products</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                  aria-expanded="false">Other</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">About</a></li>
-                  <li><a class="dropdown-item" href="#">Store</a></li>
-                  <li>
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">Trash</a>
-                  </li>
-                </ul>
-              </li>
+              <?php if ($_SESSION['role_id'] < 2) { ?>
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="pages/add_user.php">Add User</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="pages/add_category.php">Add Category</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="pages/add_brand.php">Add Brand</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="pages/add_product.php">Add Product</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">Other</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">About</a></li>
+                    <li><a class="dropdown-item" href="#">Store</a></li>
+                    <li>
+                      <hr class="dropdown-divider" />
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Trash</a>
+                    </li>
+                  </ul>
+                </li>
+              <?php } ?>
             </ul>
             <i style="color: white; font-size: 20px;" id="themeToggleBtn" class="fa-solid fa-droplet"></i>
             <ul class="nav_profile">
@@ -82,8 +98,14 @@
               </li>
             </ul>
             <div class="user_part">
-              <img style="width: 40px;" class="" src="uploads/images/<?= $_SESSION['user_image'] ?>" alt="avatar" />
+              <div>
+                <img class="img-fluid" src="uploads/images/<?= $_SESSION['user_image'] ?>" alt="avatar" />
+              </div>
             </div>
+            <!-- <div class="user_part">
+              <img class="" src="uploads/images/<?= $_SESSION['user_image'] ?>" alt="avatar" />
+            </div> -->
+
             <!-- <form class="d-flex" role="search">
                 <input
                   class="form-control me-2"
