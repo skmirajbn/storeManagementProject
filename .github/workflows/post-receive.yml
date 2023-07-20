@@ -13,12 +13,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: SSH Run Commands on Windows VPS
-        uses: appleboy/ssh-action@master
-        with:
-          host: 38.109.113.107
-          username: administrator
-          script: |
-            cd C:\websites\skmiraj\storeManagementProject
-            git reset --hard HEAD
-            git pull origin master
+      - name: Update Files on Windows VPS
+        run: |
+          # Navigate to the project directory
+          cd C:\websites\skmiraj\storeManagementProject
+
+          # Reset any changes in the repository
+          git reset --hard HEAD
+
+          # Pull the latest changes from the master branch
+          git pull origin master
