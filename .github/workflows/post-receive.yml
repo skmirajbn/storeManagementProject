@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2.306.0
+        uses: actions/checkout@v2
 
       - name: Update Files on Windows VPS using Git Bash Script
         shell: bash
         run: |
-       
+
           cd C:/websites/skmiraj/storeManagementProject
 
           git reset --hard HEAD
