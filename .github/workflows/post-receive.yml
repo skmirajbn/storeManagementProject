@@ -7,14 +7,14 @@ on:
 
 jobs:
   deploy:
-    runs-on: windows-latest
+    runs-on: linux-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
 
-      - name: Deploy to Windows VPS
+      - name: Deploy to Linux VPS
         uses: appleboy/scp-action@master
         with:
           host: 38.109.113.107
