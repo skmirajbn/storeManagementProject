@@ -13,7 +13,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Update Files on Windows VPS using Git Bash
+      - name: Update Files on Windows VPS using PowerShell
+        shell: powershell
         
         run: |
           cd C:/websites/skmiraj/storeManagementProject
