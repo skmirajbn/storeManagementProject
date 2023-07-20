@@ -13,15 +13,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-
-      - name: Deploy to Linux VPS
-        uses: appleboy/scp-action@master
-        with:
-          host: 38.109.113.107
-          username: administrator
-          source: ./
-          target: 'C:\websites\skmiraj\storeManagementProject'
-
       - name: SSH Run Commands on Windows VPS
         uses: appleboy/ssh-action@master
         with:
