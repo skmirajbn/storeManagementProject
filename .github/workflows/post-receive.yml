@@ -14,5 +14,4 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Update Files on Windows VPS using Git Bash Script
-        shell: bash
         run: C:\websites\skmiraj\storeManagementProject\update_repo.sh
