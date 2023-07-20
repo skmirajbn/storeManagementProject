@@ -13,10 +13,19 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Update Files on Windows VPS using PowerShell
+      - name: Update Files on Windows VPS using PowerShell (Run as Administrator)
         shell: powershell
-        
         run: |
+          # Define the script that requires administrator privileges
+          $script = @"
+          # Navigate to the project directory
           cd C:/websites/skmiraj/storeManagementProject
+
+
           git reset --hard HEAD
+
           git pull
+          "@
+
+          # Use Start-Process with -Verb RunAs to run the script as administrator
+          Start-Process powershell -ArgumentList "-NoProfile", "-ExecutionPolicy Bypass", "-Command `"$script`"" -Verb RunAs
