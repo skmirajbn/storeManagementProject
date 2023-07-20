@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2.4.3
+        uses: actions/checkout@v2.306.0
 
       - name: Update Files on Windows VPS using Git Bash Script
         shell: bash
