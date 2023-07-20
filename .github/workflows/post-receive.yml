@@ -18,8 +18,11 @@ jobs:
           # Navigate to the project directory
           cd C:\websites\skmiraj\storeManagementProject
 
+          # Add an exception for the directory ownership
+          git config --global --add safe.directory C:/websites/skmiraj/storeManagementProject
+
           # Reset any changes in the repository
           git reset --hard HEAD
 
-          # Pull the latest changes from the master branch -s
+          # Pull the latest changes from the master branch
           git pull origin master
