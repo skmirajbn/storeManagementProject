@@ -16,6 +16,6 @@ jobs:
       - name: Update Files on Windows VPS using Git Bash
         shell: 'C:\Program Files\Git\bin\bash.exe'
         run: |
-          cd C:\websites\skmiraj\storeManagementProject
+          cd C:/websites/skmiraj/storeManagementProject
           git reset --hard HEAD
           git pull
