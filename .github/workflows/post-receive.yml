@@ -17,7 +17,7 @@ jobs:
         shell: 'C:\Program Files\Git\bin\bash.exe'
         run: |
           # Navigate to the project directory
-          cd C:/websites/skmiraj/storeManagementProject
+          cd C:\websites\skmiraj\storeManagementProject
 
           # Reset any changes in the repository
           git reset --hard HEAD
