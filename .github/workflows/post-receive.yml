@@ -13,10 +13,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Start SSH Agent
-        run: |
-          eval "$(ssh-agent)"
-           ssh-add "C:\Users\Administrator\.ssh\id_rsa"
 
       - name: Deploy to Windows VPS
         uses: appleboy/scp-action@master
