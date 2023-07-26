@@ -1,7 +1,7 @@
 <?php
 $host = "skmiraj.online";
 $dbuser = "skmiraj";
-$dbpass = "6XfwV(z{zfc!P38H";
+$dbpass = "SWKbBT.LjXo-8Tj6";
 $dbname = "skmiraj_storemanagement";
 
 $con = new mysqli($host, $dbuser, $dbpass, $dbname);
