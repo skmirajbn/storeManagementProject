@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 06, 2023 at 02:42 AM
+-- Generation Time: Nov 04, 2023 at 03:44 PM
 -- Server version: 8.0.33
--- PHP Version: 8.2.6
+-- PHP Version: 8.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -128,7 +128,16 @@ INSERT INTO `b_order_product` (`b_order_product_id`, `purchase_order_id`, `produ
 (79, 39, 100, 15),
 (80, 39, 99, 20),
 (81, 39, 98, 15),
-(82, 40, 95, 20);
+(82, 40, 95, 20),
+(83, 41, 93, 10),
+(84, 41, 94, 40),
+(85, 41, 92, 20),
+(86, 42, 91, 30),
+(87, 43, 86, 2),
+(88, 44, 91, 15),
+(89, 45, 100, 4),
+(90, 46, 100, 10),
+(91, 47, 100, 50);
 
 -- --------------------------------------------------------
 
@@ -138,20 +147,20 @@ INSERT INTO `b_order_product` (`b_order_product_id`, `purchase_order_id`, `produ
 --
 CREATE TABLE `b_order_product_information` (
 `b_order_product_id` int
-,`purchase_order_id` int
-,`product_id` int
-,`quantity` int
-,`category_id` int
-,`sub_category_id` int
 ,`brand_id` int
-,`product_name` varchar(50)
-,`description` text
-,`product_image` varchar(100)
-,`unit_id` int
-,`selling_price` decimal(10,2)
 ,`buying_price` decimal(10,2)
-,`sku` varchar(50)
+,`category_id` int
+,`description` text
+,`product_id` int
+,`product_image` varchar(100)
+,`product_name` varchar(50)
 ,`product_status` int
+,`purchase_order_id` int
+,`quantity` int
+,`selling_price` decimal(10,2)
+,`sku` varchar(50)
+,`sub_category_id` int
+,`unit_id` int
 );
 
 -- --------------------------------------------------------
@@ -253,7 +262,13 @@ INSERT INTO `customers` (`customer_id`, `customer_name`, `customer_address`, `cu
 (1093, 'Shathi akter Bristy', 'Puran Dhaka', '01723659482', 'shathi@gmail.com', 1),
 (1094, 'Miraj', 'Keraniganj', '01957244070', 'miraj@gmail.com', 1),
 (1095, 'alamin', 'Mohammadpur', '01710034643', 'alaminamin958@gmail.com', 1),
-(1096, 'jahid pagla', 'Dhanmondi', '0152546453', 'jahid@gmail.com', 1);
+(1096, 'jahid pagla', 'Dhanmondi', '0152546453', 'jahid@gmail.com', 1),
+(1097, 'Tim Cook', 'Alabama', '01723659402', 'tim@gmail.com', 1),
+(1098, 'Sundar Pichai ', 'Alaska', '017456215485', 'pichai @gmail.com', 1),
+(1099, 'Satya Nadella', 'Arizona', '01754612451', 'nadella@gmail.com', 1),
+(1100, 'roby', 'Mirpur', '01987261151', 'roby@gmail.com', 1),
+(1101, 'Faria', 'Mirpur', '01879249106', 'faria@gmail.com', 1),
+(1102, 'Bristy Talukder', 'Gandaria', '01960365354', 'bristy@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -364,27 +379,27 @@ INSERT INTO `products` (`product_id`, `category_id`, `sub_category_id`, `brand_i
 -- (See below for the actual view)
 --
 CREATE TABLE `product_information` (
-`total_sold_quantity` decimal(32,0)
-,`total_buy_quantity` decimal(32,0)
-,`total_stock` decimal(36,2)
-,`unit_id` int
-,`brand_id` int
-,`category_id` int
-,`sub_category_id` int
-,`product_id` int
-,`product_name` varchar(50)
-,`description` text
-,`product_image` varchar(100)
-,`selling_price` decimal(10,2)
-,`buying_price` decimal(10,2)
-,`sku` varchar(50)
-,`product_status` int
-,`category_name` varchar(50)
-,`category_status` int
-,`sub_category_name` varchar(50)
-,`sub_category_status` int
+`brand_id` int
 ,`brand_name` varchar(50)
 ,`brand_status` int
+,`buying_price` decimal(10,2)
+,`category_id` int
+,`category_name` varchar(50)
+,`category_status` int
+,`description` text
+,`product_id` int
+,`product_image` varchar(100)
+,`product_name` varchar(50)
+,`product_status` int
+,`selling_price` decimal(10,2)
+,`sku` varchar(50)
+,`sub_category_id` int
+,`sub_category_name` varchar(50)
+,`sub_category_status` int
+,`total_buy_quantity` decimal(32,0)
+,`total_sold_quantity` decimal(32,0)
+,`total_stock` decimal(36,2)
+,`unit_id` int
 ,`unit_name` varchar(50)
 ,`unit_status` int
 );
@@ -398,8 +413,8 @@ CREATE TABLE `product_information` (
 CREATE TABLE `product_stock_information` (
 `product_id` int
 ,`product_name` varchar(50)
-,`total_sold_quantity` decimal(32,0)
 ,`total_buy_quantity` decimal(32,0)
+,`total_sold_quantity` decimal(32,0)
 ,`total_stock` decimal(36,2)
 );
 
@@ -412,8 +427,8 @@ CREATE TABLE `product_stock_information` (
 CREATE TABLE `product_summary` (
 `product_id` int
 ,`product_name` varchar(50)
-,`total_sold_quantity` decimal(32,0)
 ,`total_buy_quantity` decimal(32,0)
+,`total_sold_quantity` decimal(32,0)
 ,`total_stock` decimal(36,2)
 );
 
@@ -439,28 +454,35 @@ INSERT INTO `purchase_order` (`purchase_order_id`, `user_id`, `supplier_id`, `ti
 (16, 22, 13, '2023-07-05 12:48:53', 1),
 (17, 22, 11, '2023-07-05 13:37:47', 1),
 (18, 22, 10, '2023-07-05 13:38:49', 1),
-(19, 22, 13, '2023-07-05 13:41:18', 1),
-(20, 22, 10, '2023-07-05 13:57:29', 1),
-(21, 22, 10, '2023-07-04 14:05:20', 1),
-(22, 22, 10, '2023-07-05 14:06:07', 1),
-(23, 22, 13, '2023-07-05 14:06:42', 1),
-(24, 22, 13, '2023-07-05 14:07:59', 1),
-(25, 22, 11, '2023-07-05 14:14:25', 1),
-(26, 22, 13, '2023-07-04 14:17:37', 1),
-(27, 22, 13, '2023-07-05 14:18:51', 1),
-(28, 22, 15, '2023-07-05 14:22:34', 1),
-(29, 22, 9, '2023-07-05 14:32:17', 1),
-(30, 22, 13, '2023-07-05 14:32:52', 1),
-(31, 22, 16, '2023-07-05 15:17:09', 1),
-(32, 22, 16, '2023-07-05 23:02:07', 1),
-(33, 22, 11, '2023-07-05 23:03:03', 1),
-(34, 22, 13, '2023-07-05 23:03:47', 1),
-(35, 22, 10, '2023-07-05 23:04:29', 1),
-(36, 22, 13, '2023-07-05 23:19:35', 1),
-(37, 20, 18, '2023-07-06 01:24:10', 1),
-(38, 23, 19, '2023-07-06 01:25:29', 1),
-(39, 22, 13, '2023-07-06 02:40:07', 1),
-(40, 22, 10, '2023-07-06 02:40:53', 1);
+(19, 22, 13, '1900-01-18 00:00:00', 1),
+(20, 22, 10, '1900-01-18 00:00:00', 1),
+(21, 22, 10, '2023-07-19 00:00:00', 1),
+(22, 22, 10, '2023-07-19 14:06:07', 1),
+(23, 22, 13, '2023-07-19 14:06:42', 1),
+(24, 22, 13, '2023-07-20 14:07:59', 1),
+(25, 22, 11, '2023-07-20 14:14:25', 1),
+(26, 22, 13, '2023-07-21 14:17:37', 1),
+(27, 22, 13, '2023-07-21 14:18:51', 1),
+(28, 22, 15, '2023-07-21 14:22:34', 1),
+(29, 22, 9, '2023-07-22 14:32:17', 1),
+(30, 22, 13, '2023-07-22 14:32:52', 1),
+(31, 22, 16, '2023-07-23 15:17:09', 1),
+(32, 22, 16, '2023-07-23 23:02:07', 1),
+(33, 22, 11, '2023-07-24 23:03:03', 1),
+(34, 22, 13, '2023-07-24 23:03:47', 1),
+(35, 22, 10, '2023-07-24 23:04:29', 1),
+(36, 22, 13, '2023-07-25 23:19:35', 1),
+(37, 20, 18, '2023-07-25 01:24:10', 1),
+(38, 23, 19, '2023-07-26 01:25:29', 1),
+(39, 22, 13, '2023-07-26 02:40:07', 1),
+(40, 22, 10, '2023-07-26 02:40:53', 1),
+(41, 22, 11, '2023-07-06 02:42:47', 1),
+(42, 22, 13, '2023-07-06 02:43:17', 1),
+(43, 23, 20, '2023-07-06 06:43:09', 1),
+(44, 23, 20, '2023-07-06 06:45:00', 1),
+(45, 23, 20, '2023-07-06 14:04:01', 1),
+(46, 23, 21, '2023-08-13 06:53:30', 1),
+(47, 23, 20, '2023-10-22 00:03:31', 1);
 
 -- --------------------------------------------------------
 
@@ -470,23 +492,23 @@ INSERT INTO `purchase_order` (`purchase_order_id`, `user_id`, `supplier_id`, `ti
 --
 CREATE TABLE `purchase_order_information` (
 `purchase_order_id` int
-,`user_id` int
-,`supplier_id` int
-,`time_stamp` datetime
 ,`purchase_order_status` int
-,`user_name` varchar(30)
-,`user_username` varchar(50)
-,`user_email` varchar(50)
-,`user_phone` varchar(20)
-,`user_password` varchar(50)
 ,`role_id` int
-,`user_status` varchar(50)
-,`user_image` varchar(100)
-,`supplier_name` varchar(50)
 ,`supplier_address` text
-,`supplier_phone` varchar(50)
 ,`supplier_email` varchar(50)
+,`supplier_id` int
+,`supplier_name` varchar(50)
+,`supplier_phone` varchar(50)
 ,`supplier_status` int
+,`time_stamp` datetime
+,`user_email` varchar(50)
+,`user_id` int
+,`user_image` varchar(100)
+,`user_name` varchar(30)
+,`user_password` varchar(50)
+,`user_phone` varchar(20)
+,`user_status` varchar(50)
+,`user_username` varchar(50)
 );
 
 -- --------------------------------------------------------
@@ -528,25 +550,43 @@ CREATE TABLE `sales_order` (
 --
 
 INSERT INTO `sales_order` (`sales_order_id`, `customer_id`, `user_id`, `time_stamp`, `sales_order_status`) VALUES
-(61, 1081, 22, '2023-06-30 14:26:57', 1),
-(62, 1082, 22, '2023-07-05 14:28:24', 1),
-(63, 1083, 22, '2023-07-05 14:31:22', 1),
-(64, 1084, 22, '2023-07-05 14:36:09', 1),
-(65, 1085, 22, '2023-07-05 14:39:33', 1),
-(66, 1086, 22, '2023-07-03 14:41:18', 1),
-(67, 1087, 22, '2023-07-05 14:43:11', 1),
-(68, 1088, 22, '2023-07-02 14:46:12', 1),
-(69, 1089, 22, '2023-07-01 14:47:48', 1),
-(70, 1090, 23, '2023-07-05 16:02:27', 1),
-(71, 1091, 23, '2023-06-29 16:05:29', 1),
-(72, 1092, 23, '2023-06-28 16:06:59', 1),
-(73, 1093, 22, '2023-07-05 23:16:25', 1),
-(74, 1093, 25, '2023-07-05 23:32:18', 1),
-(75, 1093, 25, '2023-07-05 23:34:45', 1),
-(76, 1094, 23, '2023-07-06 01:19:30', 1),
-(77, 1094, 23, '2023-07-06 02:10:48', 1),
-(78, 1095, 24, '2023-07-06 02:26:52', 1),
-(79, 1096, 24, '2023-07-06 02:33:26', 1);
+(61, 1081, 22, '2023-10-29 14:26:57', 1),
+(62, 1082, 22, '2023-10-23 14:28:24', 1),
+(63, 1083, 22, '2023-07-18 14:31:22', 1),
+(64, 1084, 22, '2023-07-19 14:36:09', 1),
+(65, 1085, 22, '2023-10-31 14:39:33', 1),
+(66, 1086, 22, '2023-10-31 14:41:18', 1),
+(67, 1087, 22, '2023-07-20 14:43:11', 1),
+(68, 1088, 22, '2023-07-20 14:46:12', 1),
+(69, 1089, 22, '2023-10-22 14:47:48', 1),
+(70, 1090, 23, '2023-07-21 16:02:27', 1),
+(71, 1091, 23, '2023-10-27 16:05:29', 1),
+(72, 1092, 23, '2023-10-22 16:06:59', 1),
+(73, 1093, 22, '2023-07-22 23:16:25', 1),
+(74, 1093, 25, '2023-07-22 23:32:18', 1),
+(75, 1093, 25, '2023-07-22 23:34:45', 1),
+(76, 1094, 23, '2023-10-24 01:19:30', 1),
+(77, 1094, 23, '2023-10-25 02:10:48', 1),
+(78, 1095, 24, '2023-10-26 02:26:52', 1),
+(79, 1096, 24, '2023-10-27 02:33:26', 1),
+(80, 1097, 22, '2023-10-28 02:46:38', 1),
+(81, 1098, 22, '2023-09-28 02:48:13', 1),
+(82, 1099, 22, '2023-09-29 02:49:00', 1),
+(83, 1100, 23, '2023-09-29 04:24:07', 1),
+(84, 1094, 23, '2023-10-31 05:12:41', 1),
+(85, 1094, 23, '2023-10-01 06:41:40', 1),
+(86, 1094, 23, '2023-07-06 06:45:23', 1),
+(87, 1094, 23, '2023-07-06 14:03:40', 1),
+(88, 1101, 23, '2023-07-09 11:26:57', 1),
+(89, 1094, 23, '2023-07-14 05:15:58', 1),
+(90, 1094, 23, '2023-07-14 05:16:06', 1),
+(91, 1094, 23, '2023-07-14 05:16:15', 1),
+(92, 1094, 23, '2023-07-26 08:29:28', 1),
+(93, 1094, 23, '2023-08-13 06:50:58', 1),
+(94, 1094, 23, '2023-08-13 06:52:02', 1),
+(95, 1094, 23, '2023-08-25 04:22:54', 1),
+(96, 1102, 23, '2023-10-21 23:37:48', 1),
+(97, 1094, 23, '2023-10-22 00:02:27', 1);
 
 -- --------------------------------------------------------
 
@@ -555,24 +595,24 @@ INSERT INTO `sales_order` (`sales_order_id`, `customer_id`, `user_id`, `time_sta
 -- (See below for the actual view)
 --
 CREATE TABLE `sales_order_information` (
-`sales_order_id` int
-,`customer_id` int
-,`user_id` int
-,`time_stamp` datetime
-,`sales_order_status` int
-,`customer_name` varchar(200)
-,`customer_address` varchar(200)
-,`customer_phone` varchar(20)
+`customer_address` varchar(200)
 ,`customer_email` varchar(100)
+,`customer_id` int
+,`customer_name` varchar(200)
+,`customer_phone` varchar(20)
 ,`customer_status` int
-,`user_name` varchar(30)
-,`user_username` varchar(50)
-,`user_email` varchar(50)
-,`user_phone` varchar(20)
-,`user_password` varchar(50)
 ,`role_id` int
-,`user_status` varchar(50)
+,`sales_order_id` int
+,`sales_order_status` int
+,`time_stamp` datetime
+,`user_email` varchar(50)
+,`user_id` int
 ,`user_image` varchar(100)
+,`user_name` varchar(30)
+,`user_password` varchar(50)
+,`user_phone` varchar(20)
+,`user_status` varchar(50)
+,`user_username` varchar(50)
 );
 
 -- --------------------------------------------------------
@@ -717,7 +757,9 @@ INSERT INTO `suppliers` (`supplier_id`, `supplier_name`, `supplier_address`, `su
 (15, 'Lotto Sport Italia', '5/7, 31040 Trevignano (TV) - Italy', '01723658475', 'info@lotto.com', 1),
 (16, 'Unilever Bangladesh LTD', 'Dhaka Bangladesh', '01457621020', 'info@unilever.com', 1),
 (18, 'RFL', 'Dhaka', '01774656830', 'rfl@gmail.com', 1),
-(19, 'Meat Bangladesh', 'Dhanmondi', '01657945124', 'meatbd@gmail.com', 1);
+(19, 'Meat Bangladesh', 'Dhanmondi', '01657945124', 'meatbd@gmail.com', 1),
+(20, 'Meat BD', 'Mirpur', '01956545645', 'meat@gmail.com', 1),
+(21, 'Maruf Supplier', 'Mirpur', '01564164864', 'maruf@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -812,7 +854,58 @@ INSERT INTO `s_order_product` (`s_order_product_id`, `sales_order_id`, `product_
 (190, 79, 95, 1),
 (191, 79, 92, 1),
 (192, 79, 79, 1),
-(193, 79, 58, 1);
+(193, 79, 58, 1),
+(194, 80, 97, 1),
+(195, 80, 94, 1),
+(196, 80, 86, 1),
+(197, 80, 85, 1),
+(198, 81, 61, 1),
+(199, 81, 60, 1),
+(200, 81, 59, 1),
+(201, 81, 58, 1),
+(202, 81, 57, 1),
+(203, 81, 54, 1),
+(204, 81, 53, 1),
+(205, 82, 61, 1),
+(206, 82, 60, 1),
+(207, 82, 59, 1),
+(208, 82, 57, 1),
+(209, 82, 53, 1),
+(210, 83, 91, 2),
+(211, 83, 86, 2),
+(212, 83, 80, 2),
+(213, 84, 86, 1),
+(214, 85, 86, 2),
+(215, 85, 85, 1),
+(216, 86, 91, 20),
+(217, 87, 99, 2),
+(218, 88, 91, 1),
+(219, 88, 91, 1),
+(220, 88, 90, 1),
+(221, 88, 89, 1),
+(222, 89, 99, 1),
+(223, 90, 99, 1),
+(224, 90, 94, 1),
+(225, 91, 94, 1),
+(226, 91, 87, 1),
+(227, 91, 86, 1),
+(228, 92, 99, 1),
+(229, 92, 98, 1),
+(230, 92, 94, 1),
+(231, 92, 95, 1),
+(232, 92, 97, 1),
+(233, 93, 48, 1),
+(234, 93, 55, 1),
+(235, 93, 59, 5),
+(236, 94, 100, 4),
+(237, 95, 96, 2),
+(238, 95, 95, 1),
+(239, 95, 91, 1),
+(240, 96, 86, 1),
+(241, 96, 48, 2),
+(242, 96, 52, 1),
+(243, 96, 54, 1),
+(244, 97, 100, 10);
 
 -- --------------------------------------------------------
 
@@ -821,21 +914,21 @@ INSERT INTO `s_order_product` (`s_order_product_id`, `sales_order_id`, `product_
 -- (See below for the actual view)
 --
 CREATE TABLE `s_order_product_information` (
-`s_order_product_id` int
-,`sales_order_id` int
-,`product_id` int
-,`quantity` int
-,`category_id` int
-,`sub_category_id` int
-,`brand_id` int
-,`product_name` varchar(50)
-,`description` text
-,`product_image` varchar(100)
-,`unit_id` int
-,`selling_price` decimal(10,2)
+`brand_id` int
 ,`buying_price` decimal(10,2)
-,`sku` varchar(50)
+,`category_id` int
+,`description` text
+,`product_id` int
+,`product_image` varchar(100)
+,`product_name` varchar(50)
 ,`product_status` int
+,`quantity` int
+,`s_order_product_id` int
+,`sales_order_id` int
+,`selling_price` decimal(10,2)
+,`sku` varchar(50)
+,`sub_category_id` int
+,`unit_id` int
 );
 
 -- --------------------------------------------------------
@@ -884,13 +977,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_username`, `user_email`, `user_phone`, `user_password`, `role_id`, `user_status`, `user_image`) VALUES
-(20, 'Mosharof', 'mosharof', 'info@gmail.com', '017289429479', '123', 1, NULL, 'user_1688624012_9058884.jpeg'),
-(22, 'Ali Hasan', 'dbhasan', 'infoalihasanbd@gmail.com', '01723629080', '123', 1, NULL, 'user_1688139907_2684197.jpg'),
-(23, 'Miraj', 'skmiraj', 'skmirajbn@gmail.com', '01957244070', '123', 1, NULL, 'user_1688216572_6458194.png'),
-(24, 'Alamin', 'alamin', 'info@gmail.com', '01723629080', '123', 1, NULL, 'user_1688620008_7115230.jpg'),
-(25, 'khaleda', 'khaleda', 'info@gmail.com', '01723629080', '123', 1, NULL, 'user_1688619677_4118138.jpg'),
-(33, 'Md Rabiul Alam', 'roby', 'roby@gmail.com', '01954712564', '123', 2, NULL, 'user_1688582184_2538704.jpg'),
-(34, 'Jahirul Islam', 'jahirul', 'jahirul@gmail.com', '01564846242', '123', 3, NULL, 'user_1688582294_9848104.jpg');
+(20, 'Mosharof', 'mosharof', 'info@gmail.com', '017289429479', 'storemanagement', 1, NULL, 'user_1688624012_9058884.jpeg'),
+(22, 'Ali Hasan', 'dbhasan', 'infoalihasanbd@gmail.com', '01723629080', 'storemanagement', 1, NULL, 'user_1688139907_2684197.jpg'),
+(23, 'Miraj', 'skmiraj', 'skmirajbn@gmail.com', '01957244070', 'storemanagement', 1, NULL, 'user_1688216572_6458194.png'),
+(24, 'Alamin', 'alamin', 'info@gmail.com', '01723629080', 'storemanagement', 1, NULL, 'user_1688620008_7115230.jpg'),
+(25, 'khaleda', 'khaleda', 'info@gmail.com', '01723629080', 'storemanagement', 1, NULL, 'user_1688619677_4118138.jpg'),
+(33, 'Md Rabiul Alam', 'roby', 'roby@gmail.com', '01954712564', 'storemanagement', 2, NULL, 'user_1688582184_2538704.jpg'),
+(34, 'Jahirul Islam', 'jahirul', 'jahirul@gmail.com', '01564846242', 'storemanagement', 3, NULL, 'user_1688582294_9848104.jpg');
 
 -- --------------------------------------------------------
 
@@ -899,16 +992,16 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_username`, `user_email`, `use
 -- (See below for the actual view)
 --
 CREATE TABLE `users_information` (
-`user_id` int
-,`user_name` varchar(30)
-,`user_username` varchar(50)
-,`user_email` varchar(50)
-,`user_phone` varchar(20)
-,`user_password` varchar(50)
-,`role_id` int
-,`user_status` varchar(50)
-,`user_image` varchar(100)
+`role_id` int
 ,`role_name` varchar(50)
+,`user_email` varchar(50)
+,`user_id` int
+,`user_image` varchar(100)
+,`user_name` varchar(30)
+,`user_password` varchar(50)
+,`user_phone` varchar(20)
+,`user_status` varchar(50)
+,`user_username` varchar(50)
 );
 
 -- --------------------------------------------------------
@@ -1125,7 +1218,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `b_order_product`
 --
 ALTER TABLE `b_order_product`
-  MODIFY `b_order_product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `b_order_product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1137,7 +1230,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1097;
+  MODIFY `customer_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1103;
 
 --
 -- AUTO_INCREMENT for table `inventory`
@@ -1155,7 +1248,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `purchase_order`
 --
 ALTER TABLE `purchase_order`
-  MODIFY `purchase_order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `purchase_order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -1167,7 +1260,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `sales_order`
 --
 ALTER TABLE `sales_order`
-  MODIFY `sales_order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `sales_order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
 -- AUTO_INCREMENT for table `sub_categories`
@@ -1179,13 +1272,13 @@ ALTER TABLE `sub_categories`
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `supplier_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `supplier_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `s_order_product`
 --
 ALTER TABLE `s_order_product`
-  MODIFY `s_order_product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
+  MODIFY `s_order_product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
 
 --
 -- AUTO_INCREMENT for table `units`
