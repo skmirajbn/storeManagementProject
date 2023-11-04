@@ -60,3 +60,8 @@ StoreManagement is a comprehensive Point of Sale (POS) software designed to stre
 ## Support
 
 For any inquiries or support, reach out to me at [skmirajbn@gmail.com](mailto:skmirajbn@gmail.com).
+
+## Screenshots
+Login Screen
+![image](https://github.com/skmirajbn/storeManagementProject/assets/67829716/3abc3a95-0e05-44db-bf26-9b7a3166bd6d)
+
