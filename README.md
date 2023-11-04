@@ -64,4 +64,10 @@ For any inquiries or support, reach out to me at [skmirajbn@gmail.com](mailto:sk
 ## Screenshots
 Login Screen
 ![image](https://github.com/skmirajbn/storeManagementProject/assets/67829716/3abc3a95-0e05-44db-bf26-9b7a3166bd6d)
+Dashboard Screen
+![image](https://github.com/skmirajbn/storeManagementProject/assets/67829716/982a88f0-1342-499d-b0d4-71a95302d01e)
+Create Order page
+![image](https://github.com/skmirajbn/storeManagementProject/assets/67829716/d1e2ca0d-9208-4854-bb0b-82fb1f2f80e9)
+
+
 
