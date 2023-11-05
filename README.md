@@ -1,4 +1,4 @@
-# Store Management Project  [link URL](http://storemanagement.skmiraj.online/)
+# Store Management Project  [Live Link](http://storemanagement.skmiraj.online/)
 
 # StoreManagement - POS Software
 
